@@ -30,7 +30,8 @@
 *.exe
 *.out
 *.app
+HumanGL
 
 # Mac_OS
 
-*.DS_Store
+.DS_Store

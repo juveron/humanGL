@@ -4,17 +4,19 @@ int main(void)
 {
 	GLFWwindow *window;
 
-	if (!glfwInit())
+	if (!glfwInit()) {
 		exit(EXIT_FAILURE);
+		printf("%s\n","error glfwinit");
+	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "HumanGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
+		printf("%s\n","error creat windows");
 		exit(EXIT_FAILURE);
 	}
 

@@ -15,8 +15,8 @@ MAGENTA= \033[35m
 #								Macros										   #
 ################################################################################
 NAME= HumanGL
-C++ = g++
-CFLAGS= -Wall -Wextra -Werror -g
+C++ = clang++
+CFLAGS= -std=c++11 -Wall -Werror -Wextra -g -Wno-deprecated
 
 SRC_DIR= src/
 SRC= init/main.cpp\
@@ -31,7 +31,6 @@ SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
 # LIBFT=libft/libft.a
 LIB= -lglfw\
-	 -lglad\
 	 -ldl\
 	 -lm
 INCLUDES=	hdr/HumanGL.hpp
@@ -40,13 +39,13 @@ INCLUDES=	hdr/HumanGL.hpp
 #								Rules										  #
 ###############################################################################
 
-all: $(SUBDIRS) 
+all: $(SUBDIRS)
 #	@ make all -C libft
 	@ make -j $(NAME)
 
 $(NAME): $(OBJS)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
-	@ $(C++) -o $@ glad/src/glad.c $(CFLAGS) $(OBJS) $(LIB) 
+	@ $(C++) -o $@ ./glad/src/glad.c $(CFLAGS) $(OBJS) $(LIB)
 # $(LIBFT)
 	@echo "$(GREEN)$@ executable created$(WHITE)"
 
@@ -78,3 +77,4 @@ re: fclean all
 FORCE:
 
 .PHONY: all re fclean clean
+
