@@ -7,10 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5ec67ab-d07c-453c-a448-0db6cb3917b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glad/src/glad.c" beforeDir="false" afterPath="$PROJECT_DIR$/glad/src/glad.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/drawTest/human_test.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/matrix/Matrix.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/matrix/Matrix.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hdr/HumanGL.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/hdr/HumanGL.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hdr/struct.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/hdr/struct.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/init/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/init/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,13 +34,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -54,6 +59,8 @@
       <workItem from="1625586135859" duration="653000" />
       <workItem from="1625738939742" duration="6969000" />
       <workItem from="1625990868748" duration="2859000" />
+      <workItem from="1626091841424" duration="331000" />
+      <workItem from="1626093321069" duration="3395000" />
     </task>
     <servers />
   </component>
