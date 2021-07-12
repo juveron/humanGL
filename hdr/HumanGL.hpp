@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include "./proto.hpp"
 #include "./classes.hpp"

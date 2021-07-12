@@ -27,19 +27,25 @@ MAGENTA= \033[35m
 #								Macros										   #
 ################################################################################
 NAME= HumanGL
-C++ = g++
-CFLAGS= -Wall -Wextra -Werror -g
+CPP= clang++
+CPPFLAGS= -Wall -Wextra -Werror -g -Wno-deprecated
 
 SRC_DIR= src/
 SRC= init/main.cpp\
 	 event/processInput.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
+CLASS= Shader.cpp
+CLASS_DIR= class/
+CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
-OBJ_SUBDIRS= init event
+OBJ += $(CLASSES:.cpp=.o)
+OBJ_SUBDIRS= init event class
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
+
+VPATH = $(SRC_DIR):$(CLASS_DIR)
 
 # LIBFT=libft/libft.a
 LIB= -lglfw\
@@ -57,15 +63,15 @@ all: $(SUBDIRS)
 
 $(NAME): $(OBJS)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
-	@ $(C++) -o $@ glad/src/glad.c $(CFLAGS) $(OBJS) $(LIB) 
+	@ $(CPP) -o $@ glad/src/glad.c $(CPPFLAGS) $(OBJS) $(LIB) 
 # $(LIBFT)
 	@echo "$(GREEN)$@ executable created$(WHITE)"
 
 $(SUBDIRS):
 	@ mkdir -p $(SUBDIRS)
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(INCLUDES) Makefile
-	@ $(C++) -o $@ -c $< $(CFLAGS)
+$(OBJ_DIR)%.o:%.cpp $(INCLUDES) Makefile
+	@ $(CPP) -o $@ -c $< $(CPPFLAGS)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
 clean:

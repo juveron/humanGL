@@ -1,12 +1,13 @@
 #ifndef SHADER_CLASS_HPP
 #define SHADER_CLASS_HPP
 
-#include "./HumanGL.hpp"
+#include "../HumanGL.hpp"
 
 class Shader
 {
 private:
 	unsigned int id;
+	void checkCompileError(GLuint shader, std::string type);
 
 public:
 	Shader(void) = delete;

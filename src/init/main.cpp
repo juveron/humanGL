@@ -4,6 +4,7 @@ int main(void)
 {
 	GLFWwindow *window;
 
+
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
 
@@ -26,6 +27,12 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	try {
+		Shader shader("./src/shadr/vertexShader.glsl", "./src/shader/fragmentShader.glsl");
+	}
+	catch (std::exception &e) {
+		exit(EXIT_FAILURE);
+	}
 
 	while (!glfwWindowShouldClose(window))
 	{
