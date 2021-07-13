@@ -33,3 +33,8 @@
 HumanGL
 
 .vscode
+# Mac_OS
+
+.DS_Store
+
+HumanGL.dSYM
