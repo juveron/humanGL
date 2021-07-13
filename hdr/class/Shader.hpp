@@ -6,7 +6,7 @@
 class Shader
 {
 private:
-	unsigned int id;
+	unsigned int _id;
 	void checkCompileError(GLuint shader, std::string type);
 
 public:
