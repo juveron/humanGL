@@ -31,10 +31,10 @@ public:
 	Vector4f &operator/=(float const &f);
 	Vector4f &operator=(Vector4f const &rhs);
 
-	friend Vector4f operator+(Vector4f const lhs, Vector4f const &rhs);
-	friend Vector4f operator-(Vector4f const lhs, Vector4f const &rhs);
-	friend Vector4f operator*(Vector4f const lhs, float const &rhs);
-	friend Vector4f operator/(Vector4f const lhs, float const &rhs);
+	friend Vector4f operator+(Vector4f const &lhs, Vector4f const &rhs);
+	friend Vector4f operator-(Vector4f const &lhs, Vector4f const &rhs);
+	friend Vector4f operator*(Vector4f const &lhs, float const &rhs);
+	friend Vector4f operator/(Vector4f const &lhs, float const &rhs);
 };
 
 #endif //HUMANGL_VECTOR_HPP
