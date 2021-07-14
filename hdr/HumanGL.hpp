@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 
 #include "./proto.hpp"
 #include "./classes.hpp"
