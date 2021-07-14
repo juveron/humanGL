@@ -1,8 +1,9 @@
-#ifndef HUMANGL_VECTOR_HPP
-#define HUMANGL_VECTOR_HPP
+#ifndef VECTOR3F_HPP
+#define VECTOR3F_HPP
 
 #include "../HumanGL.hpp"
 
+// template<typename T>
 class Vector3f {
 public:
 	Vector3f(void);
