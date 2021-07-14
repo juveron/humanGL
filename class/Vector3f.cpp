@@ -102,6 +102,7 @@ Vector3f &Vector3f::operator=(Vector3f const &rhs)
 	this->x = rhs.x;
 	this->y = rhs.y;
 	this->z = rhs.z;
+	return (*this);
 }
 
 Vector3f operator+(Vector3f const &lhs, Vector3f const &rhs)

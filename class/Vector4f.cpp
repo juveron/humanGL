@@ -108,6 +108,7 @@ Vector4f &Vector4f::operator=(Vector4f const &rhs)
 	this->y = rhs.y;
 	this->z = rhs.z;
 	this->w = rhs.w;
+	return (*this);
 }
 
 Vector4f operator+(Vector4f const &lhs, Vector4f const &rhs)
