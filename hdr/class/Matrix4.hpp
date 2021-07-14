@@ -12,9 +12,9 @@ public:
 	float   matrix[16];
 	Matrix4(void);
 	~Matrix4(void);
-	void	translate(float x, float y, float y);
+	void	translate(float x, float y, float z);
 	void	translate(float xyz);
-	void	scale(float x, float y, float y);
+	void	scale(float x, float y, float z);
 	void	scale(float xyz);
 	void	rotate(float angle, e_axis axis);
 
