@@ -17,6 +17,8 @@ private:
 	static Matrix4 newYRotationMatrix(float const angle = 0);
 	static Matrix4 newZRotationMatrix(float const angle = 0);
 
+	void print(void);
+
 public:
 	float	matrix[16];
 

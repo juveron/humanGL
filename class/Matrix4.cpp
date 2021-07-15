@@ -2,10 +2,10 @@
 
 Matrix4::Matrix4(void) : matrix{}
 {
-    this->matrix[0] = 1;
-    this->matrix[5] = 1;
-    this->matrix[10] = 1;
-    this->matrix[15] = 1;
+	this->matrix[0] = 1;
+	this->matrix[5] = 1;
+	this->matrix[10] = 1;
+	this->matrix[15] = 1;
 }
 
 Matrix4::Matrix4(Matrix4 const &c) : matrix{}
@@ -35,6 +35,22 @@ void Matrix4::rotateYAxis(float const angle)
 void Matrix4::rotateZAxis(float const angle)
 {
 	this->multiply(Matrix4::newZRotationMatrix(angle));
+}
+
+void Matrix4::print(void)
+{
+	int i = 0;
+	while (i < 4)
+	{
+		int j = 0;
+		while (j < 4)
+		{
+			std::cout << this->matrix[i * 4 + j];
+			j++;
+		}
+		std::cout << std::endl;
+		i++;
+	}
 }
 
 void Matrix4::translate(float const x, float const y, float const z)
@@ -68,7 +84,7 @@ void Matrix4::scale(float const xyz)
 void Matrix4::rotate(float const angle, e_axis const axis)
 {
 	if (axis == X_AXIS)
-	    this->rotateXAxis(angle);
+		this->rotateXAxis(angle);
 	else if (axis == Y_AXIS)
 		this->rotateYAxis(angle);
 	else if (axis == Z_AXIS)
@@ -88,7 +104,7 @@ void Matrix4::multiply(Matrix4 const &mat)
 			this->matrix[i * 4 + j] = 0;
 			int k = -1;
 			while (++k < 4)
-				this->matrix[i * 4 + j] = tmp.matrix[i * 4 + k] * mat.matrix[k * 4 + j];
+				this->matrix[i * 4 + j] += tmp.matrix[i * 4 + k] * mat.matrix[k * 4 + j];
 			j++;
 		}
 		i++;
@@ -166,11 +182,11 @@ Matrix4 Matrix4::newYRotationMatrix(float const angle)
 {
 	Matrix4 mat;
 
-	mat.matrix[0] = std::cos(angle);
-	mat.matrix[2] = -std::sin(angle);
+	mat.matrix[0] = std::cos(angle * PI / 180.0);
+	mat.matrix[2] = -std::sin(angle * PI / 180.0);
 	mat.matrix[5] = 1;
-	mat.matrix[8] = std::sin(angle);
-	mat.matrix[10] = std::cos(angle);
+	mat.matrix[8] = std::sin(angle * PI / 180.0);
+	mat.matrix[10] = std::cos(angle * PI / 180.0);
 	return mat;
 }
 
@@ -178,10 +194,10 @@ Matrix4 Matrix4::newZRotationMatrix(float const angle)
 {
 	Matrix4 mat;
 
-	mat.matrix[0] = std::cos(angle);
-	mat.matrix[1] = std::sin(angle);
-	mat.matrix[4] = -std::sin(angle);
-	mat.matrix[5] = std::cos(angle);
+	mat.matrix[0] = std::cos(angle * PI / 180.0);
+	mat.matrix[1] = std::sin(angle * PI / 180.0);
+	mat.matrix[4] = -std::sin(angle * PI / 180.0);
+	mat.matrix[5] = std::cos(angle * PI / 180.0);
 	mat.matrix[10] = 1;
 	return mat;
 }
@@ -199,14 +215,14 @@ Matrix4 Matrix4::newRotationMatrix(float const angle, e_axis const axis)
 
 Matrix4 Matrix4::newIdentityMatrix(void)
 {
-    Matrix4 mat;
+	Matrix4 mat;
 
-    mat.matrix[0] = 1;
-    mat.matrix[5] = 1;
-    mat.matrix[10] = 1;
-    mat.matrix[15] = 1;
+	mat.matrix[0] = 1;
+	mat.matrix[5] = 1;
+	mat.matrix[10] = 1;
+	mat.matrix[15] = 1;
 
-    return mat;
+	return mat;
 }
 
 Matrix4 operator+(Matrix4 const &lhs, Matrix4 const &rhs)
