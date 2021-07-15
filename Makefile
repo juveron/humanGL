@@ -19,21 +19,23 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated
 
 SRC_DIR= src/
 SRC= init/main.cpp\
-	 event/processInput.cpp
+	 event/processInput.cpp\
+	 humanDraw/humanDraw.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
 	   Vector3f.cpp\
 	   Vector4f.cpp\
 	   Matrix4.cpp\
-	   Limb.cpp
+	   Limb.cpp\
+	   MatrixStack.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class
+OBJ_SUBDIRS= init event class humanDraw
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 

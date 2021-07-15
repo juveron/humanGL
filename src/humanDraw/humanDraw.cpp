@@ -4,7 +4,7 @@
 
 #include "../../hdr/HumanGL.hpp"
 
-void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader const &shader)
+void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
 {
 	Matrix4		matrix4;
 	std::vector<Limb *>::iterator iter = limb->children.begin();
@@ -12,9 +12,9 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader const &shader)
 
 	matrixStack.topMatrix().multiply(limb->currentMat);
 	matrix4 = matrixStack.topMatrix() * limb->scaleMat;
-	shader.setMatrix("matrix", matrix4);
+	shader.setMatrix("matrix", matrix4.matrix);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-	while (inter != iterEnd)
+	while (iter != iterEnd)
 	{
 		matrixStack.pushMatrix();
 		drawLimb(*iter, matrixStack, shader);
