@@ -15,7 +15,7 @@ public:
 
 	void pushMatrix(void);
 	void popMatrix(void);
-	Matrix4 topMatrix(void);
+	Matrix4 &topMatrix(void);
 
 	MatrixStack &operator=(MatrixStack const &rhs) = delete;
 };

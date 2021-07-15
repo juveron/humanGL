@@ -32,9 +32,12 @@
 *.app
 HumanGL
 
+# vscode
 .vscode
-# Mac_OS
 
+# Mac_OS
 .DS_Store
 
+# jetBrain
+.idea
 HumanGL.dSYM

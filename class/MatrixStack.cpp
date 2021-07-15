@@ -18,7 +18,7 @@ void MatrixStack::popMatrix(void)
 	this->_stack.pop();
 }
 
-Matrix4 MatrixStack::topMatrix(void)
+Matrix4 &MatrixStack::topMatrix(void)
 {
-	this->_stack.top();
+	return this->_stack.top();
 }

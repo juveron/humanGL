@@ -72,6 +72,8 @@ int main(void)
 		float lastFrame = 0.0f;
 		float angle = 0;
 
+		MatrixStack		matrixStack;
+
 		while (!glfwWindowShouldClose(window))
 		{
 			float currentTime = glfwGetTime();
