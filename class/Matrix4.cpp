@@ -58,6 +58,7 @@ void Matrix4::translate(float const x, float const y, float const z)
 	this->matrix[12] += x;
 	this->matrix[13] += y;
 	this->matrix[14] += z;
+	std::cout << "Translate" << std::endl;
 }
 
 void Matrix4::translate(float const xyz)
@@ -65,6 +66,7 @@ void Matrix4::translate(float const xyz)
 	this->matrix[12] += xyz;
 	this->matrix[13] += xyz;
 	this->matrix[14] += xyz;
+	std::cout << "Translate" << std::endl;
 }
 
 void Matrix4::scale(float const x, float const y, float const z)
@@ -72,6 +74,7 @@ void Matrix4::scale(float const x, float const y, float const z)
 	this->matrix[0] *= x;
 	this->matrix[5] *= y;
 	this->matrix[10] *= z;
+	std::cout << "Scale" << std::endl;
 }
 
 void Matrix4::scale(float const xyz)
@@ -79,16 +82,23 @@ void Matrix4::scale(float const xyz)
 	this->matrix[0] *= xyz;
 	this->matrix[5] *= xyz;
 	this->matrix[10] *= xyz;
+	std::cout << "Scale" << std::endl;
 }
 
 void Matrix4::rotate(float const angle, e_axis const axis)
 {
-	if (axis == X_AXIS)
+	if (axis == X_AXIS) {
 		this->rotateXAxis(angle);
-	else if (axis == Y_AXIS)
+		std::cout << "Rotate X_AXIS" << std::endl;
+	}
+	else if (axis == Y_AXIS) {
 		this->rotateYAxis(angle);
-	else if (axis == Z_AXIS)
+		std::cout << "Rotate Y_AXIS" << std::endl;
+	}
+	else if (axis == Z_AXIS) {
 		this->rotateZAxis(angle);
+		std::cout << "Rotate Z_AXIS" << std::endl;
+	}
 }
 
 void Matrix4::multiply(Matrix4 const &mat)
