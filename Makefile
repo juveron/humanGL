@@ -21,7 +21,12 @@ SRC_DIR= src/
 SRC= init/main.cpp\
 	 event/processInput.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
-CLASS= Shader.cpp
+
+CLASS= Shader.cpp\
+	   Vector3f.cpp\
+	   Vector4f.cpp\
+	   Matrix4.cpp\
+	   Limb.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
