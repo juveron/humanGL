@@ -20,6 +20,17 @@ Matrix4::~Matrix4(void)
 
 void Matrix4::rotateXAxis(float const angle)
 {
+	this->multiply(Matrix4::newXRotationMatrix(angle));
+}
+
+void Matrix4::rotateYAxis(float const angle)
+{
+	this->multiply(Matrix4::newYRotationMatrix(angle));
+}
+
+void Matrix4::rotateZAxis(float const angle)
+{
+	this->multiply(Matrix4::newZRotationMatrix(angle));
 }
 
 void Matrix4::translate(float const x, float const y, float const z)
