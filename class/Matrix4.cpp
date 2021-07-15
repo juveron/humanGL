@@ -2,6 +2,10 @@
 
 Matrix4::Matrix4(void) : matrix{}
 {
+    this->matrix[0] = 1;
+    this->matrix[5] = 1;
+    this->matrix[10] = 1;
+    this->matrix[15] = 1;
 }
 
 Matrix4::Matrix4(Matrix4 const &c) : matrix{}
@@ -64,7 +68,7 @@ void Matrix4::scale(float const xyz)
 void Matrix4::rotate(float const angle, e_axis const axis)
 {
 	if (axis == X_AXIS)
-		this->rotateXAxis(angle);
+	    this->rotateXAxis(angle);
 	else if (axis == Y_AXIS)
 		this->rotateYAxis(angle);
 	else if (axis == Z_AXIS)
@@ -151,10 +155,10 @@ Matrix4 Matrix4::newXRotationMatrix(float const angle)
 	Matrix4 mat;
 
 	mat.matrix[0] = 1;
-	mat.matrix[5] = std::cos(angle);
-	mat.matrix[6] = std::sin(angle);
-	mat.matrix[9] = -std::sin(angle);
-	mat.matrix[10] = std::cos(angle);
+	mat.matrix[5] = std::cos(angle * PI / 180.0);
+	mat.matrix[6] = std::sin(angle * PI / 180.0);
+	mat.matrix[9] = -std::sin(angle * PI / 180.0);
+	mat.matrix[10] = std::cos(angle * PI / 180.0);
 	return mat;
 }
 
@@ -191,6 +195,18 @@ Matrix4 Matrix4::newRotationMatrix(float const angle, e_axis const axis)
 	else if (axis == Z_AXIS)
 		return Matrix4::newZRotationMatrix(angle);
 	return Matrix4();
+}
+
+Matrix4 Matrix4::newIdentityMatrix(void)
+{
+    Matrix4 mat;
+
+    mat.matrix[0] = 1;
+    mat.matrix[5] = 1;
+    mat.matrix[10] = 1;
+    mat.matrix[15] = 1;
+
+    return mat;
 }
 
 Matrix4 operator+(Matrix4 const &lhs, Matrix4 const &rhs)

@@ -9,7 +9,7 @@ int main(void)
 		std::cout << "Error in glfwInit" << std::endl;
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "HumanGL", NULL, NULL);
 	if (!window)
@@ -39,7 +39,6 @@ int main(void)
 		};
 		unsigned int indices[] = {  // note that we start from 0!
 			0, 1, 3,  // first Triangle
-			1, 2, 3   // second Triangle
 		};
 		unsigned int VBO, VAO, EBO;
 		glGenVertexArrays(1, &VAO);
@@ -67,14 +66,23 @@ int main(void)
 		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 		glBindVertexArray(0);
 
-		while (!glfwWindowShouldClose(window))
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+        while (!glfwWindowShouldClose(window))
 		{
 			processInput(window);
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			shader.use();
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		   //glDrawArrays(GL_TRIANGLES, 0, 6);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+//		    shader.setMatrix("matrix", Matrix4::newIdentityMatrix().matrix);
+//			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+			Matrix4 matrix1;
+//            matrix1.scale(0.5f);
+//            matrix1.translate(0.05f, 0.0f, 0.0f);
+            matrix1.rotate(90, X_AXIS);
+            shader.setMatrix("matrix", matrix1.matrix);
+            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

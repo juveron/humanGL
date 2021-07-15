@@ -47,6 +47,7 @@ public:
 	friend Matrix4 operator*(Matrix4 const &lhs, float const &rhs);
 
 	static Matrix4 newRotationMatrix(float const angle, e_axis const axis);
+	static Matrix4 newIdentityMatrix(void);
 };
 
 

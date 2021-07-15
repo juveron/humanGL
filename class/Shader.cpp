@@ -86,6 +86,11 @@ void Shader::use(void)
 	glUseProgram(this->_id);
 }
 
+void Shader::setMatrix(char const *name, float mat4[16])
+{
+    glUniformMatrix4fv(glGetUniformLocation(this->_id, name), 1, GL_FALSE, mat4);
+}
+
 void Shader::setBool(char const *name, bool value)
 {
 	glUniform1i(glGetUniformLocation(this->_id, name), static_cast<int>(value));

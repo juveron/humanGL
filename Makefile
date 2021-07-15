@@ -55,7 +55,7 @@ all: $(SUBDIRS)
 
 $(NAME): $(OBJS)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
-	@ $(CPP) -o $@ glad/src/glad.c $(CPPFLAGS) $(OBJS) $(LIB) 
+	@ $(CPP) -o $@ ./glad/src/glad.c $(CPPFLAGS) $(OBJS) $(LIB)
 # $(LIBFT)
 	@echo "$(GREEN)$@ executable created$(WHITE)"
 

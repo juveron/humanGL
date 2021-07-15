@@ -1,7 +1,7 @@
 #ifndef HUMANGL_HPP
 #define HUMANGL_HPP
 
-#include <glad/glad.h>
+#include "../glad/include/glad/glad.h"
 #include <GLFW/glfw3.h>
 
 #include <cstdlib>
@@ -17,5 +17,6 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
+#define PI 3.14159265
 
 #endif
