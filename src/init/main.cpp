@@ -66,9 +66,9 @@ int main(void)
 		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 		glBindVertexArray(0);
 
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-        while (!glfwWindowShouldClose(window))
+		while (!glfwWindowShouldClose(window))
 		{
 			processInput(window);
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -80,9 +80,9 @@ int main(void)
 			Matrix4 matrix1;
 //            matrix1.scale(0.5f);
 //            matrix1.translate(0.05f, 0.0f, 0.0f);
-            matrix1.rotate(90, X_AXIS);
-            shader.setMatrix("matrix", matrix1.matrix);
-            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+			matrix1.rotate(90, X_AXIS);
+			shader.setMatrix("matrix", matrix1.matrix);
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
