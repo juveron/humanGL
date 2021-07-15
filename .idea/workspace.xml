@@ -8,16 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5ec67ab-d07c-453c-a448-0db6cb3917b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Matrix4.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/class/Matrix4.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/class/Shader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glad/src/glad.c" beforeDir="false" afterPath="$PROJECT_DIR$/glad/src/glad.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hdr/HumanGL.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/hdr/HumanGL.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hdr/class/Matrix4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/hdr/class/Matrix4.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hdr/class/Shader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/hdr/class/Shader.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/init/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/init/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shader/fragmentShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/shader/fragmentShader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shader/vertexShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/shader/vertexShader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +35,13 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

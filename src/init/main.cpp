@@ -80,7 +80,7 @@ int main(void)
 			Matrix4 matrix1;
 //            matrix1.scale(0.5f);
 //            matrix1.translate(0.05f, 0.0f, 0.0f);
-			matrix1.rotate(90, X_AXIS);
+			matrix1.rotate(90, Y_AXIS);
 			shader.setMatrix("matrix", matrix1.matrix);
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 			glfwSwapBuffers(window);
