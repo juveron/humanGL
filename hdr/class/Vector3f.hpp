@@ -15,7 +15,7 @@ public:
 	float		x, y, z;
 	float		dotProduct(Vector3f const &vec) const;
 	float		magnitude(void) const;
-	Vector3f &crossProduct(Vector3f const &vec) const;
+	Vector3f	crossProduct(Vector3f const &vec) const;
 
 	void		normalize(void);
 	void		divide(float const &num);

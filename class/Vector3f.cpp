@@ -26,7 +26,7 @@ float Vector3f::magnitude(void) const
 	return (std::sqrt(this->x * this->x + this->y * this->y + this->z * this->z));
 }
 
-Vector3f &Vector3f::crossProduct(Vector3f const &vec) const
+Vector3f Vector3f::crossProduct(Vector3f const &vec) const
 {
 	Vector3f cross;
 

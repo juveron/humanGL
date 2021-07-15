@@ -1,10 +1,10 @@
 #include "../hdr/HumanGL.hpp"
 
-Matrix4::Matrix4(void) : matrix({})
+Matrix4::Matrix4(void) : matrix{}
 {
 }
 
-Matrix4::Matrix4(Matrix4 const &c) : matrix({})
+Matrix4::Matrix4(Matrix4 const &c) : matrix{}
 {
 	int i = 0;
 	while (i < 16)
@@ -185,11 +185,12 @@ Matrix4 Matrix4::newZRotationMatrix(float const angle)
 Matrix4 Matrix4::newRotationMatrix(float const angle, e_axis const axis)
 {
 	if (axis == X_AXIS)
-		Matrix4::newXRotationMatrix(angle);
+		return Matrix4::newXRotationMatrix(angle);
 	else if (axis == Y_AXIS)
-		Matrix4::newYRotationMatrix(angle);
+		return Matrix4::newYRotationMatrix(angle);
 	else if (axis == Z_AXIS)
-		Matrix4::newZRotationMatrix(angle);
+		return Matrix4::newZRotationMatrix(angle);
+	return Matrix4();
 }
 
 Matrix4 operator+(Matrix4 const &lhs, Matrix4 const &rhs)
