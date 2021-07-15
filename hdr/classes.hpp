@@ -6,5 +6,6 @@
 #include "./class/Vector4f.hpp"
 #include "./class/Matrix4.hpp"
 #include "./class/Limb.hpp"
+#include "./class/MatrixStack.hpp"
 
 #endif
