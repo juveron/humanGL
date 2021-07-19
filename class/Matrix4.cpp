@@ -247,7 +247,7 @@ Matrix4 Matrix4::newProjectionMatrix(float fov, float aspectRatio, float znear, 
 	mat.matrix[10] = zfar / (zfar - znear);
 	mat.matrix[11] = 1;
 	mat.matrix[14] = -(zfar * znear) / (zfar - znear);
-	mat.matrix[15] = 0;
+	mat.matrix[15] = 1;
 	std::cout << "============\nProjection Matrix:" << std::endl;
 	mat.print();
 	std::cout << "============" << std::endl;
