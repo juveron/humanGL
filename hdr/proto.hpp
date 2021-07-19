@@ -7,5 +7,8 @@
 // input
 void processInput(GLFWwindow *window);
 
+// Draw human
+void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
+
 
 #endif
