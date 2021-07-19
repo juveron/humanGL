@@ -2,6 +2,7 @@
 
 MatrixStack::MatrixStack(void)
 {
+	this->_stack.push(Matrix4::newIdentityMatrix());
 }
 
 MatrixStack::~MatrixStack(void)
