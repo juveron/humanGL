@@ -14,6 +14,11 @@ void MatrixStack::pushMatrix(void)
 	this->_stack.push(this->_stack.top());
 }
 
+void MatrixStack::pushMatrix(Matrix4 const &mat)
+{
+	this->_stack.push(mat);
+}
+
 void MatrixStack::popMatrix(void)
 {
 	this->_stack.pop();
