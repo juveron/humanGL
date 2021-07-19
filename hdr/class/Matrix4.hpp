@@ -17,7 +17,6 @@ private:
 	static Matrix4 newYRotationMatrix(float const angle = 0);
 	static Matrix4 newZRotationMatrix(float const angle = 0);
 
-	void print(void);
 
 public:
 	float	matrix[16];
@@ -37,6 +36,8 @@ public:
 	void	add(Matrix4 const &mat);
 	void	substract(Matrix4 const &mat);
 
+	void print(void);
+
 	Matrix4 &operator+=(Matrix4 const &rhs);
 	Matrix4 &operator-=(Matrix4 const &rhs);
 	Matrix4 &operator*=(Matrix4 const &rhs);
@@ -50,6 +51,8 @@ public:
 
 	static Matrix4 newRotationMatrix(float const angle, e_axis const axis);
 	static Matrix4 newIdentityMatrix(void);
+	static Matrix4 newProjectionMatrix(float fov, float aspectRatio, float znear, float zfar);
+	static Matrix4 newLookAtMAt(Vector3f pos, Vector3f target, Vector3f up);
 };
 
 
