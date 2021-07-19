@@ -62,6 +62,8 @@ int main(void)
 		MatrixStack		matrixStack;
 		Limb *base = new Limb();
 		Limb *child = new Limb(base);
+		Limb *child2 = new Limb(base);
+		Limb *child3 = new Limb(child);
 		Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
 			static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
 			0.1f, 100.0f);
@@ -74,6 +76,10 @@ int main(void)
 		shader.setMatrix("viewMat", view.matrix);
 		child->scaleMat.scale(0.5);
 		child->currentMat.translate(0.5f, 0.0f, 0.0f);
+		child2->scaleMat.scale(0.5);
+		child2->currentMat.translate(-0.5f, 0.0f, 0.0f);
+		child3->scaleMat.scale(0.25);
+		child3->currentMat.translate(0.25f, 0.0f, 0.0f);
 		while (!glfwWindowShouldClose(window))
 		{
 			processInput(window);
@@ -81,7 +87,7 @@ int main(void)
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			base->currentMat.rotate(0.1f, Y_AXIS);
-			// child->currentMat.rotate(0.1f, X_AXIS);
+			child->currentMat.rotate(0.1f, X_AXIS);
 			glBindVertexArray(VAO);
 			matrixStack.pushMatrix();
 			drawLimb(base, matrixStack, shader);
