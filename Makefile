@@ -15,7 +15,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= HumanGL
 CPP= clang++
-CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated
+CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
 
 SRC_DIR= src/
 SRC= init/main.cpp\
