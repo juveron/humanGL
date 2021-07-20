@@ -18,7 +18,7 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
 	matrix4 = limb->scaleMat * matrixStack.topMatrix();
 
 	shader.setMatrix("matrix", matrix4.matrix);
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	while (iter != iterEnd)
 	{
 		drawLimb(*iter, matrixStack, shader);
