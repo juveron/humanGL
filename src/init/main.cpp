@@ -32,19 +32,27 @@ int main(void)
 
 
 		float vertices[] = {
-			0.5f,  0.5f, 0.0f,  // top right
-			0.5f, -0.5f, 0.0f,  // bottom right
-			-0.5f, -0.5f, 0.0f,  // bottom left
-			-0.5f,  0.5f, 0.0f   // top left 
+			-0.5f,  0.0f,  0.5f,  // A 0
+			 0.5f,  0.0f,  0.5f,  // B 1
+			 0.5f, -1.0f,  0.5f,  // C 2
+			-0.5f, -1.0f,  0.5f,  // D 3
+			-0.5f,  0.0f, -0.5f,  // E 4
+			 0.5f,  0.0f, -0.5f,  // F 5
+			 0.5f, -1.0f, -0.5f,  // G 6
+			-0.5f, -1.0f, -0.5f,  // H 7
 		};
 		unsigned int indices[] = {  // note that we start from 0!
-			0, 1, 3,  // first Triangle
+			0, 1, 2, 0, 2, 3, // Front face
+			4, 5, 6, 4, 6, 7, // Back face
+			1, 2, 6, 1, 6, 7, // Right face
+			0, 3, 7, 0, 7, 4, // Left face
+			2, 3, 7, 2, 7, 6, // Bottom face
+			0, 1, 5, 0, 5, 4  // Top face
 		};
 		unsigned int VBO, VAO, EBO;
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
 		glGenBuffers(1, &EBO);
-		// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 		glBindVertexArray(VAO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -56,45 +64,34 @@ int main(void)
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
 
-		// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-		// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 		glBindVertexArray(0);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		float deltaTime = 0.0f;
-		float lastFrame = 0.0f;
-		float angle = 0;
-
 		MatrixStack		matrixStack;
 
+		Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
+			static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
+			0.1f, 100.0f);
+
+		Matrix4 view = Matrix4::newLookAtMAt(Vector3f(0.0f, -2.0f, 5.0f),
+			Vector3f(0.0f, -2.0f, 5.0f) - Vector3f(0.0f, 0.0f, -1.0f), Vector3f(0.0f, 1.0f, 0.0f));
+
+		shader.use();
+		shader.setMatrix("projMat", proj.matrix);
+		shader.setMatrix("viewMat", view.matrix);
+		Limb *human = humanMaker();
 		while (!glfwWindowShouldClose(window))
 		{
-			float currentTime = glfwGetTime();
-			deltaTime = currentTime - lastFrame;
-			lastFrame = currentTime;
 			processInput(window);
-
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			shader.use();
-			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-			//glDrawArrays(GL_TRIANGLES, 0, 6);
-			shader.setMatrix("matrix", Matrix4::newIdentityMatrix().matrix);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-			Matrix4 matrix1;
-			matrix1.scale(0.5f);
-			matrix1.translate(0.05f, 0.0f, 0.0f);
-			angle += 45 * deltaTime;
-			matrix1.rotate(angle, Y_AXIS);
-			shader.setMatrix("matrix", matrix1.matrix);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
+			// human->currentMat.rotate(0.1f, Y_AXIS);
+			glBindVertexArray(VAO);
+			matrixStack.pushMatrix();
+			drawLimb(human, matrixStack, shader);
+			matrixStack.popMatrix();
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

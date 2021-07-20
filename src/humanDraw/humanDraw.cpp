@@ -10,15 +10,19 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
 	std::vector<Limb *>::iterator iter = limb->children.begin();
 	std::vector<Limb *>::iterator iterEnd = limb->children.end();
 
-	matrixStack.topMatrix().multiply(limb->currentMat);
-	matrix4 = matrixStack.topMatrix() * limb->scaleMat;
+	Matrix4 top = matrixStack.topMatrix();
+
+	matrixStack.pushMatrix(limb->currentMat);
+	matrixStack.topMatrix().multiply(top);
+
+	matrix4 = limb->scaleMat * matrixStack.topMatrix();
+
 	shader.setMatrix("matrix", matrix4.matrix);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	while (iter != iterEnd)
 	{
-		matrixStack.pushMatrix();
 		drawLimb(*iter, matrixStack, shader);
-		matrixStack.popMatrix();
 		iter++;
 	}
+	matrixStack.popMatrix();
 }

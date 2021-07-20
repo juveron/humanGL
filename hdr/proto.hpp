@@ -7,5 +7,10 @@
 // input
 void processInput(GLFWwindow *window);
 
+// Draw human
+void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
+
+// Body Maker
+Limb *humanMaker(void);
 
 #endif

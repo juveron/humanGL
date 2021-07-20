@@ -14,6 +14,7 @@ public:
 	~MatrixStack(void);
 
 	void pushMatrix(void);
+	void pushMatrix(Matrix4 const &mat);
 	void popMatrix(void);
 	Matrix4 &topMatrix(void);
 

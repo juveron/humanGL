@@ -15,12 +15,13 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= HumanGL
 CPP= clang++
-CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated
+CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
 
 SRC_DIR= src/
 SRC= init/main.cpp\
 	 event/processInput.cpp\
-	 humanDraw/humanDraw.cpp
+	 humanDraw/humanDraw.cpp\
+	 bodyMaker/humanMaker.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -35,7 +36,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class humanDraw
+OBJ_SUBDIRS= init event class humanDraw bodyMaker
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 

@@ -22,7 +22,7 @@ Vector4f::~Vector4f(void)
 
 float Vector4f::magnitude(void) const
 {
-	return (std::sqrt(this->x * this->x + this->y * this->y\
+	return (std::sqrt(this->x * this->x + this->y * this->y
 		+ this->z * this->z + this->w * this->w));
 }
 
@@ -60,14 +60,16 @@ void Vector4f::multiply(float const &num)
 
 void Vector4f::multiply(Matrix4 const &mat)
 {
-	this->x = this->x * mat.matrix[0] + this->y * mat.matrix[4]
-		+ this->y * mat.matrix[8] + this->z * mat.matrix[12];
-	this->y = this->x * mat.matrix[1] + this->y * mat.matrix[5]
-		+ this->y * mat.matrix[9] + this->z * mat.matrix[13];
-	this->z = this->x * mat.matrix[2] + this->y * mat.matrix[6]
-		+ this->y * mat.matrix[10] + this->z * mat.matrix[14];
-	this->w = this->x * mat.matrix[3] + this->y * mat.matrix[7]
-		+ this->y * mat.matrix[11] + this->z * mat.matrix[15];
+	Vector4f tmp(*this);
+
+	this->x = tmp.x * mat.matrix[0] + tmp.y * mat.matrix[4]
+		+ tmp.y * mat.matrix[8] + tmp.z * mat.matrix[12];
+	this->y = tmp.x * mat.matrix[1] + tmp.y * mat.matrix[5]
+		+ tmp.y * mat.matrix[9] + tmp.z * mat.matrix[13];
+	this->z = tmp.x * mat.matrix[2] + tmp.y * mat.matrix[6]
+		+ tmp.y * mat.matrix[10] + tmp.z * mat.matrix[14];
+	this->w = tmp.x * mat.matrix[3] + tmp.y * mat.matrix[7]
+		+ tmp.y * mat.matrix[11] + tmp.z * mat.matrix[15];
 }
 
 void Vector4f::divide(float const &num)

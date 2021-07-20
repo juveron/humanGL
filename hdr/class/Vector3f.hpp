@@ -29,10 +29,10 @@ public:
 	Vector3f &operator/=(float const &f);
 	Vector3f &operator=(Vector3f const &rhs);
 
-	friend Vector3f operator+(Vector3f const lhs, Vector3f const &rhs);
-	friend Vector3f operator-(Vector3f const lhs, Vector3f const &rhs);
-	friend Vector3f operator*(Vector3f const lhs, float const &rhs);
-	friend Vector3f operator/(Vector3f const lhs, float const &rhs);
+	friend Vector3f operator+(Vector3f const &lhs, Vector3f const &rhs);
+	friend Vector3f operator-(Vector3f const &lhs, Vector3f const &rhs);
+	friend Vector3f operator*(Vector3f const &lhs, float const &rhs);
+	friend Vector3f operator/(Vector3f const &lhs, float const &rhs);
 };
 
 #endif //HUMANGL_VECTOR_HPP

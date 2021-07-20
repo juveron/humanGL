@@ -12,9 +12,9 @@
 #include <cmath>
 #include <stack>
 
-#include "./proto.hpp"
 #include "./struct.hpp"
 #include "./classes.hpp"
+#include "./proto.hpp"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
