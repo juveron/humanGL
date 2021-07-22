@@ -3,33 +3,24 @@
 int main(void)
 {
 	GLFWwindow *window;
-	ErrorHandler::setError("GLFW_INIT");
-	if (!glfwInit()) {
-		std::cout << "Error in glfwInit" << std::endl;
-		exit(EXIT_FAILURE);
-	}
+
+	if (!glfwInit()) ErrorHandler::setError("GLFW_INIT");
+
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "HumanGL", NULL, NULL);
-	if (!window)
-	{
-		glfwTerminate();
-		std::cout << "Error while creating window" << std::endl;
-		exit(EXIT_FAILURE);
-	}
+
+	if (!window) ErrorHandler::setError("WINDOW");
 
 	glfwMakeContextCurrent(window);
 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		glfwTerminate();
-		exit(EXIT_FAILURE);
-	}
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	try {
-		Shader shader("./src/shader/vertexShader.glsl", "./src/shader/fragmentShader.glsl");
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) ErrorHandler::setError("GLAD_LOAD");
 
+	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	Shader shader("./src/shader/vertexShader.glsl", "./src/shader/fragmentShader.glsl");
 
 		float vertices[] = {
 			-0.5f,  0.0f,  0.5f,  // A 0
@@ -95,9 +86,5 @@ int main(void)
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
-	}
-	catch (std::exception &e) {
-		exit(EXIT_FAILURE);
-	}
 	return 0;
 }

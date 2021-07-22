@@ -16,6 +16,7 @@ public:
 	ErrorHandler(ErrorHandler const &c) = delete;
 
 	static void	setError(const std::string &errorKey);
+	static void setError(const std::string &errorKey, const char* errorMessage);
 
 	ErrorHandler &operator=(ErrorHandler const &rhs) = delete;
 };
