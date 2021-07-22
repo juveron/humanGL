@@ -1,21 +1,19 @@
 #include "../../hdr/HumanGL.hpp"
 
-void printBodyToTerm(Limb *limb)
+void printBodyToTerm(s_body &body)
 {
-	static int i = 0;
-	int baseValue = i;
-	std::vector<Limb *>::iterator iter = limb->children.begin();
-	std::vector<Limb *>::iterator iterEnd = limb->children.end();
-
-	std::cout << "=============\nIndex " << i << ":\n-> Current Mat:" << std::endl;
-	limb->currentMat.print();
-	std::cout << "-> Scale Mat:" << std::endl;
-	limb->scaleMat.print();
+	int i = 0;
+	std::vector<Limb *>::iterator iter = body.limbs.begin();
+	std::vector<Limb *>::iterator iterEnd = body.limbs.end();
 
 	while (iter != iterEnd)
 	{
+		std::cout << "=============\nIndex " << i << ":\n-> Current Mat:" << std::endl;
+		(*iter)->currentMat.print();
+		std::cout << "-> Scale Mat:" << std::endl;
+		(*iter)->scaleMat.print();
+
 		i++;
-		printBodyToTerm(*iter);
 		iter++;
 	}
 }

@@ -1,38 +1,37 @@
 #include "../../hdr/HumanGL.hpp"
 
-static void printBody(Limb *limb, std::ofstream &file)
+static void printBody(s_body &body, std::ofstream &file)
 {
-	std::vector<Limb *>::iterator iter = limb->children.begin();
-	std::vector<Limb *>::iterator iterEnd = limb->children.end();
-
-	int i = 0;
-	file << "\t{ Matrix4({ ";
-	while (i < 16)
-	{
-		file << limb->currentMat.matrix[i];
-		if (i != 15)
-			file << ", ";
-		i++;
-	}
-	i = 0;
-	file << " }), Matrix4({ ";
-	while (i < 16)
-	{
-		file << limb->scaleMat.matrix[i];
-		if (i != 15)
-			file << ", ";
-		i++;
-	}
-	file << " }) }," << std::endl;
+	std::vector<Limb *>::iterator iter = body.limbs.begin();
+	std::vector<Limb *>::iterator iterEnd = body.limbs.end();
 
 	while (iter != iterEnd)
 	{
-		printBody(*iter, file);
+		int i = 0;
+		file << "\t{ Matrix4({ ";
+		while (i < 16)
+		{
+			file << (*iter)->currentMat.matrix[i];
+			if (i != 15)
+				file << ", ";
+			i++;
+		}
+		i = 0;
+		file << " }), Matrix4({ ";
+		while (i < 16)
+		{
+			file << (*iter)->scaleMat.matrix[i];
+			if (i != 15)
+				file << ", ";
+			i++;
+		}
+		file << " }) }," << std::endl;
+
 		iter++;
 	}
 }
 
-void printBodyToFile(Limb *limb, std::string fileName)
+void printBodyToFile(s_body &body, std::string fileName)
 {
 	std::ofstream file;
 
@@ -41,7 +40,7 @@ void printBodyToFile(Limb *limb, std::string fileName)
 	try {
 		file.open(fileName);
 		file << "{" << std::endl;
-		printBody(limb, file);
+		printBody(body, file);
 		file << "}" << std::endl;
 		file.close();
 	}
