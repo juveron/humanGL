@@ -80,7 +80,9 @@ int main(void)
 		shader.use();
 		shader.setMatrix("projMat", proj.matrix);
 		shader.setMatrix("viewMat", view.matrix);
-		Limb *human = humanMaker();
+		s_body human = humanMaker();
+		printBodyToTerm(human);
+		printBodyToFile(human, "./human2.c");
 		while (!glfwWindowShouldClose(window))
 		{
 			processInput(window);
@@ -90,7 +92,7 @@ int main(void)
 			// human->currentMat.rotate(0.1f, Y_AXIS);
 			glBindVertexArray(VAO);
 			matrixStack.pushMatrix();
-			drawLimb(human, matrixStack, shader);
+			drawLimb(human.limb, matrixStack, shader);
 			matrixStack.popMatrix();
 			glfwSwapBuffers(window);
 			glfwPollEvents();

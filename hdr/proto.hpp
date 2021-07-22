@@ -11,10 +11,10 @@ void processInput(GLFWwindow *window);
 void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
 
 // Body Maker
-Limb *humanMaker(void);
+s_body humanMaker(void);
 
 // Print
-void printBodyToTerm(Limb *limb);
-void printBodyToFile(Limb *limb, std::string fileName);
+void printBodyToTerm(s_body &body);
+void printBodyToFile(s_body &body, std::string fileName);
 
 #endif
