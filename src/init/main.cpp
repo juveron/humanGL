@@ -3,10 +3,10 @@
 int main(void)
 {
 	GLFWwindow *window;
-
+	ErrorHandler::setError("GLFW_INIT");
 	if (!glfwInit()) {
-		exit(EXIT_FAILURE);
 		std::cout << "Error in glfwInit" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);

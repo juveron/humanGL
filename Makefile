@@ -29,7 +29,8 @@ CLASS= Shader.cpp\
 	   Vector4f.cpp\
 	   Matrix4.cpp\
 	   Limb.cpp\
-	   MatrixStack.cpp
+	   MatrixStack.cpp\
+	   ErrorHandler.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
