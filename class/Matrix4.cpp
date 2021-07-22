@@ -8,6 +8,14 @@ Matrix4::Matrix4(void) : matrix{}
 	this->matrix[15] = 1;
 }
 
+Matrix4::Matrix4(float const matrix_[16])
+{
+	int i = -1;
+
+	while (++i < 16)
+		this->matrix[i] = matrix_[i];
+}
+
 Matrix4::Matrix4(Matrix4 const &c) : matrix{}
 {
 	int i = 0;
@@ -45,7 +53,7 @@ void Matrix4::print(void)
 		int j = 0;
 		while (j < 4)
 		{
-			std::cout << this->matrix[j * 4 + i] << ",";
+			std::cout << std::setw(5) << this->matrix[j * 4 + i] << ",";
 			j++;
 		}
 		std::cout << std::endl;
@@ -248,9 +256,6 @@ Matrix4 Matrix4::newProjectionMatrix(float fov, float aspectRatio, float znear, 
 	mat.matrix[11] = 1;
 	mat.matrix[14] = -(zfar * znear) / (zfar - znear);
 	mat.matrix[15] = 1;
-	std::cout << "============\nProjection Matrix:" << std::endl;
-	mat.print();
-	std::cout << "============" << std::endl;
 	return (mat);
 }
 

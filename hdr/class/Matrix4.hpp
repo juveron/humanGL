@@ -22,6 +22,7 @@ public:
 	float	matrix[16];
 
 	Matrix4(void);
+	Matrix4(float const matrix_[16]);
 	Matrix4(Matrix4 const &c);
 	~Matrix4(void);
 
