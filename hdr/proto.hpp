@@ -13,4 +13,8 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
 // Body Maker
 Limb *humanMaker(void);
 
+// Print
+void printBodyToTerm(Limb *limb);
+void printBodyToFile(Limb *limb, std::string fileName);
+
 #endif

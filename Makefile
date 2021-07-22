@@ -21,7 +21,9 @@ SRC_DIR= src/
 SRC= init/main.cpp\
 	 event/processInput.cpp\
 	 humanDraw/humanDraw.cpp\
-	 bodyMaker/humanMaker.cpp
+	 bodyMaker/humanMaker.cpp\
+	 print/printBodyToTerm.cpp\
+	 print/printBodyToFile.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -36,7 +38,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class humanDraw bodyMaker
+OBJ_SUBDIRS= init event class humanDraw bodyMaker print
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
