@@ -234,12 +234,6 @@ Matrix4 Matrix4::newRotationMatrix(float const angle, e_axis const axis)
 Matrix4 Matrix4::newIdentityMatrix(void)
 {
 	Matrix4 mat;
-
-	mat.matrix[0] = 1;
-	mat.matrix[5] = 1;
-	mat.matrix[10] = 1;
-	mat.matrix[15] = 1;
-
 	return mat;
 }
 
