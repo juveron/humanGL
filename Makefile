@@ -23,6 +23,7 @@ SRC=	init/main.cpp\
 		bodyDraw/humanDraw.cpp\
 		bodyMaker/humanMaker.cpp\
 		bodyMaker/updateBody.cpp\
+		bodyMaker/positonHumanLimbs.cpp\
 		print/printBodyToTerm.cpp\
 		print/printBodyToFile.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
@@ -67,7 +68,6 @@ all: $(SUBDIRS)
 $(NAME): $(OBJS)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
 	@ $(CPP) -o $@ ./glad/src/glad.c $(CPPFLAGS) $(OBJS) $(LIB)
-# $(LIBFT)
 	@echo "$(GREEN)$@ executable created$(WHITE)"
 
 $(SUBDIRS):
