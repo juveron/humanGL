@@ -12,6 +12,7 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
 
 // Body Maker
 s_body humanMaker(void);
+void updateBody(std::vector<Limb*> &limbs, const int size, std::vector<std::array<Matrix4, 2>> anim);
 
 // Print
 void printBodyToTerm(s_body &body);
