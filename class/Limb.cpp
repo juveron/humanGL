@@ -18,6 +18,12 @@ Limb::~Limb(void)
 void Limb::rotateLimb(float const angle, e_axis const axis)
 {
 	Matrix4 tmp = this->currentMat;
+	if (axis == X_AXIS)
+		this->rotation.x += angle;
+	if (axis == Y_AXIS)
+		this->rotation.y += angle;
+	if (axis == Z_AXIS)
+		this->rotation.z += angle;
 	this->currentMat = Matrix4::newIdentityMatrix();
 	this->currentMat.rotate(angle, axis);
 	this->currentMat *= tmp;
@@ -25,11 +31,17 @@ void Limb::rotateLimb(float const angle, e_axis const axis)
 
 void Limb::translateLimb(float const x, float const y, float const z)
 {
+	this->translation.x += x;
+	this->translation.y += y;
+	this->translation.z += z;
 	this->currentMat.translate(x, y, z);
 }
 
 void Limb::translateLimb(float const xyz)
 {
+	this->translation.x += xyz;
+	this->translation.y += xyz;
+	this->translation.z += xyz;
 	this->currentMat.translate(xyz);
 }
 
