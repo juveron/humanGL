@@ -4,7 +4,7 @@
 
 #include "HumanGL.hpp"
 
-void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
+void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader)
 {
 	Matrix4		matrix4;
 	std::vector<Limb *>::iterator iter = limb->children.begin();
@@ -18,10 +18,15 @@ void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
 	matrix4 = limb->scaleMat * matrixStack.topMatrix();
 
 	shader.setMatrix("matrix", matrix4.matrix);
+	if (limbIndex == selectedLimb)
+		shader.setVector3f("color", 1.0f, 0.0f, 0.0f);
+	else
+		shader.setVector3f("color", 1.0f, 1.0f, 1.0f);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	while (iter != iterEnd)
 	{
-		drawLimb(*iter, matrixStack, shader);
+		limbIndex++;
+		drawLimb(*iter, limbIndex, selectedLimb, matrixStack, shader);
 		iter++;
 	}
 	matrixStack.popMatrix();
