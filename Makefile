@@ -49,7 +49,10 @@ VPATH = $(SRC_DIR):$(CLASS_DIR)
 LIB= -lglfw\
 	 -ldl\
 	 -lm
-INCLUDES=	hdr/HumanGL.hpp
+INCLUDES=	hdr/HumanGL.hpp\
+			hdr/classes.hpp\
+			hdr/proto.hpp\
+			hdr/struct.hpp
 
 ###############################################################################
 #								Rules										  #
