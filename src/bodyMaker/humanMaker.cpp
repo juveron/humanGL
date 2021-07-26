@@ -3,6 +3,7 @@
 s_body humanMaker(void)
 {
 	s_body human;
+	human.selectedLimb = 0;
 	Limb *torso = new Limb();
 	human.limb = torso;
 	human.limbs.push_back(torso);
