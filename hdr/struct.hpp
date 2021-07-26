@@ -12,6 +12,7 @@ typedef enum				axis {
 }							e_axis;
 
 typedef struct				body {
+	int						selectedLimb;
 	Limb					*limb;
 	std::vector<Limb *>		limbs;
 }							s_body;
