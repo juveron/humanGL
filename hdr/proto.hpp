@@ -5,10 +5,10 @@
 #include "./HumanGL.hpp"
 
 // input
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, s_body &body, float deltaTime);
 
 // Draw human
-void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader);
+void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader);
 
 // Body Maker
 s_body humanMaker(void);
