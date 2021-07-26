@@ -57,18 +57,30 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime)
 		body.limbs[body.selectedLimb]->translateLimb(0.0f, 0.0f, -1.0f * deltaTime);
 
 	// Scale
-	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.01f, 1.0f, 1.0f);
-	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		positionHumanLimbs(body.limbs);
+	}
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(0.99f, 1.0f, 1.0f);
-	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+		positionHumanLimbs(body.limbs);
+	}
+	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.01f, 1.0f);
-	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+		positionHumanLimbs(body.limbs);
+	}
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 0.99f, 1.0f);
-	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		positionHumanLimbs(body.limbs);
+	}
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 1.01f);
-	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+		positionHumanLimbs(body.limbs);
+	}
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 0.99f);
+		positionHumanLimbs(body.limbs);
+	}
 
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
