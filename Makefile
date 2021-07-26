@@ -20,8 +20,9 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 SRC_DIR= src/
 SRC= init/main.cpp\
 	 event/processInput.cpp\
-	 humanDraw/humanDraw.cpp\
+	 bodyDraw/humanDraw.cpp\
 	 bodyMaker/humanMaker.cpp\
+	 bodyMaker/updateBody.cpp\
 	 print/printBodyToTerm.cpp\
 	 print/printBodyToFile.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
@@ -38,7 +39,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class humanDraw bodyMaker print
+OBJ_SUBDIRS= init event class bodyDraw bodyMaker print
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
