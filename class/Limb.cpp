@@ -15,7 +15,10 @@ Limb::~Limb(void)
 
 void Limb::rotateLimb(float const angle, e_axis const axis)
 {
+	Matrix4 tmp = this->currentMat;
+	this->currentMat = Matrix4::newIdentityMatrix();
 	this->currentMat.rotate(angle, axis);
+	this->currentMat *= tmp;
 }
 
 void Limb::translateLimb(float const x, float const y, float const z)
