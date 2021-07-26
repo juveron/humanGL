@@ -18,6 +18,7 @@ public:
 	void use(void);
 
 	void setMatrix(char const *name, float mat4[16]);
+	void setVector3f(char const *name, float red, float green, float blue);
 	void setBool(char const *name, bool value);
 	void setInt(char const *name, int value);
 	void setFloat(char const *name, float value);

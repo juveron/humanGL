@@ -90,6 +90,11 @@ void Shader::setMatrix(char const *name, float mat4[16])
 	glUniformMatrix4fv(glGetUniformLocation(this->_id, name), 1, GL_FALSE, mat4);
 }
 
+void Shader::setVector3f(char const *name, float red, float green, float blue)
+{
+	glUniform3f(glGetUniformLocation(this->_id, name), red, green, blue);
+}
+
 void Shader::setBool(char const *name, bool value)
 {
 	glUniform1i(glGetUniformLocation(this->_id, name), static_cast<int>(value));

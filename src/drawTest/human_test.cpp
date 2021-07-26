@@ -2,9 +2,10 @@
 // Created by juv on 12/07/2021.
 //
 
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
-void    humanTest(void) {
+void    humanTest(void)
+{
 
 
 

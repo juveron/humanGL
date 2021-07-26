@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 int main(void)
 {
@@ -32,11 +32,11 @@ int main(void)
 			 0.5f, -1.0f, -0.5f,  // G 6
 			-0.5f, -1.0f, -0.5f,  // H 7
 		};
-		unsigned int indices[] = {  // note that we start from 0!
-			0, 1, 2, 0, 2, 3, // Front face
+		unsigned int indices[] = {
+			0, 2, 1, 0, 3, 2, // Front face
 			4, 5, 6, 4, 6, 7, // Back face
-			1, 2, 6, 1, 6, 7, // Right face
-			0, 3, 7, 0, 7, 4, // Left face
+			1, 2, 6, 1, 6, 5, // Right face
+			0, 7, 3, 0, 4, 7, // Left face
 			2, 3, 7, 2, 7, 6, // Bottom face
 			0, 1, 5, 0, 5, 4  // Top face
 		};
@@ -71,17 +71,27 @@ int main(void)
 		shader.use();
 		shader.setMatrix("projMat", proj.matrix);
 		shader.setMatrix("viewMat", view.matrix);
-		Limb *human = humanMaker();
+		s_body human = humanMaker();
+		printBodyToTerm(human);
+		printBodyToFile(human, "./human2.c");
+
+		int zero;
+		float deltaTime = 0;
+		float lastFrame = 0;
 		while (!glfwWindowShouldClose(window))
 		{
-			processInput(window);
+			float currentFrame = glfwGetTime();
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+			processInput(window, human, deltaTime);
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// human->currentMat.rotate(0.1f, Y_AXIS);
 			glBindVertexArray(VAO);
 			matrixStack.pushMatrix();
-			drawLimb(human, matrixStack, shader);
+			zero = 0;
+			drawLimb(human.limb, zero, human.selectedLimb, matrixStack, shader);
 			matrixStack.popMatrix();
 			glfwSwapBuffers(window);
 			glfwPollEvents();

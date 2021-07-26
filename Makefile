@@ -18,10 +18,13 @@ CPP= clang++
 CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
 
 SRC_DIR= src/
-SRC= init/main.cpp\
-	 event/processInput.cpp\
-	 humanDraw/humanDraw.cpp\
-	 bodyMaker/humanMaker.cpp
+SRC=	init/main.cpp\
+		event/processInput.cpp\
+		bodyDraw/humanDraw.cpp\
+		bodyMaker/humanMaker.cpp\
+		bodyMaker/updateBody.cpp\
+		print/printBodyToTerm.cpp\
+		print/printBodyToFile.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -37,7 +40,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class humanDraw bodyMaker
+OBJ_SUBDIRS= init event class bodyDraw bodyMaker print
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
@@ -47,7 +50,12 @@ VPATH = $(SRC_DIR):$(CLASS_DIR)
 LIB= -lglfw\
 	 -ldl\
 	 -lm
-INCLUDES=	hdr/HumanGL.hpp
+HEADERS=	hdr/HumanGL.hpp\
+			hdr/classes.hpp\
+			hdr/proto.hpp\
+			hdr/struct.hpp
+
+INCLUDES=	-I hdr
 
 ###############################################################################
 #								Rules										  #
@@ -66,8 +74,8 @@ $(NAME): $(OBJS)
 $(SUBDIRS):
 	@ mkdir -p $(SUBDIRS)
 
-$(OBJ_DIR)%.o:%.cpp $(INCLUDES) Makefile
-	@ $(CPP) -o $@ -c $< $(CPPFLAGS)
+$(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
+	@ $(CPP) -o $@ -c $< $(CPPFLAGS) $(INCLUDES)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
 clean:

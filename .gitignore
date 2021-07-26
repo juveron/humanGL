@@ -41,3 +41,6 @@ HumanGL
 # jetBrain
 .idea
 HumanGL.dSYM
+
+#geoGebra
+*.ggb
