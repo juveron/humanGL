@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 void updateBody(std::vector<Limb*> &limbs, const int size, std::vector<std::array<Matrix4, 2>> anim)
 {

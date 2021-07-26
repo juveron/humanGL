@@ -2,7 +2,7 @@
 // Created by juv on 15/07/2021.
 //
 
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 void	drawLimb(Limb *limb, MatrixStack &matrixStack, Shader &shader)
 {

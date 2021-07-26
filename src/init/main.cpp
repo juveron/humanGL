@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 int main(void)
 {
@@ -29,7 +29,6 @@ int main(void)
 	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	try {
 		Shader shader("./src/shader/vertexShader.glsl", "./src/shader/fragmentShader.glsl");
-
 
 		float vertices[] = {
 			-0.5f,  0.0f,  0.5f,  // A 0

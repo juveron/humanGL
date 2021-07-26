@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 void printBodyToTerm(s_body &body)
 {

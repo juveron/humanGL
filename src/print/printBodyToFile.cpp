@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 static void printBody(s_body &body, std::ofstream &file)
 {

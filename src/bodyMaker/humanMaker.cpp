@@ -1,4 +1,4 @@
-#include "../../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 s_body humanMaker(void)
 {
