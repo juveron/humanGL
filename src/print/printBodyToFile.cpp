@@ -8,7 +8,7 @@ static void printBody(s_body &body, std::ofstream &file)
 	while (iter != iterEnd)
 	{
 		int i = 0;
-		file << "\t{ Matrix4({ ";
+		file << "\t{ Matrix4((float const[]) { ";
 		while (i < 16)
 		{
 			file << (*iter)->currentMat.matrix[i];
@@ -17,7 +17,7 @@ static void printBody(s_body &body, std::ofstream &file)
 			i++;
 		}
 		i = 0;
-		file << " }), Matrix4({ ";
+		file << " }), Matrix4((float const[]) { ";
 		while (i < 16)
 		{
 			file << (*iter)->scaleMat.matrix[i];
