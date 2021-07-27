@@ -5,6 +5,7 @@
 
 class Limb {
 private:
+	Vector3f			_baseRotation;
 
 public:
 	Limb(void);
@@ -16,8 +17,10 @@ public:
 	Vector3f			rotation;
 	Vector3f			translation;
 
+
 	Matrix4				scaleMat;
-	Matrix4				currentMat;
+	Matrix4				rotateMat;
+	Matrix4				translateMat;
 
 	Limb				*parent;
 	std::vector<Limb *>	children;
