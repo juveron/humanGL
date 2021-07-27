@@ -72,8 +72,6 @@ int main(void)
 		shader.setMatrix("projMat", proj.matrix);
 		shader.setMatrix("viewMat", view.matrix);
 		s_body human = humanMaker();
-		printBodyToTerm(human);
-		printBodyToFile(human, "./human2.c");
 
 		int zero;
 		float deltaTime = 0;
@@ -87,7 +85,6 @@ int main(void)
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			// human->currentMat.rotate(0.1f, Y_AXIS);
 			glBindVertexArray(VAO);
 			matrixStack.pushMatrix();
 			zero = 0;

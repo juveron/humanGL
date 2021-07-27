@@ -13,8 +13,12 @@ public:
 	~Limb(void);
 
 	Vector3f			scale;
+	Vector3f			rotation;
+	Vector3f			translation;
+
 	Matrix4				scaleMat;
 	Matrix4				currentMat;
+
 	Limb				*parent;
 	std::vector<Limb *>	children;
 
