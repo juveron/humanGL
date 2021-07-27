@@ -11,12 +11,20 @@ static void printBody(s_body &body, std::ofstream &file)
 		file << "\t{ Matrix4((float const[]) { ";
 		while (i < 16)
 		{
-			file << (*iter)->currentMat.matrix[i];
+			file << (*iter)->rotateMat.matrix[i];
 			if (i != 15)
 				file << ", ";
 			i++;
 		}
 		i = 0;
+		file << " }), Matrix4((float const[]) { ";
+		while (i < 16)
+		{
+			file << (*iter)->translateMat.matrix[i];
+			if (i != 15)
+				file << ", ";
+			i++;
+		}
 		file << " }), Matrix4((float const[]) { ";
 		while (i < 16)
 		{

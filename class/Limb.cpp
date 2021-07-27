@@ -1,11 +1,11 @@
 #include "../hdr/HumanGL.hpp"
 
-Limb::Limb(void) : scaleMat(), currentMat(), parent(nullptr), children()
+Limb::Limb(void) : parent(nullptr)
 {
 	this->scale = Vector3f(1.0f, 1.0f, 1.0f);
 }
 
-Limb::Limb(Limb *parent_) : scaleMat(), currentMat(), parent(parent_), children()
+Limb::Limb(Limb *parent_) : parent(parent_)
 {
 	parent_->addChild(this);
 	this->scale = Vector3f(1.0f, 1.0f, 1.0f);
@@ -17,16 +17,25 @@ Limb::~Limb(void)
 
 void Limb::rotateLimb(float const angle, e_axis const axis)
 {
-	Matrix4 tmp = this->currentMat;
 	if (axis == X_AXIS)
 		this->rotation.x += angle;
 	if (axis == Y_AXIS)
 		this->rotation.y += angle;
 	if (axis == Z_AXIS)
 		this->rotation.z += angle;
-	this->currentMat = Matrix4::newIdentityMatrix();
-	this->currentMat.rotate(angle, axis);
-	this->currentMat *= tmp;
+
+	this->rotateMat = Matrix4::newIdentityMatrix();
+	// Rotate X_AXIS
+	this->rotateMat.rotate(this->_baseRotation.x, X_AXIS);
+	this->rotateMat.rotate(this->rotation.x, X_AXIS);
+
+	// Rotate Y_AXIS
+	this->rotateMat.rotate(this->_baseRotation.y, Y_AXIS);
+	this->rotateMat.rotate(this->rotation.y, Y_AXIS);
+
+	// Rotate z_AXIS
+	this->rotateMat.rotate(this->_baseRotation.z, Z_AXIS);
+	this->rotateMat.rotate(this->rotation.z, Z_AXIS);
 }
 
 void Limb::translateLimb(float const x, float const y, float const z)
@@ -34,7 +43,7 @@ void Limb::translateLimb(float const x, float const y, float const z)
 	this->translation.x += x;
 	this->translation.y += y;
 	this->translation.z += z;
-	this->currentMat.translate(x, y, z);
+	this->translateMat.translate(x, y, z);
 }
 
 void Limb::translateLimb(float const xyz)
@@ -42,7 +51,7 @@ void Limb::translateLimb(float const xyz)
 	this->translation.x += xyz;
 	this->translation.y += xyz;
 	this->translation.z += xyz;
-	this->currentMat.translate(xyz);
+	this->translateMat.translate(xyz);
 }
 
 void Limb::scaleLimb(float const x, float const y, float const z)

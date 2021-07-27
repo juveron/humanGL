@@ -8,8 +8,10 @@ void printBodyToTerm(s_body &body)
 
 	while (iter != iterEnd)
 	{
-		std::cout << "=============\nIndex " << i << ":\n-> Current Mat:" << std::endl;
-		(*iter)->currentMat.print();
+		std::cout << "=============\nIndex " << i << ":\n-> Rotate Mat:" << std::endl;
+		(*iter)->rotateMat.print();
+		std::cout << "-> Translate Mat:" << std::endl;
+		(*iter)->translateMat.print();
 		std::cout << "-> Scale Mat:" << std::endl;
 		(*iter)->scaleMat.print();
 

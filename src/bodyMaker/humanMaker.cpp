@@ -13,6 +13,7 @@ s_body humanMaker(void)
 	Limb *head = new Limb(torso);
 	human.limbs.push_back(head);
 	head->scaleLimb(0.75f);
+	head->rotateLimb(180, X_AXIS);
 
 	// Upper right side
 	Limb *rightArm = new Limb(torso);
