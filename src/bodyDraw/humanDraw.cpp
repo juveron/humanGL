@@ -12,7 +12,7 @@ void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixS
 
 	Matrix4 top = matrixStack.topMatrix();
 
-	matrixStack.pushMatrix(limb->currentMat);
+	matrixStack.pushMatrix(limb->rotateMat * limb->translateMat);
 	matrixStack.topMatrix().multiply(top);
 
 	matrix4 = limb->scaleMat * matrixStack.topMatrix();
