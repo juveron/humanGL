@@ -19,6 +19,7 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 
 SRC_DIR= src/
 SRC=	init/main.cpp\
+		init/initBody.cpp\
 		event/processInput.cpp\
 		bodyDraw/humanDraw.cpp\
 		bodyMaker/humanMaker.cpp\
