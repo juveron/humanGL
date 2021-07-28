@@ -15,8 +15,9 @@ s_body humanMaker(void);
 void updateBody(std::vector<Limb*> &limbs, const int size, std::vector<std::array<Matrix4, 2>> anim);
 void positionHumanLimbs(std::vector<Limb*> &limbs);
 
-// init body
+// init body/Limb
 void	initBody(s_body &body);
+void	initLimb(s_body &body);
 
 // Print
 void printBodyToTerm(s_body &body);

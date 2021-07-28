@@ -15,3 +15,11 @@ void	initBody(s_body &body) {
 	}
 	positionHumanLimbs(body.limbs);
 };
+
+void	initLimb(s_body &body) {
+	body.limbs[body.selectedLimb]->translation = Vector3f(0, 0, 0);
+//	body.limbs[body.selectedLimb]->scale = Vector3f(0, 0, 0);
+	body.limbs[body.selectedLimb]->rotation = Vector3f(0, 0, 0);
+
+	positionHumanLimbs(body.limbs);
+}
