@@ -7,5 +7,6 @@
 #include "./class/Matrix4.hpp"
 #include "./class/Limb.hpp"
 #include "./class/MatrixStack.hpp"
+#include "./class/ErrorHandler.hpp"
 
 #endif

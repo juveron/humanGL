@@ -12,6 +12,7 @@
 #include <vector>
 #include <cmath>
 #include <stack>
+#include <map>
 
 #include "./struct.hpp"
 #include "./classes.hpp"

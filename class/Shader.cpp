@@ -26,8 +26,7 @@ Shader::Shader(char const *vShaderPath, char const *fShaderPath)
 		vShaderFile.close();
 	}
 	catch (std::ifstream::failure &e) {
-		std::cerr << "Unable to open/read/close:" << e.what() << std::endl;
-		throw e;
+		ErrorHandler::setError("SHADER_CONSTRUCT", e.what());
 	}
 
 	char const *vShaderChar = vShaderCode.c_str();

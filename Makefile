@@ -19,6 +19,7 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 
 SRC_DIR= src/
 SRC=	init/main.cpp\
+		init/initBody.cpp\
 		event/processInput.cpp\
 		bodyDraw/humanDraw.cpp\
 		bodyMaker/humanMaker.cpp\
@@ -28,12 +29,13 @@ SRC=	init/main.cpp\
 		print/printBodyToFile.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
-CLASS=	Shader.cpp\
-		Vector3f.cpp\
-		Vector4f.cpp\
-		Matrix4.cpp\
-		Limb.cpp\
-		MatrixStack.cpp
+CLASS= Shader.cpp\
+	   Vector3f.cpp\
+	   Vector4f.cpp\
+	   Matrix4.cpp\
+	   Limb.cpp\
+	   MatrixStack.cpp\
+	   ErrorHandler.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 

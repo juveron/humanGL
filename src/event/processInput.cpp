@@ -82,6 +82,16 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime)
 		positionHumanLimbs(body.limbs);
 	}
 
+	// reset body
+	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
+		initBody(body);
+	}
+
+	// reset limb
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
+		initLimb(body);
+	}
+
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		printBodyToFile(body, "./printedHuman.txt");
