@@ -28,51 +28,51 @@ void positionHumanLimbs(std::vector<Limb *> &limbs)
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_ARM:
-			tmpTranslate.translate(0.5f * limbs[RIGHT_ARM]->baseScale.x + 0.5f * limbs[RIGHT_ARM]->parent->baseScale.x, 0.0f, 0.0f);
+			tmpTranslate.translate(0.5f * limbs[RIGHT_ARM]->baseScale.x + 0.5f * limbs[RIGHT_ARM]->parent->baseScale.x * limbs[RIGHT_ARM]->parent->scale.x, 0.0f, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_FOREARM:
-			tmpTranslate.translate(0.0f, -limbs[RIGHT_FOREARM]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[RIGHT_FOREARM]->parent->baseScale.y * limbs[RIGHT_FOREARM]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_HAND:
-			tmpTranslate.translate(0.0f, -limbs[RIGHT_HAND]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[RIGHT_HAND]->parent->baseScale.y * limbs[RIGHT_HAND]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_ARM:
-			tmpTranslate.translate(-(0.5f * limbs[LEFT_ARM]->baseScale.x + 0.5f * limbs[LEFT_ARM]->parent->baseScale.x), 0.0f, 0.0f);
+			tmpTranslate.translate(-(0.5f * limbs[LEFT_ARM]->baseScale.x + 0.5f * limbs[LEFT_ARM]->parent->baseScale.x * limbs[LEFT_ARM]->parent->scale.x), 0.0f, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_FOREARM:
-			tmpTranslate.translate(0.0f, -limbs[LEFT_FOREARM]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[LEFT_FOREARM]->parent->baseScale.y * limbs[LEFT_FOREARM]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_HAND:
-			tmpTranslate.translate(0.0f, -limbs[LEFT_HAND]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[LEFT_HAND]->parent->baseScale.y * limbs[LEFT_HAND]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_THIGH:
-			tmpTranslate.translate(0.5f * limbs[RIGHT_THIGH]->baseScale.x, -limbs[RIGHT_THIGH]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.5f * limbs[RIGHT_THIGH]->baseScale.x, -limbs[RIGHT_THIGH]->parent->baseScale.y * limbs[RIGHT_THIGH]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_LEG:
-			tmpTranslate.translate(0.0f, -limbs[RIGHT_LEG]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[RIGHT_LEG]->parent->baseScale.y * limbs[RIGHT_LEG]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case RIGHT_FOOT:
-			tmpTranslate.translate(0.0f, -limbs[RIGHT_FOOT]->parent->baseScale.y, 0.15f);
+			tmpTranslate.translate(0.0f, -limbs[RIGHT_FOOT]->parent->baseScale.y * limbs[RIGHT_FOOT]->parent->scale.y, 0.15f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_THIGH:
-			tmpTranslate.translate(-0.5f * limbs[LEFT_THIGH]->baseScale.x, -limbs[LEFT_THIGH]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(-0.5f * limbs[LEFT_THIGH]->baseScale.x, -limbs[LEFT_THIGH]->parent->baseScale.y * limbs[LEFT_THIGH]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_LEG:
-			tmpTranslate.translate(0.0f, -limbs[LEFT_LEG]->parent->baseScale.y, 0.0f);
+			tmpTranslate.translate(0.0f, -limbs[LEFT_LEG]->parent->baseScale.y * limbs[LEFT_LEG]->parent->scale.y, 0.0f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case LEFT_FOOT:
-			tmpTranslate.translate(0.0f, -limbs[LEFT_FOOT]->parent->baseScale.y, 0.15f);
+			tmpTranslate.translate(0.0f, -limbs[LEFT_FOOT]->parent->baseScale.y * limbs[LEFT_FOOT]->parent->scale.y, 0.15f);
 			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		default:
