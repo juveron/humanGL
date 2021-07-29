@@ -17,6 +17,7 @@ public:
 	Vector3f			rotation;
 	Vector3f			translation;
 
+	Vector3f			baseScale;
 
 	Matrix4				scaleMat;
 	Matrix4				rotateMat;
