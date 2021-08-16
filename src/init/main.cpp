@@ -1,5 +1,7 @@
 #include "HumanGL.hpp"
 
+// extern std::vector<std::vector<std::array<Matrix4, 3>>> walkingAnim;
+
 int main(void)
 {
 	GLFWwindow *window;
@@ -58,8 +60,9 @@ int main(void)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	// glEnable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
 	MatrixStack		matrixStack;
 
 	Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
@@ -85,10 +88,13 @@ int main(void)
 		processInput(window, human, deltaTime);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		glBindVertexArray(VAO);
-		matrixStack.pushMatrix();
+
+		// float currentAnimFrame = std::fmod(currentFrame, 5);
+		// if (currentAnimFrame < walkingAnim.size())
+			// updateBody(human.limbs, human.limbs.size(), walkingAnim[currentAnimFrame]);
 		zero = 0;
+		matrixStack.pushMatrix();
 		drawLimb(human.limb, zero, human.selectedLimb, matrixStack, shader);
 		matrixStack.popMatrix();
 		glfwSwapBuffers(window);
