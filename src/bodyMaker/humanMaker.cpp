@@ -13,6 +13,7 @@ s_body humanMaker(void)
 	Limb *head = new Limb(torso);
 	human.limbs.push_back(head);
 	head->baseScale = Vector3f(1.0f, 1.0f, 1.0f);
+	head->baseRotation = Vector3f(180.0f, 0.0f, 0.0f);
 
 	// Upper right side
 	Limb *rightArm = new Limb(torso);
@@ -21,9 +22,9 @@ s_body humanMaker(void)
 	Limb *rightForearm = new Limb(rightArm);
 	human.limbs.push_back(rightForearm);
 	rightForearm->baseScale = Vector3f(0.5f, 0.75f, 0.5f);
-	Limb *rightHand = new Limb(rightForearm);
-	human.limbs.push_back(rightHand);
-	rightHand->baseScale = Vector3f(0.25f, 0.25f, 0.25f);
+	// Limb *rightHand = new Limb(rightForearm);
+	// human.limbs.push_back(rightHand);
+	// rightHand->baseScale = Vector3f(0.25f, 0.25f, 0.25f);
 
 	// Upper left side
 	Limb *leftArm = new Limb(torso);
@@ -32,9 +33,9 @@ s_body humanMaker(void)
 	Limb *leftForearm = new Limb(leftArm);
 	human.limbs.push_back(leftForearm);
 	leftForearm->baseScale = Vector3f(0.5f, 0.75f, 0.5f);
-	Limb *leftHand = new Limb(leftForearm);
-	human.limbs.push_back(leftHand);
-	leftHand->baseScale = Vector3f(0.25f, 0.25f, 0.25f);
+	// Limb *leftHand = new Limb(leftForearm);
+	// human.limbs.push_back(leftHand);
+	// leftHand->baseScale = Vector3f(0.25f, 0.25f, 0.25f);
 
 	// Lower right side
 	Limb *rightTigh = new Limb(torso);
@@ -43,9 +44,9 @@ s_body humanMaker(void)
 	Limb *rightLeg = new Limb(rightTigh);
 	human.limbs.push_back(rightLeg);
 	rightLeg->baseScale = Vector3f(0.5f, 0.75f, 0.5f);
-	Limb *rightFoot = new Limb(rightLeg);
-	human.limbs.push_back(rightFoot);
-	rightFoot->baseScale = Vector3f(0.3f, 0.3f, 0.75f);
+	// Limb *rightFoot = new Limb(rightLeg);
+	// human.limbs.push_back(rightFoot);
+	// rightFoot->baseScale = Vector3f(0.3f, 0.3f, 0.75f);
 
 	// Lower left side
 	Limb *leftTigh = new Limb(torso);
@@ -54,9 +55,9 @@ s_body humanMaker(void)
 	Limb *leftLeg = new Limb(leftTigh);
 	human.limbs.push_back(leftLeg);
 	leftLeg->baseScale = Vector3f(0.5f, 0.75f, 0.5f);
-	Limb *leftFoot = new Limb(leftLeg);
-	human.limbs.push_back(leftFoot);
-	leftFoot->baseScale = Vector3f(0.3f, 0.3f, 0.75f);
+	// Limb *leftFoot = new Limb(leftLeg);
+	// human.limbs.push_back(leftFoot);
+	// leftFoot->baseScale = Vector3f(0.3f, 0.3f, 0.75f);
 
 	positionHumanLimbs(human.limbs);
 

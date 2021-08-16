@@ -5,7 +5,6 @@
 
 class Limb {
 private:
-	Vector3f			_baseRotation;
 
 public:
 	Limb(void);
@@ -17,6 +16,7 @@ public:
 	Vector3f			rotation;
 	Vector3f			translation;
 
+	Vector3f			baseRotation;
 	Vector3f			baseScale;
 
 	Matrix4				scaleMat;
