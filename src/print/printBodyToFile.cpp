@@ -25,6 +25,7 @@ static void printBody(s_body &body, std::ofstream &file)
 				file << ", ";
 			i++;
 		}
+		i = 0;
 		file << " }), Matrix4((float const[]) { ";
 		while (i < 16)
 		{
