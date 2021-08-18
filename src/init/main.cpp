@@ -1,6 +1,6 @@
 #include "HumanGL.hpp"
 
-// extern std::vector<std::vector<std::array<Matrix4, 3>>> walkingAnim;
+extern std::vector<std::vector<std::array<Matrix4, 3>>> walkingAnim;
 
 int main(void)
 {
@@ -80,19 +80,20 @@ int main(void)
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
+	float animFrame = 0;
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
+		animFrame += deltaTime;
 		lastFrame = currentFrame;
 		processInput(window, human, deltaTime);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
 
-		// float currentAnimFrame = std::fmod(currentFrame, 5);
-		// if (currentAnimFrame < walkingAnim.size())
-			// updateBody(human.limbs, human.limbs.size(), walkingAnim[currentAnimFrame]);
+		animateBody(human, walkingAnim, animFrame);
+
 		zero = 0;
 		matrixStack.pushMatrix();
 		drawLimb(human.limb, zero, human.selectedLimb, matrixStack, shader);

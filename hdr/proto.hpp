@@ -23,4 +23,7 @@ void	initLimb(s_body &body);
 void printBodyToTerm(s_body &body);
 void printBodyToFile(s_body &body, std::string fileName);
 
+// Aniamtion
+void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animFrame);
+
 #endif
