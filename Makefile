@@ -27,7 +27,8 @@ SRC=	init/main.cpp\
 		bodyMaker/positionHumanLimbs.cpp\
 		print/printBodyToTerm.cpp\
 		print/printBodyToFile.cpp\
-		animations/walkingAnim.cpp
+		animations/walkingAnim.cpp\
+		animations/animateBody.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
