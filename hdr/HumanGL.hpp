@@ -23,4 +23,6 @@
 #include "./classes.hpp"
 #include "./proto.hpp"
 
+extern std::vector<ANIMATION_FRAME> walkingAnim;
+
 #endif
