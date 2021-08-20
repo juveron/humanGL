@@ -12,6 +12,7 @@
 #include <vector>
 #include <cmath>
 #include <stack>
+#include <array>
 #include <map>
 
 #define SCREEN_WIDTH 800
