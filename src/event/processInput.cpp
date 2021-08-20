@@ -1,6 +1,6 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, s_body &body, float deltaTime)
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff)
 {
 	static bool isLeftKeyPressed = 1;
 	static bool isRightKeyPressed = 0;
@@ -82,12 +82,12 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime)
 		positionHumanLimbs(body.limbs);
 	}
 
-	// reset body
+	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
 		initBody(body);
 	}
 
-	// reset limb
+	// Reset limb
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
 		initLimb(body);
 	}
@@ -97,4 +97,11 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime)
 		printBodyToFile(body, "./printedHuman.txt");
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		printBodyToTerm(body);
+
+	// Animation
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+		stuff.isAnimated = true;
+		stuff.animationTime = 0;
+		stuff.animationIndex = 1;
+	}
 }
