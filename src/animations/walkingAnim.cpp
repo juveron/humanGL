@@ -1,6 +1,6 @@
 #include "HumanGL.hpp"
 
-float walkingTime = 1000.0f;
+float walkingTime = 2.0f;
 
 std::vector<ANIMATION_FRAME> walkingAnim{
 	{
