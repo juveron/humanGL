@@ -24,19 +24,21 @@ typedef enum	humanBody {
 	LEFT_LEG,
 }				e_humanBody;
 
-typedef enum class	DoggoBody {
-	TORSO,
-	LOW_TORSO,
-	HEAD,
-	MUZZLE,
-	RIGHT_EAR,
-	LEFT_EAR,
-	TAIL,
-	RIGHT_UPPER_PAW,
-	LEFT_UPPER_PAW,
-	RIGHT_LOW_PAW,
-	LEFT_LOW_PAW,
-}				e_DoggoBody;
+namespace doggo {
+	typedef enum	DoggoBody {
+		TORSO,
+		LOW_TORSO,
+		HEAD,
+		MUZZLE,
+		RIGHT_EAR,
+		LEFT_EAR,
+		TAIL,
+		RIGHT_UPPER_PAW,
+		LEFT_UPPER_PAW,
+		RIGHT_LOW_PAW,
+		LEFT_LOW_PAW,
+	}				e_DoggoBody;
+}
 
 typedef struct				body {
 	int						selectedLimb;
