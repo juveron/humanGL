@@ -1,7 +1,5 @@
 #include "HumanGL.hpp"
 
-extern std::vector<std::vector<std::array<Matrix4, 3>>> walkingAnim;
-
 int main(void)
 {
 	GLFWwindow *window;
@@ -76,23 +74,36 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 	s_body human = humanMaker();
+	s_animationData animationData;
+
+	animationData.isAnimated = false;
+	animationData.animationTime = 0;
 
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
-	float animFrame = 0;
-	while (!glfwWindowShouldClose(window))
-	{
+	while (!glfwWindowShouldClose(window)) {
+
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
-		animFrame += deltaTime;
 		lastFrame = currentFrame;
-		processInput(window, human, deltaTime);
+
+		processInput(window, human, deltaTime, animationData);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
 
-		animateBody(human, walkingAnim, animFrame);
+		if (animationData.isAnimated) {
+			std::cout << animationData.isAnimated << std::endl;
+			animationData.animationTime += deltaTime;
+			switch (animationData.animationIndex) {
+			case 1:
+				animateBody(human, walkingAnim, walkingTime, animationData);
+				break;
+			default:
+				;
+			}
+		}
 
 		zero = 0;
 		matrixStack.pushMatrix();
