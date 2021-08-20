@@ -14,7 +14,7 @@ void	initBody(s_body &body)
 
 		i++;
 	}
-	positionHumanLimbs(body.limbs);
+	positionDoggoLimbs(body.limbs);
 };
 
 void	initLimb(s_body &body)
@@ -23,5 +23,5 @@ void	initLimb(s_body &body)
 	body.limbs[body.selectedLimb]->scale = Vector3f(1.0f, 1.0f, 1.0f);
 	body.limbs[body.selectedLimb]->rotation = Vector3f(0, 0, 0);
 
-	positionHumanLimbs(body.limbs);
+	positionDoggoLimbs(body.limbs);
 }
