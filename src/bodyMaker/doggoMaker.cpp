@@ -9,6 +9,7 @@ s_body doggoMaker(void)
 	doggo.limb = torso;
 	doggo.limbs.push_back(torso);
 	torso->baseScale = Vector3f(0.875f, 1.0f, 0.75f);
+	torso->baseRotation = Vector3f(0.0f, 0.0f, 90.0f);
 
 	// Low Torso
 	Limb *lowTorso = new Limb(torso);
