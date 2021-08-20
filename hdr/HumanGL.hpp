@@ -25,4 +25,6 @@
 
 extern std::vector<ANIMATION_FRAME> walkingAnim;
 
+extern float walkingTime;
+
 #endif
