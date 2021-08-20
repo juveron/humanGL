@@ -21,48 +21,37 @@ void positionHumanLimbs(std::vector<Limb *> &limbs)
 		switch (i)
 		{
 		case human::TORSO:
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::HEAD:
 			tmpRotate.rotate(180, X_AXIS);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::RIGHT_ARM:
 			tmpTranslate.translate(0.5f * limbs[human::RIGHT_ARM]->baseScale.x + 0.5f * limbs[human::RIGHT_ARM]->parent->baseScale.x * limbs[human::RIGHT_ARM]->parent->scale.x, 0.0f, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::RIGHT_FOREARM:
 			tmpTranslate.translate(0.0f, -limbs[human::RIGHT_FOREARM]->parent->baseScale.y * limbs[human::RIGHT_FOREARM]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::LEFT_ARM:
 			tmpTranslate.translate(-(0.5f * limbs[human::LEFT_ARM]->baseScale.x + 0.5f * limbs[human::LEFT_ARM]->parent->baseScale.x * limbs[human::LEFT_ARM]->parent->scale.x), 0.0f, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::LEFT_FOREARM:
 			tmpTranslate.translate(0.0f, -limbs[human::LEFT_FOREARM]->parent->baseScale.y * limbs[human::LEFT_FOREARM]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::RIGHT_THIGH:
 			tmpTranslate.translate(0.5f * limbs[human::RIGHT_THIGH]->baseScale.x, -limbs[human::RIGHT_THIGH]->parent->baseScale.y * limbs[human::RIGHT_THIGH]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::RIGHT_LEG:
 			tmpTranslate.translate(0.0f, -limbs[human::RIGHT_LEG]->parent->baseScale.y * limbs[human::RIGHT_LEG]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::LEFT_THIGH:
 			tmpTranslate.translate(-0.5f * limbs[human::LEFT_THIGH]->baseScale.x, -limbs[human::LEFT_THIGH]->parent->baseScale.y * limbs[human::LEFT_THIGH]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		case human::LEFT_LEG:
 			tmpTranslate.translate(0.0f, -limbs[human::LEFT_LEG]->parent->baseScale.y * limbs[human::LEFT_LEG]->parent->scale.y, 0.0f);
-			tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 			break;
 		default:
 			break;
 		}
-
 		tmpRotate.rotate(limbs[i]->rotation.x, X_AXIS);
 		tmpRotate.rotate(limbs[i]->rotation.y, Y_AXIS);
 		tmpRotate.rotate(limbs[i]->rotation.z, Z_AXIS);
@@ -71,6 +60,7 @@ void positionHumanLimbs(std::vector<Limb *> &limbs)
 		tmpTranslate.translate(limbs[i]->translation.x, limbs[i]->translation.y, limbs[i]->translation.z);
 		limbs[i]->translateMat = tmpTranslate;
 
+		tmpScale.scale(limbs[i]->baseScale.x, limbs[i]->baseScale.y, limbs[i]->baseScale.z);
 		tmpScale.scale(limbs[i]->scale.x, limbs[i]->scale.y, limbs[i]->scale.z);
 		limbs[i]->scaleMat = tmpScale;
 
