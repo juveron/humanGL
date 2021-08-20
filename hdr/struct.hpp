@@ -11,18 +11,20 @@ typedef enum				axis {
 	Z_AXIS
 }							e_axis;
 
-typedef enum	humanBody {
-	TORSO,
-	HEAD,
-	RIGHT_ARM,
-	RIGHT_FOREARM,
-	LEFT_ARM,
-	LEFT_FOREARM,
-	RIGHT_THIGH,
-	RIGHT_LEG,
-	LEFT_THIGH,
-	LEFT_LEG,
-}				e_humanBody;
+namespace human {
+	typedef enum	humanBody {
+		TORSO,
+		HEAD,
+		RIGHT_ARM,
+		RIGHT_FOREARM,
+		LEFT_ARM,
+		LEFT_FOREARM,
+		RIGHT_THIGH,
+		RIGHT_LEG,
+		LEFT_THIGH,
+		LEFT_LEG,
+	}				e_humanBody;
+}
 
 typedef struct				body {
 	int						selectedLimb;
