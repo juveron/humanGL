@@ -16,16 +16,12 @@ typedef enum	humanBody {
 	HEAD,
 	RIGHT_ARM,
 	RIGHT_FOREARM,
-	// RIGHT_HAND,
 	LEFT_ARM,
 	LEFT_FOREARM,
-	// LEFT_HAND,
 	RIGHT_THIGH,
 	RIGHT_LEG,
-	// RIGHT_FOOT,
 	LEFT_THIGH,
 	LEFT_LEG,
-	// LEFT_FOOT
 }				e_humanBody;
 
 typedef struct				body {
@@ -33,5 +29,11 @@ typedef struct				body {
 	Limb					*limb;
 	std::vector<Limb *>		limbs;
 }							s_body;
+
+typedef struct				animationData {
+	bool					isAnimated;
+	float					animationTime;
+	int						animationIndex;
+}							s_animationData;
 
 #endif
