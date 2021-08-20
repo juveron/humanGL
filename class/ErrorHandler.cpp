@@ -8,7 +8,8 @@ std::map<std::string, std::string> ErrorHandler::_errorDictionary {
 		{ "GLFW_INIT" , "Error with glfwInit" },
 		{ "WINDOW", "Error while creating window" },
 		{ "GLAD_LOAD", "Error with gladLoadGLLoader" },
-		{ "SHADER_CONSTRUCT", "Unable to open /read/close file for Shader"}
+		{ "SHADER_CONSTRUCT", "Unable to open /read/close file for Shader"},
+		{ "SHADER_COMPILATION", "Error occurred during the compilation of the Shader" }
 };
 
 void ErrorHandler::setError(const std::string &errorKey) {
@@ -19,6 +20,6 @@ void ErrorHandler::setError(const std::string &errorKey) {
 
 void ErrorHandler::setError(const std::string &errorKey, const char* errorMessage) {
 	glfwTerminate();
-	std::cout << ErrorHandler::_errorDictionary[errorKey] << ":\n" << errorMessage << std::endl;
+	std::cout << ErrorHandler::_errorDictionary[errorKey] << ":\n" << errorMessage << std::flush;
 	exit(EXIT_FAILURE);
 }
