@@ -96,14 +96,13 @@ int main(void)
 		glBindVertexArray(VAO);
 
 		if (animationData.isAnimated) {
-			std::cout << animationData.isAnimated << std::endl;
 			animationData.animationTime += deltaTime;
 			switch (animationData.animationIndex) {
 			case 1:
 				animateBody(human, walkingAnim, walkingTime, animationData);
 				break;
 			default:
-				;
+				animationData.isAnimated = false;
 			}
 		}
 
