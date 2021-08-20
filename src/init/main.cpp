@@ -75,7 +75,7 @@ int main(void)
 	shader.use();
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
-	s_body human = humanMaker();
+	s_body human = doggoMaker();
 	s_animationData animationData;
 
 	animationData.isAnimated = false;
