@@ -23,8 +23,10 @@ SRC=	init/main.cpp\
 		event/processInput.cpp\
 		bodyDraw/humanDraw.cpp\
 		bodyMaker/humanMaker.cpp\
+		bodyMaker/doggoMaker.cpp\
 		bodyMaker/updateBody.cpp\
 		bodyMaker/positionHumanLimbs.cpp\
+		bodyMaker/positionDoggoLimbs.cpp\
 		print/printBodyToTerm.cpp\
 		print/printBodyToFile.cpp\
 		animations/walkingAnim.cpp\
