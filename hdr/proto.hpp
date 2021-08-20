@@ -5,7 +5,7 @@
 #include "./HumanGL.hpp"
 
 // input
-void processInput(GLFWwindow *window, s_body &body, float deltaTime);
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff);
 
 // Draw human
 void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader);
@@ -24,6 +24,6 @@ void printBodyToTerm(s_body &body);
 void printBodyToFile(s_body &body, std::string fileName);
 
 // Aniamtion
-void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animFrame);
+void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData);
 
 #endif

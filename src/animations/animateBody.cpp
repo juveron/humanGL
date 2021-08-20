@@ -5,17 +5,19 @@ static float lerp(float a, float b, float t)
 	return (a + t * (b - a));
 }
 
-void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animFrame)
+void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData)
 {
 	ANIMATION_FRAME currentFrameData;
 
-	float prevFrame = std::floor(animFrame);
-	float nextFrame = std::ceil(animFrame);
-	float framePercentage = std::fmod(animFrame, 1);
+	float timePerFrame = animationTime / (anim.size() - 1);
+
+	float currentFrame = animationData.animationTime / timePerFrame;
+	float prevFrame = std::floor(currentFrame);
+	float nextFrame = std::ceil(currentFrame);
+	float framePercentage = std::fmod(currentFrame, 1);
 
 	size_t i = 0;
-	if (nextFrame < anim.size())
-	{
+	if (nextFrame < anim.size()) {
 		Matrix4 rotateMat;
 		Matrix4 translateMat;
 		Matrix4 scaleMat;
@@ -37,6 +39,7 @@ void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animFram
 		updateBody(body.limbs, body.limbs.size(), currentFrameData);
 	}
 	else {
+		animationData.isAnimated = false;
 		initBody(body);
 	}
 }
