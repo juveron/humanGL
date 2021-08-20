@@ -26,7 +26,9 @@ SRC=	init/main.cpp\
 		bodyMaker/updateBody.cpp\
 		bodyMaker/positionHumanLimbs.cpp\
 		print/printBodyToTerm.cpp\
-		print/printBodyToFile.cpp
+		print/printBodyToFile.cpp\
+		animations/walkingAnim.cpp\
+		animations/animateBody.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -42,7 +44,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class bodyDraw bodyMaker print
+OBJ_SUBDIRS= init event class bodyDraw bodyMaker print animations
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 

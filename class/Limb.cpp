@@ -26,15 +26,15 @@ void Limb::rotateLimb(float const angle, e_axis const axis)
 
 	this->rotateMat = Matrix4::newIdentityMatrix();
 	// Rotate X_AXIS
-	this->rotateMat.rotate(this->_baseRotation.x, X_AXIS);
+	this->rotateMat.rotate(this->baseRotation.x, X_AXIS);
 	this->rotateMat.rotate(this->rotation.x, X_AXIS);
 
 	// Rotate Y_AXIS
-	this->rotateMat.rotate(this->_baseRotation.y, Y_AXIS);
+	this->rotateMat.rotate(this->baseRotation.y, Y_AXIS);
 	this->rotateMat.rotate(this->rotation.y, Y_AXIS);
 
 	// Rotate z_AXIS
-	this->rotateMat.rotate(this->_baseRotation.z, Z_AXIS);
+	this->rotateMat.rotate(this->baseRotation.z, Z_AXIS);
 	this->rotateMat.rotate(this->rotation.z, Z_AXIS);
 }
 
