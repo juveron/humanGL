@@ -25,7 +25,9 @@
 #include "./proto.hpp"
 
 extern std::vector<ANIMATION_FRAME> walkingAnim;
+extern std::vector<ANIMATION_FRAME> sittingDogAnim;
 
 extern float walkingTime;
+extern float sittingDogTime;
 
 #endif
