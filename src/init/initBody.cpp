@@ -17,7 +17,7 @@ void	initBody(s_body &body, int &currentIndex)
 	if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 };
 
-void	initLimb(s_body &body, int &currentIndex )
+void	initLimb(s_body &body, int &currentIndex)
 {
 	body.limbs[body.selectedLimb]->translation = Vector3f(0, 0, 0);
 	body.limbs[body.selectedLimb]->scale = Vector3f(1.0f, 1.0f, 1.0f);

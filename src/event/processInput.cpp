@@ -60,27 +60,27 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 	// Scale
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.01f, 1.0f, 1.0f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(0.99f, 1.0f, 1.0f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.01f, 1.0f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 0.99f, 1.0f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 1.01f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 0.99f);
-		positionDoggoLimbs(body.limbs);
+		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 
 	// Reset body
