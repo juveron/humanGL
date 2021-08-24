@@ -30,15 +30,15 @@ namespace doggo {
 	typedef enum	DoggoBody {
 		TORSO,
 		LOW_TORSO,
+		TAIL,
+		RIGHT_LOW_PAW,
+		LEFT_LOW_PAW,
+		RIGHT_UPPER_PAW,
+		LEFT_UPPER_PAW,
 		HEAD,
 		MUZZLE,
 		RIGHT_EAR,
 		LEFT_EAR,
-		TAIL,
-		RIGHT_UPPER_PAW,
-		LEFT_UPPER_PAW,
-		RIGHT_LOW_PAW,
-		LEFT_LOW_PAW,
 	}				e_DoggoBody;
 }
 
