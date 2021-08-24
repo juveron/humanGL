@@ -40,6 +40,6 @@ void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animatio
 	}
 	else {
 		animationData.isAnimated = false;
-		initBody(body);
+//		initBody(body);
 	}
 }

@@ -5,7 +5,7 @@
 #include "./HumanGL.hpp"
 
 // input
-void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff);
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &currentIndex);
 
 // Draw human
 void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader);
@@ -19,8 +19,8 @@ void positionDoggoLimbs(std::vector<Limb*> &limbs);
 
 
 // init body/Limb
-void	initBody(s_body &body);
-void	initLimb(s_body &body);
+void	initBody(s_body &body, int &currentIndex);
+void	initLimb(s_body &body, int &currentIndex);
 
 // Print
 void printBodyToTerm(s_body &body);

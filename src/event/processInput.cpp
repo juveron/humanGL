@@ -1,9 +1,10 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff)
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &currentIndex)
 {
 	static bool isLeftKeyPressed = 1;
 	static bool isRightKeyPressed = 0;
+	static bool isZKeyPressed = 1;
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, 1);
@@ -84,13 +85,21 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 
 	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-		initBody(body);
+		initBody(body, currentIndex);
 	}
 
 	// Reset limb
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
-		initLimb(body);
+		initLimb(body, currentIndex);
 	}
+
+	// Switch body
+	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
+		if (!isZKeyPressed) {
+			currentIndex = (currentIndex + 1) % 2;
+		}
+		isZKeyPressed = 1;
+	} else isZKeyPressed = 0;
 
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
