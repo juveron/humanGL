@@ -3,7 +3,7 @@
 //
 #include "HumanGL.hpp"
 
-void	initBody(s_body &body)
+void	initBody(s_body &body, int &currentIndex)
 {
 
 	size_t i = 0;
@@ -14,14 +14,14 @@ void	initBody(s_body &body)
 
 		i++;
 	}
-	positionDoggoLimbs(body.limbs);
+	if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 };
 
-void	initLimb(s_body &body)
+void	initLimb(s_body &body, int &currentIndex )
 {
 	body.limbs[body.selectedLimb]->translation = Vector3f(0, 0, 0);
 	body.limbs[body.selectedLimb]->scale = Vector3f(1.0f, 1.0f, 1.0f);
 	body.limbs[body.selectedLimb]->rotation = Vector3f(0, 0, 0);
 
-	positionDoggoLimbs(body.limbs);
+	if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 }

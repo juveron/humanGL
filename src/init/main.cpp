@@ -75,7 +75,11 @@ int main(void)
 	shader.use();
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
-	s_body human = doggoMaker();
+
+	int current = 0;
+	s_body body[2];
+	body[0] = humanMaker();
+	body[1] = doggoMaker();
 	s_animationData animationData;
 
 	animationData.isAnimated = false;
@@ -89,26 +93,25 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-
-		processInput(window, human, deltaTime, animationData);
+		processInput(window, body[current], deltaTime, animationData, current);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
 
-		if (animationData.isAnimated) {
-			animationData.animationTime += deltaTime;
-			switch (animationData.animationIndex) {
-			case 1:
-				animateBody(human, walkingAnim, walkingTime, animationData);
-				break;
-			default:
-				animationData.isAnimated = false;
-			}
-		}
+//		if (animationData.isAnimated) {
+//			animationData.animationTime += deltaTime;
+//			switch (animationData.animationIndex) {
+//			case 1:
+//				animateBody(body[current], walkingAnim, walkingTime, animationData);
+//				break;
+//			default:
+//				animationData.isAnimated = false;
+//			}
+//		}
 
 		zero = 0;
 		matrixStack.pushMatrix();
-		drawLimb(human.limb, zero, human.selectedLimb, matrixStack, shader);
+		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader);
 		matrixStack.popMatrix();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
