@@ -26,7 +26,37 @@ void positionDoggoLimbs(std::vector<Limb *> &limbs)
 			tmpRotate.rotate(90.0f, Z_AXIS);
 			break;
 		case doggo::LOW_TORSO:
-			tmpTranslate.translate(0.0f, -limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y, 0.0f);
+			tmpTranslate.translate(-0.5f * (limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x - limbs[i]->baseScale.x * limbs[i]->scale.x),
+				-limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y, 0.0f);
+			break;
+		case doggo::TAIL:
+			tmpTranslate.translate(0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x - 0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
+				-limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y, 0.0f);
+			break;
+		case doggo::RIGHT_LOW_PAW:
+			tmpRotate.rotate(-90.0f, Z_AXIS);
+			tmpTranslate.translate(
+				-0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x,
+				-0.9f * limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y + 0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
+				-(0.5f * limbs[i]->parent->baseScale.z * limbs[i]->parent->scale.z - 0.5f * limbs[i]->baseScale.z * limbs[i]->scale.z));
+			break;
+		case doggo::LEFT_LOW_PAW:
+			tmpRotate.rotate(-90.0f, Z_AXIS);
+			tmpTranslate.translate(-0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x,
+				-0.9f * limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y + 0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
+				0.5f * limbs[i]->parent->baseScale.z * limbs[i]->parent->scale.z - 0.5f * limbs[i]->baseScale.z * limbs[i]->scale.z);
+			break;
+		case doggo::RIGHT_UPPER_PAW:
+			tmpRotate.rotate(-90.0f, Z_AXIS);
+			tmpTranslate.translate(-0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x,
+				-0.3f * limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y - 0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
+				-(0.5f * limbs[i]->parent->baseScale.z * limbs[i]->parent->scale.z - 0.5f * limbs[i]->baseScale.z * limbs[i]->scale.z));
+			break;
+		case doggo::LEFT_UPPER_PAW:
+			tmpRotate.rotate(-90.0f, Z_AXIS);
+			tmpTranslate.translate(-0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x,
+				-0.3f * limbs[i]->parent->baseScale.y * limbs[i]->parent->scale.y - 0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
+				0.5f * limbs[i]->parent->baseScale.z * limbs[i]->parent->scale.z - 0.5f * limbs[i]->baseScale.z * limbs[i]->scale.z);
 			break;
 		case doggo::HEAD:
 			tmpRotate.rotate(180.0f, X_AXIS);
@@ -39,7 +69,6 @@ void positionDoggoLimbs(std::vector<Limb *> &limbs)
 			tmpTranslate.translate(0.5f * limbs[i]->parent->baseScale.x * limbs[i]->parent->scale.x,
 				-0.5f * limbs[i]->baseScale.x * limbs[i]->scale.x,
 				0.5f * limbs[i]->parent->baseScale.z * limbs[i]->parent->scale.z - 0.5f * limbs[i]->baseScale.z * limbs[i]->scale.z);
-
 			break;
 		case doggo::LEFT_EAR:
 			tmpRotate.rotate(90.0f, Z_AXIS);

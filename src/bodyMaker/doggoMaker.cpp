@@ -16,6 +16,39 @@ s_body doggoMaker(void)
 	doggo.limbs.push_back(lowTorso);
 	lowTorso->baseScale = Vector3f(0.75f, 1.125f, 0.75f);
 
+	// Tail
+	Limb *tail = new Limb(lowTorso);
+	doggo.limbs.push_back(tail);
+	tail->baseScale = Vector3f(0.25f, 1.0f, 0.25f);
+
+	// Lower right side
+	Limb *lowerRightPaw = new Limb(lowTorso);
+	doggo.limbs.push_back(lowerRightPaw);
+	lowerRightPaw->baseScale = Vector3f(0.25f, 0.75f, 0.25f);
+	lowerRightPaw->baseRotation = Vector3f(0.0f, 0.0f, -90.0f);
+
+
+	// Lower left side
+	Limb *lowerLeftPaw = new Limb(lowTorso);
+	doggo.limbs.push_back(lowerLeftPaw);
+	lowerLeftPaw->baseScale = Vector3f(0.25f, 0.75f, 0.25f);
+	lowerLeftPaw->baseRotation = Vector3f(0.0f, 0.0f, -90.0f);
+
+
+	// Upper right side
+	Limb *rightPaw = new Limb(torso);
+	doggo.limbs.push_back(rightPaw);
+	rightPaw->baseScale = Vector3f(0.25f, 0.75f, 0.25f);
+	rightPaw->baseRotation = Vector3f(0.0f, 0.0f, -90.0f);
+
+
+	// Upper left side
+	Limb *leftPaw = new Limb(torso);
+	doggo.limbs.push_back(leftPaw);
+	leftPaw->baseScale = Vector3f(0.25f, 0.75f, 0.25f);
+	leftPaw->baseRotation = Vector3f(0.0f, 0.0f, -90.0f);
+
+
 	// Head
 	Limb *head = new Limb(torso);
 	doggo.limbs.push_back(head);
@@ -37,30 +70,7 @@ s_body doggoMaker(void)
 	doggo.limbs.push_back(leftEar);
 	leftEar->baseScale = Vector3f(0.125f, 0.25f, 0.25f);
 
-	// // tail
-	// Limb *tail = new Limb(lowTorso);
-	// doggo.limbs.push_back(tail);
-	// tail->baseScale = Vector3f(0.25f, 0.25f, 1.0f);
 
-	// // Upper right side
-	// Limb *rightPaw = new Limb(torso);
-	// doggo.limbs.push_back(rightPaw);
-	// rightPaw->baseScale = Vector3f(1.0f, 0.25f, 0.25f);
-
-	// // Upper left side
-	// Limb *leftPaw = new Limb(torso);
-	// doggo.limbs.push_back(leftPaw);
-	// leftPaw->baseScale = Vector3f(1.0f, 0.25f, 0.25f);
-
-	// // Lower right side
-	// Limb *lowerRightPaw = new Limb(lowTorso);
-	// doggo.limbs.push_back(lowerRightPaw);
-	// lowerRightPaw->baseScale = Vector3f(1.0f, 0.25f, 0.25f);
-
-	// // Lower left side
-	// Limb *lowerLeftPaw = new Limb(lowTorso);
-	// doggo.limbs.push_back(lowerLeftPaw);
-	// lowerLeftPaw->baseScale = Vector3f(1.0f, 0.25f, 0.25f);
 
 	positionDoggoLimbs(doggo.limbs);
 
