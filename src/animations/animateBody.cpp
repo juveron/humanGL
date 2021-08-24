@@ -5,7 +5,7 @@ static float lerp(float a, float b, float t)
 	return (a + t * (b - a));
 }
 
-void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData)
+void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData, int bodyIndex)
 {
 	ANIMATION_FRAME currentFrameData;
 
@@ -40,6 +40,6 @@ void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animatio
 	}
 	else {
 		animationData.isAnimated = false;
-//		initBody(body);
+		initBody(body, bodyIndex);
 	}
 }

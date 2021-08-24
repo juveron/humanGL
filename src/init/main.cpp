@@ -98,16 +98,11 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
 
-//		if (animationData.isAnimated) {
-//			animationData.animationTime += deltaTime;
-//			switch (animationData.animationIndex) {
-//			case 1:
-//				animateBody(body[current], walkingAnim, walkingTime, animationData);
-//				break;
-//			default:
-//				animationData.isAnimated = false;
-//			}
-//		}
+		if (animationData.isAnimated) {
+			animationData.animationTime += deltaTime;
+			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
+			animateBody(body[current], walkingAnim, walkingTime, animationData, current);
+		}
 
 		zero = 0;
 		matrixStack.pushMatrix();
