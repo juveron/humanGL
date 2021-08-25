@@ -1,6 +1,6 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &currentIndex)
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &bodyIndex, int &currentIndex)
 {
 	static bool isLeftKeyPressed = 1;
 	static bool isRightKeyPressed = 0;
@@ -60,43 +60,45 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 	// Scale
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.01f, 1.0f, 1.0f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(0.99f, 1.0f, 1.0f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.01f, 1.0f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 0.99f, 1.0f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 1.01f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
 		body.limbs[body.selectedLimb]->scaleLimb(1.0f, 1.0f, 0.99f);
-		if (currentIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
+		if (bodyIndex == 0) positionHumanLimbs(body.limbs); else positionDoggoLimbs(body.limbs);
 	}
 
 	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-		initBody(body, currentIndex);
+		initBody(body, bodyIndex);
 	}
 
 	// Reset limb
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
-		initLimb(body, currentIndex);
+		initLimb(body, bodyIndex);
 	}
 
 	// Switch body
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
 		if (!isZKeyPressed) {
-			currentIndex = (currentIndex + 1) % 2;
+			bodyIndex = (bodyIndex + 1) % 2;
+			currentIndex = (currentIndex + 1) % 3;
+			std::cout << currentIndex << std::endl;
 		}
 		isZKeyPressed = 1;
 	} else isZKeyPressed = 0;

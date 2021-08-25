@@ -76,7 +76,7 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
-	int current = 0;
+	int bodyIndex = 0;
 	s_body body[2];
 	body[0] = humanMaker();
 	body[1] = doggoMaker();
@@ -84,7 +84,7 @@ int main(void)
 
 	animationData.isAnimated = false;
 	animationData.animationTime = 0;
-
+	int currentIndex = 0;
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
@@ -93,7 +93,7 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, body[current], deltaTime, animationData, current);
+		processInput(window, body[bodyIndex], deltaTime, animationData, bodyIndex, currentIndex);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
@@ -101,13 +101,31 @@ int main(void)
 		if (animationData.isAnimated) {
 			animationData.animationTime += deltaTime;
 			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
-			animateBody(body[current], walkingAnim, walkingTime, animationData, current);
+			animateBody(body[bodyIndex], walkingAnim, walkingTime, animationData, bodyIndex);
 		}
 
-		zero = 0;
-		matrixStack.pushMatrix();
-		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader);
-		matrixStack.popMatrix();
+		if (bodyIndex == 0) {
+			zero = 0;
+			matrixStack.pushMatrix();
+			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
+			matrixStack.popMatrix();
+		}
+		if (bodyIndex == 1) {
+			zero = 0;
+			matrixStack.pushMatrix();
+			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
+			matrixStack.popMatrix();
+		}
+		if (currentIndex == 2) {
+			zero = 0;
+			matrixStack.pushMatrix();
+			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
+			matrixStack.popMatrix();
+			zero = 0;
+			matrixStack.pushMatrix();
+			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
+			matrixStack.popMatrix();
+		}
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
