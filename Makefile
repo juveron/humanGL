@@ -30,6 +30,7 @@ SRC=	init/main.cpp\
 		print/printBodyToTerm.cpp\
 		print/printBodyToFile.cpp\
 		animations/walkingAnim.cpp\
+		animations/sittingDogAnim.cpp\
 		animations/animateBody.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
