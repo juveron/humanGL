@@ -84,6 +84,7 @@ int main(void)
 
 	animationData.isAnimated = false;
 	animationData.animationTime = 0;
+	int modelIndex = 0;
 	int currentIndex = 0;
 	int zero;
 	float deltaTime = 0;
@@ -93,7 +94,7 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, body[bodyIndex], deltaTime, animationData, bodyIndex, currentIndex);
+		processInput(window, body[modelIndex], deltaTime, animationData, bodyIndex, currentIndex, modelIndex);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
@@ -101,17 +102,19 @@ int main(void)
 		if (animationData.isAnimated) {
 			animationData.animationTime += deltaTime;
 			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
-			animateBody(body[bodyIndex], walkingAnim, walkingTime, animationData, bodyIndex);
+			animateBody(body[modelIndex], walkingAnim, walkingTime, animationData, modelIndex);
 		}
 
 		if (bodyIndex == 0) {
 			zero = 0;
+			if (currentIndex != 2 && bodyIndex == 0) modelIndex = 0;
 			matrixStack.pushMatrix();
 			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
 			matrixStack.popMatrix();
 		}
 		if (bodyIndex == 1) {
 			zero = 0;
+			if (currentIndex != 2 && bodyIndex == 1) modelIndex = 1;
 			matrixStack.pushMatrix();
 			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
 			matrixStack.popMatrix();

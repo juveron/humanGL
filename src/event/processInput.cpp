@@ -1,10 +1,11 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &bodyIndex, int &currentIndex)
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &bodyIndex, int &currentIndex, int &modelIndex)
 {
 	static bool isLeftKeyPressed = 1;
 	static bool isRightKeyPressed = 0;
 	static bool isZKeyPressed = 1;
+	static bool isNKeyPressed = 1;
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, 1);
@@ -85,12 +86,12 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 
 	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-		initBody(body, bodyIndex);
+		initBody(body, modelIndex);
 	}
 
 	// Reset limb
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
-		initLimb(body, bodyIndex);
+		initLimb(body, modelIndex);
 	}
 
 	// Switch body
@@ -98,10 +99,16 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 		if (!isZKeyPressed) {
 			bodyIndex = (bodyIndex + 1) % 2;
 			currentIndex = (currentIndex + 1) % 3;
-			std::cout << currentIndex << std::endl;
+			if (currentIndex == 2) bodyIndex = 1;
 		}
 		isZKeyPressed = 1;
 	} else isZKeyPressed = 0;
+
+	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) {
+		if (!isNKeyPressed)
+			if (currentIndex == 2) modelIndex = (modelIndex + 1) % 2;
+		isNKeyPressed = 1;
+	} else isNKeyPressed = 0;
 
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
