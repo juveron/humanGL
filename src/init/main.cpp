@@ -122,7 +122,12 @@ int main(void)
 	shader.setMatrix("viewMat", view.matrix);
 
 	unsigned int tex = generateTexture();
-	int bodyIndex = 0;
+
+	s_indexBody indexBody;
+	indexBody.bodyIndex = 0;
+	indexBody.modelIndex = 0;
+	indexBody.currentIndex = 0;
+
 	s_body body[2];
 	body[0] = humanMaker();
 	body[1] = doggoMaker();
@@ -130,8 +135,6 @@ int main(void)
 
 	animationData.isAnimated = false;
 	animationData.animationTime = 0;
-	int modelIndex = 0;
-	int currentIndex = 0;
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
@@ -140,7 +143,7 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, body[modelIndex], deltaTime, animationData, bodyIndex, currentIndex, modelIndex);
+		processInput(window, body[indexBody.modelIndex], deltaTime, animationData, indexBody);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
@@ -150,24 +153,24 @@ int main(void)
 		if (animationData.isAnimated) {
 			animationData.animationTime += deltaTime;
 			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
-			animateBody(body[modelIndex], walkingAnim, walkingTime, animationData, modelIndex);
+			animateBody(body[indexBody.modelIndex], walkingAnim, walkingTime, animationData, indexBody.modelIndex);
 		}
 
-		if (bodyIndex == 0) {
+		if (indexBody.bodyIndex == 0) {
 			zero = 0;
-			if (currentIndex != 2 && bodyIndex == 0) modelIndex = 0;
+			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 0) indexBody.modelIndex = 0;
 			matrixStack.pushMatrix();
 			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
 			matrixStack.popMatrix();
 		}
-		if (bodyIndex == 1) {
+		if (indexBody.bodyIndex == 1) {
 			zero = 0;
-			if (currentIndex != 2 && bodyIndex == 1) modelIndex = 1;
+			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 1) indexBody.modelIndex = 1;
 			matrixStack.pushMatrix();
 			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
 			matrixStack.popMatrix();
 		}
-		if (currentIndex == 2) {
+		if (indexBody.currentIndex == 2) {
 			zero = 0;
 			matrixStack.pushMatrix();
 			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
