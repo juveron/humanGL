@@ -31,7 +31,8 @@ SRC=	init/main.cpp\
 		print/printBodyToFile.cpp\
 		animations/walkingAnim.cpp\
 		animations/sittingDogAnim.cpp\
-		animations/animateBody.cpp
+		animations/animateBody.cpp\
+		texture/loadTexture.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -47,7 +48,7 @@ CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class bodyDraw bodyMaker print animations
+OBJ_SUBDIRS= init event class bodyDraw bodyMaker print animations texture
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
