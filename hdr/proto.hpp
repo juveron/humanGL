@@ -29,4 +29,7 @@ void printBodyToFile(s_body &body, std::string fileName);
 // Aniamtion
 void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData, int bodyIndex);
 
+// Texture
+unsigned int generateTexture(void);
+
 #endif
