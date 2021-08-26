@@ -104,6 +104,7 @@ void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animation
 		isZKeyPressed = 1;
 	} else isZKeyPressed = 0;
 
+	// Switch body if the two are display
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) {
 		if (!isNKeyPressed)
 			if (currentIndex == 2) modelIndex = (modelIndex + 1) % 2;
