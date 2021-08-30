@@ -121,7 +121,20 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
-	unsigned int tex = generateTexture();
+	std::vector<const char*> texturePaths = {
+		"./ressources/Torso.png",
+		"./ressources/Head.png",
+		"./ressources/UpperArm.png",
+		"./ressources/LowerArm.png",
+		"./ressources/UpperArm.png",
+		"./ressources/LowerArm.png",
+		"./ressources/Thigh.png",
+		"./ressources/Leg.png",
+		"./ressources/Thigh.png",
+		"./ressources/Leg.png",
+	};
+
+	unsigned int *textures = generateTextures(texturePaths);
 
 	int current = 0;
 	s_body body[2];
@@ -144,7 +157,6 @@ int main(void)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
-		glBindTexture(GL_TEXTURE_2D, tex);
 
 
 		if (animationData.isAnimated) {
@@ -155,7 +167,7 @@ int main(void)
 
 		zero = 0;
 		matrixStack.pushMatrix();
-		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader);
+		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader, textures);
 		matrixStack.popMatrix();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
