@@ -137,9 +137,6 @@ int main(void)
 	unsigned int *textures = generateTextures(texturePaths);
 
 	s_indexBody indexBody;
-	indexBody.bodyIndex = 0;
-	indexBody.modelIndex = 0;
-	indexBody.currentIndex = 0;
 
 	s_body body[2];
 	body[0] = humanMaker();
@@ -168,32 +165,18 @@ int main(void)
 			animateBody(body[indexBody.modelIndex], walkingAnim, walkingTime, animationData, indexBody.modelIndex);
 		}
 
-		// zero = 0;
-		// matrixStack.pushMatrix();
-		// drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader, textures);
-		// matrixStack.popMatrix();
-		if (indexBody.bodyIndex == 0) {
+		// Draw human
+		if (indexBody.drawBody & 1) {
 			zero = 0;
-			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 0) indexBody.modelIndex = 0;
 			matrixStack.pushMatrix();
-			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
+			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader, textures);
 			matrixStack.popMatrix();
 		}
-		if (indexBody.bodyIndex == 1) {
-			zero = 0;
-			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 1) indexBody.modelIndex = 1;
-			matrixStack.pushMatrix();
-			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-		}
-		if (indexBody.currentIndex == 2) {
+		// Draw doggo
+		if ((indexBody.drawBody >> 1) & 1) {
 			zero = 0;
 			matrixStack.pushMatrix();
-			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-			zero = 0;
-			matrixStack.pushMatrix();
-			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
+			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader, textures);
 			matrixStack.popMatrix();
 		}
 		glfwSwapBuffers(window);

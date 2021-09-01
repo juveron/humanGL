@@ -49,9 +49,8 @@ typedef struct				body {
 }							s_body;
 
 typedef struct				indexBody {
-	int						bodyIndex;
-	int 					currentIndex;
-	int 					modelIndex;
+	unsigned char			drawBody = 1;
+	int 					modelIndex = 0;
 }							s_indexBody;
 
 typedef struct				animationData {
