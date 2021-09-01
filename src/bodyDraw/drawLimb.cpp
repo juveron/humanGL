@@ -21,8 +21,6 @@ void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixS
 
 	// Texture stuff
 	glBindTexture(GL_TEXTURE_2D, textures[limbIndex]);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 	// Draw textured limb
 	if (limbIndex == selectedLimb)
