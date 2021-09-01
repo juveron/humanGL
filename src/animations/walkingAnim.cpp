@@ -1,10 +1,10 @@
 #include "HumanGL.hpp"
 
-float walkingTime = 4.0f;
+float walkingTime = 3.0f;
 
 std::vector<ANIMATION_FRAME> walkingAnim{
 {
-	{ Vector3f(0,94.0599,0), Vector3f(-5.06097,-2.41312,-1.78988), Vector3f(1,1,1) },
+	{ Vector3f(0,94.0599,0), Vector3f(-5,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
@@ -16,7 +16,7 @@ std::vector<ANIMATION_FRAME> walkingAnim{
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 },
 {
-	{ Vector3f(0,94.0599,0), Vector3f(-3.11271,-2.41312,-1.78988), Vector3f(1,1,1) },
+	{ Vector3f(0,94.0599,0), Vector3f(-2.5,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(-42.3362,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
@@ -28,7 +28,7 @@ std::vector<ANIMATION_FRAME> walkingAnim{
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 },
 {
-	{ Vector3f(0,94.0599,0), Vector3f(-0.16592,-2.41312,-1.78988), Vector3f(1,1,1) },
+	{ Vector3f(0,94.0599,0), Vector3f(0,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(30.336,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
@@ -40,7 +40,7 @@ std::vector<ANIMATION_FRAME> walkingAnim{
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 },
 {
-	{ Vector3f(0,85.1115,0), Vector3f(2.44829,-2.41312,-1.78988), Vector3f(1,1,1) },
+	{ Vector3f(0,85.1115,0), Vector3f(2.5,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(-48.333,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
@@ -52,7 +52,7 @@ std::vector<ANIMATION_FRAME> walkingAnim{
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 },
 {
-	{ Vector3f(0,85.1115,0), Vector3f(5.35358,-2.41312,-1.78988), Vector3f(1,1,1) },
+	{ Vector3f(0,85.1115,0), Vector3f(5,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
