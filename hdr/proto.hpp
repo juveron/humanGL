@@ -5,7 +5,7 @@
 #include "./HumanGL.hpp"
 
 // input
-void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, int &currentIndex);
+void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody);
 
 // Draw human
 void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader, unsigned int *textures);

@@ -12,7 +12,7 @@ typedef enum				axis {
 }							e_axis;
 
 namespace human {
-	typedef enum	humanBody {
+	typedef enum			humanBody {
 		TORSO,
 		HEAD,
 		RIGHT_ARM,
@@ -23,11 +23,11 @@ namespace human {
 		RIGHT_LEG,
 		LEFT_THIGH,
 		LEFT_LEG,
-	}				e_humanBody;
+	}						e_humanBody;
 }
 
 namespace doggo {
-	typedef enum	DoggoBody {
+	typedef enum			DoggoBody {
 		TORSO,
 		LOW_TORSO,
 		TAIL,
@@ -39,7 +39,7 @@ namespace doggo {
 		MUZZLE,
 		RIGHT_EAR,
 		LEFT_EAR,
-	}				e_DoggoBody;
+	}						e_DoggoBody;
 }
 
 typedef struct				body {
@@ -47,6 +47,12 @@ typedef struct				body {
 	Limb					*limb;
 	std::vector<Limb *>		limbs;
 }							s_body;
+
+typedef struct				indexBody {
+	int						bodyIndex;
+	int 					currentIndex;
+	int 					modelIndex;
+}							s_indexBody;
 
 typedef struct				animationData {
 	bool					isAnimated;
