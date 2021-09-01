@@ -1,4 +1,4 @@
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 Limb::Limb(void) : parent(nullptr)
 {
@@ -94,4 +94,46 @@ void Limb::removeChild(Limb *child)
 void Limb::setParent(Limb *parent)
 {
 	this->parent = parent;
+}
+
+void Limb::draw(int &index, int selectedLimb, MatrixStack &stack, Shader &shader, unsigned int *textures)
+{
+	Matrix4		matrix4;
+	std::vector<Limb *>::iterator iter = this->children.begin();
+	std::vector<Limb *>::iterator iterEnd = this->children.end();
+
+	Matrix4 top = stack.topMatrix();
+
+	stack.pushMatrix(this->rotateMat * this->translateMat);
+	stack.topMatrix().multiply(top);
+
+	matrix4 = this->scaleMat * stack.topMatrix();
+
+	shader.setMatrix("matrix", matrix4.matrix);
+
+	// Texture stuff
+	if (textures && textures[index])
+		glBindTexture(GL_TEXTURE_2D, textures[index]);
+	else
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+	// Draw textured limb
+	if (index == selectedLimb)
+		shader.setVector3f("color", 1.0f, 0.0f, 0.0f);
+	else
+		shader.setVector3f("color", 1.0f, 1.0f, 1.0f);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	// Draw limb highlight
+	shader.setVector3f("color", 0.0f, 0.0f, 0.0f);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	while (iter != iterEnd)
+	{
+		index++;
+		(*iter)->draw(index, selectedLimb, stack, shader, textures);
+		iter++;
+	}
+	stack.popMatrix();
 }

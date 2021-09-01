@@ -1,7 +1,7 @@
 #ifndef LIMB_HPP
 #define LIMB_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class Limb {
 private:
@@ -36,6 +36,8 @@ public:
 	void	removeChild(Limb *child);
 
 	void	setParent(Limb *parent);
+
+	void	draw(int &index, int selectedLimb, MatrixStack &stack, Shader &shader, unsigned int *textures);
 
 	Limb &operator=(Limb const &rhs) = delete;
 };

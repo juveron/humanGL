@@ -5,7 +5,7 @@
 #ifndef HUMANGL_MATRIX4_HPP
 #define HUMANGL_MATRIX4_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class Matrix4 {
 private:

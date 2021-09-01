@@ -1,7 +1,7 @@
 #ifndef SHADER_CLASS_HPP
 #define SHADER_CLASS_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class Shader
 {

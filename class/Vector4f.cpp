@@ -1,4 +1,4 @@
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 Vector4f::Vector4f(void) : x(0), y(0), z(0), w(0)
 {

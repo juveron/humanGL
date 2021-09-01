@@ -2,7 +2,7 @@
 // Created by juv on 20/07/2021.
 //
 
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 std::map<std::string, std::string> ErrorHandler::_errorDictionary{
 		{ "GLFW_INIT" , "Error with glfwInit" },

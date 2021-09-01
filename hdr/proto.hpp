@@ -2,7 +2,7 @@
 #define PROTO_HPP
 
 
-#include "./HumanGL.hpp"
+#include "HumanGL.hpp"
 
 // input
 void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody);
