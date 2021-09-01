@@ -21,7 +21,7 @@ SRC_DIR= src/
 SRC=	init/main.cpp\
 		init/initBody.cpp\
 		event/processInput.cpp\
-		bodyDraw/humanDraw.cpp\
+		bodyDraw/drawLimb.cpp\
 		bodyMaker/humanMaker.cpp\
 		bodyMaker/doggoMaker.cpp\
 		bodyMaker/updateBody.cpp\
