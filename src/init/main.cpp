@@ -121,7 +121,7 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
-	std::vector<const char*> texturePaths = {
+	std::vector<char const*> texturePaths = {
 		"./ressources/Torso.png",
 		"./ressources/Head.png",
 		"./ressources/UpperArm.png",

@@ -3,7 +3,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "./stb_image.h"
 
-static s_textureData loadTexture(const char *fileName)
+static s_textureData loadTexture(char const *fileName)
 {
 	s_textureData textureData;
 
@@ -14,7 +14,7 @@ static s_textureData loadTexture(const char *fileName)
 	return textureData;
 }
 
-unsigned int *generateTextures(std::vector<const char *> texturePaths)
+unsigned int *generateTextures(std::vector<char const *> texturePaths)
 {
 	unsigned int *textures = new unsigned int[texturePaths.size()];
 	size_t i = 0;
