@@ -14,6 +14,7 @@ void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixS
 s_body humanMaker(void);
 s_body doggoMaker(void);
 void updateBody(s_body body, ANIMATION_FRAME anim, int currentIndex);
+void positionBody(s_body &body, s_indexBody indexBody);
 void positionHumanLimbs(std::vector<Limb*> &limbs);
 void positionDoggoLimbs(std::vector<Limb*> &limbs);
 

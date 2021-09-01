@@ -25,6 +25,7 @@ SRC=	init/main.cpp\
 		bodyMaker/humanMaker.cpp\
 		bodyMaker/doggoMaker.cpp\
 		bodyMaker/updateBody.cpp\
+		bodyMaker/positionBody.cpp\
 		bodyMaker/positionHumanLimbs.cpp\
 		bodyMaker/positionDoggoLimbs.cpp\
 		print/printBodyToTerm.cpp\
@@ -54,7 +55,6 @@ SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
 VPATH = $(SRC_DIR):$(CLASS_DIR)
 
-# LIBFT=libft/libft.a
 LIB= -lglfw\
 	 -ldl\
 	 -lm
