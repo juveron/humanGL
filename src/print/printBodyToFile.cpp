@@ -7,34 +7,9 @@ static void printBody(s_body &body, std::ofstream &file)
 
 	while (iter != iterEnd)
 	{
-		int i = 0;
-		file << "\t{ Matrix4((float const[]) { ";
-		while (i < 16)
-		{
-			file << (*iter)->rotateMat.matrix[i];
-			if (i != 15)
-				file << ", ";
-			i++;
-		}
-		i = 0;
-		file << " }), Matrix4((float const[]) { ";
-		while (i < 16)
-		{
-			file << (*iter)->translateMat.matrix[i];
-			if (i != 15)
-				file << ", ";
-			i++;
-		}
-		i = 0;
-		file << " }), Matrix4((float const[]) { ";
-		while (i < 16)
-		{
-			file << (*iter)->scaleMat.matrix[i];
-			if (i != 15)
-				file << ", ";
-			i++;
-		}
-		file << " }) }," << std::endl;
+		file << "\t{ Vector3f(" << (*iter)->rotation.x << "," << (*iter)->rotation.y << "," << (*iter)->rotation.z << "),";
+		file << " Vector3f(" << (*iter)->translation.x << "," << (*iter)->translation.y << "," << (*iter)->translation.z << "),";
+		file << " Vector3f(" << (*iter)->scale.x << "," << (*iter)->scale.y << "," << (*iter)->scale.z << ") }," << std::endl;
 
 		iter++;
 	}
@@ -50,7 +25,7 @@ void printBodyToFile(s_body &body, std::string fileName)
 		file.open(fileName);
 		file << "{" << std::endl;
 		printBody(body, file);
-		file << "}" << std::endl;
+		file << "}," << std::endl;
 		file.close();
 	}
 	catch (std::ofstream::failure &e)

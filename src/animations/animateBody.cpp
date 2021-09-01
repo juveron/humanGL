@@ -18,28 +18,30 @@ void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animatio
 
 	size_t i = 0;
 	if (nextFrame < anim.size()) {
-		Matrix4 rotateMat;
-		Matrix4 translateMat;
-		Matrix4 scaleMat;
+		Vector3f rotation;
+		Vector3f translation;
+		Vector3f scale;
+
 		while (i < anim[prevFrame].size())
 		{
 
-			int j = 0;
-			while (j < 16)
-			{
-				rotateMat.matrix[j] = lerp(anim[prevFrame][i][0].matrix[j], anim[nextFrame][i][0].matrix[j], framePercentage);
-				translateMat.matrix[j] = lerp(anim[prevFrame][i][1].matrix[j], anim[nextFrame][i][1].matrix[j], framePercentage);
-				scaleMat.matrix[j] = lerp(anim[prevFrame][i][2].matrix[j], anim[nextFrame][i][2].matrix[j], framePercentage);
-				j++;
-			}
+			rotation.x = lerp(anim[prevFrame][i][0].x, anim[nextFrame][i][0].x, framePercentage);
+			rotation.y = lerp(anim[prevFrame][i][0].y, anim[nextFrame][i][0].y, framePercentage);
+			rotation.z = lerp(anim[prevFrame][i][0].z, anim[nextFrame][i][0].z, framePercentage);
 
-			currentFrameData.push_back({ rotateMat, translateMat, scaleMat });
+			translation.x = lerp(anim[prevFrame][i][1].x, anim[nextFrame][i][1].x, framePercentage);
+			translation.y = lerp(anim[prevFrame][i][1].y, anim[nextFrame][i][1].y, framePercentage);
+			translation.z = lerp(anim[prevFrame][i][1].z, anim[nextFrame][i][1].z, framePercentage);
+
+			scale.x = lerp(anim[prevFrame][i][2].x, anim[nextFrame][i][2].x, framePercentage);
+			scale.y = lerp(anim[prevFrame][i][2].y, anim[nextFrame][i][2].y, framePercentage);
+			scale.z = lerp(anim[prevFrame][i][2].z, anim[nextFrame][i][2].z, framePercentage);
+			currentFrameData.push_back({ rotation, translation, scale });
 			i++;
 		}
-		updateBody(body.limbs, body.limbs.size(), currentFrameData);
+		updateBody(body, currentFrameData, bodyIndex);
 	}
 	else {
 		animationData.isAnimated = false;
-		initBody(body, bodyIndex);
 	}
 }
