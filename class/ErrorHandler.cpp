@@ -10,7 +10,8 @@ std::map<std::string, std::string> ErrorHandler::_errorDictionary{
 		{ "GLAD_LOAD", "Error with gladLoadGLLoader" },
 		{ "SHADER_CONSTRUCT", "Unable to open /read/close file for Shader"},
 		{ "SHADER_COMPILATION", "Error occurred during the compilation of the Shader" },
-		{ "TEXTURE_LOAD", "Couldn't load given texture" }
+		{ "TEXTURE_LOAD", "Couldn't load given texture" },
+		{ "PRINT_FILE", "Unable to open /read/close file for printing purposes"}
 };
 
 void ErrorHandler::setError(const std::string &errorKey)
