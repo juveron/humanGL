@@ -67,8 +67,6 @@ void ABody::printToFile(std::string const fileName)
 
 	file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 
-
-
 	try {
 		file.open(fileName);
 		std::vector<Limb *>::iterator iter = this->limbs.begin();
@@ -132,17 +130,9 @@ void ABody::animate(std::vector<ANIMATION_FRAME> anim, float animationTime, s_an
 		while (i < anim[prevFrame].size())
 		{
 
-			rotation.x = lerp(anim[prevFrame][i][0].x, anim[nextFrame][i][0].x, framePercentage);
-			rotation.y = lerp(anim[prevFrame][i][0].y, anim[nextFrame][i][0].y, framePercentage);
-			rotation.z = lerp(anim[prevFrame][i][0].z, anim[nextFrame][i][0].z, framePercentage);
-
-			translation.x = lerp(anim[prevFrame][i][1].x, anim[nextFrame][i][1].x, framePercentage);
-			translation.y = lerp(anim[prevFrame][i][1].y, anim[nextFrame][i][1].y, framePercentage);
-			translation.z = lerp(anim[prevFrame][i][1].z, anim[nextFrame][i][1].z, framePercentage);
-
-			scale.x = lerp(anim[prevFrame][i][2].x, anim[nextFrame][i][2].x, framePercentage);
-			scale.y = lerp(anim[prevFrame][i][2].y, anim[nextFrame][i][2].y, framePercentage);
-			scale.z = lerp(anim[prevFrame][i][2].z, anim[nextFrame][i][2].z, framePercentage);
+			rotation = lerp(anim[prevFrame][i][0], anim[nextFrame][i][0], framePercentage);
+			translation = lerp(anim[prevFrame][i][1], anim[nextFrame][i][1], framePercentage);
+			scale = lerp(anim[prevFrame][i][2], anim[nextFrame][i][2], framePercentage);
 			currentFrameData.push_back({ rotation, translation, scale });
 			i++;
 		}
