@@ -35,7 +35,8 @@ CLASS= Shader.cpp\
 	   ErrorHandler.cpp\
 	   ABody.cpp\
 	   HumanBody.cpp\
-	   DoggoBody.cpp
+	   DoggoBody.cpp\
+	   Animation.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 

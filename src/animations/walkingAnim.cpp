@@ -1,8 +1,6 @@
 #include "HumanGL.hpp"
 
-float walkingTime = 3.0f;
-
-std::vector<ANIMATION_FRAME> walkingAnim{
+static std::vector<ANIMATION_FRAME> animation{
 {
 	{ Vector3f(0,94.0599,0), Vector3f(-5,-2.5,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
@@ -63,5 +61,6 @@ std::vector<ANIMATION_FRAME> walkingAnim{
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 	{ Vector3f(0,0,0), Vector3f(0,0,0), Vector3f(1,1,1) },
 },
-
 };
+
+Animation walkingAnimation(3.0f, animation);

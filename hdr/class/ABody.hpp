@@ -33,7 +33,7 @@ public:
 	void printToFile(std::string const fileName);
 
 	void update(ANIMATION_FRAME frame);
-	void animate(std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData);
+	void animate(Animation &animation, s_animationData &animationData);
 
 	void resetBody(void);
 	void resetSelectedLimb(void);

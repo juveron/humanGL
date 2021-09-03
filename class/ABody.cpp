@@ -110,29 +110,34 @@ void ABody::update(ANIMATION_FRAME frame)
 	this->position();
 }
 
-void ABody::animate(std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData)
+void ABody::animate(Animation &animation, s_animationData &animationData)
 {
+	std::vector<ANIMATION_FRAME> anim = animation.getAnimation();
+	float duration = animation.getDuration();
+	float progress = animation.getProgress();
 	ANIMATION_FRAME currentFrameData;
 
-	float timePerFrame = animationTime / (anim.size() - 1);
+	float timePerFrame = duration / (anim.size() - 1);
 
-	float currentFrame = animationData.animationTime / timePerFrame;
-	float prevFrame = std::floor(currentFrame);
-	float nextFrame = std::ceil(currentFrame);
-	float framePercentage = std::fmod(currentFrame, 1);
+	float realCurrentFrame = progress / timePerFrame;
+	float prevFrameIndex = std::floor(realCurrentFrame);
+	float nextFrameIndex = std::ceil(realCurrentFrame);
+	float framePercentage = std::fmod(realCurrentFrame, 1);
 
+	ANIMATION_FRAME prevFrame = animation.getAnimationFrame(prevFrameIndex);
+	ANIMATION_FRAME nextFrame = animation.getAnimationFrame(nextFrameIndex);
 	size_t i = 0;
-	if (nextFrame < anim.size()) {
+	if (nextFrameIndex < anim.size()) {
 		Vector3f rotation;
 		Vector3f translation;
 		Vector3f scale;
 
-		while (i < anim[prevFrame].size())
+		while (i < prevFrame.size())
 		{
 
-			rotation = lerp(anim[prevFrame][i][0], anim[nextFrame][i][0], framePercentage);
-			translation = lerp(anim[prevFrame][i][1], anim[nextFrame][i][1], framePercentage);
-			scale = lerp(anim[prevFrame][i][2], anim[nextFrame][i][2], framePercentage);
+			rotation = lerp(prevFrame[i][0], nextFrame[i][0], framePercentage);
+			translation = lerp(prevFrame[i][1], nextFrame[i][1], framePercentage);
+			scale = lerp(prevFrame[i][2], nextFrame[i][2], framePercentage);
 			currentFrameData.push_back({ rotation, translation, scale });
 			i++;
 		}
@@ -140,6 +145,7 @@ void ABody::animate(std::vector<ANIMATION_FRAME> anim, float animationTime, s_an
 	}
 	else {
 		animationData.isAnimated = false;
+		animation.resetProgress();
 	}
 }
 

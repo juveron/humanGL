@@ -9,8 +9,11 @@
 #include "./class/Limb.hpp"
 #include "./class/ErrorHandler.hpp"
 
+#include "./class/Animation.hpp"
+
 #include "./class/ABody.hpp"
 #include "./class/HumanBody.hpp"
 #include "./class/DoggoBody.hpp"
+
 
 #endif

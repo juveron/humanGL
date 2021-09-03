@@ -120,6 +120,11 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
+	std::vector<Animation> animations[2] = {
+		{walkingAnimation},
+		{}
+	};
+
 	std::vector<char const*> texturePaths = {
 		"./ressources/Torso.png",
 		"./ressources/Head.png",
@@ -144,7 +149,6 @@ int main(void)
 	bodies[0]->setTextures(generateTextures(texturePaths));
 
 	animationData.isAnimated = false;
-	animationData.animationTime = 0;
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
@@ -160,8 +164,8 @@ int main(void)
 
 
 		if (animationData.isAnimated) {
-			animationData.animationTime += deltaTime;
-			bodies[indexBody.modelIndex]->animate(walkingAnim, walkingTime, animationData);
+			animations[indexBody.modelIndex][animationData.animationIndex].incrementProgress(deltaTime);
+			bodies[indexBody.modelIndex]->animate(animations[indexBody.modelIndex][animationData.animationIndex], animationData);
 		}
 
 		// Draw human
