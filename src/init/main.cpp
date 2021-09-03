@@ -138,10 +138,13 @@ int main(void)
 
 	s_indexBody indexBody;
 
-	s_body body[2];
-	body[0] = humanMaker();
-	body[1] = doggoMaker();
+	ABody *bodies[2]{
+		new HumanBody(),
+		new DoggoBody()
+	};
 	s_animationData animationData;
+
+	bodies[0]->setTextures(textures);
 
 	animationData.isAnimated = false;
 	animationData.animationTime = 0;
@@ -153,7 +156,7 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, body[indexBody.modelIndex], deltaTime, animationData, indexBody);
+		processInput(window, bodies[indexBody.modelIndex], deltaTime, animationData, indexBody);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
@@ -161,22 +164,21 @@ int main(void)
 
 		if (animationData.isAnimated) {
 			animationData.animationTime += deltaTime;
-			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
-			animateBody(body[indexBody.modelIndex], walkingAnim, walkingTime, animationData, indexBody.modelIndex);
+			bodies[indexBody.modelIndex]->animate(walkingAnim, walkingTime, animationData);
 		}
 
 		// Draw human
 		if (indexBody.drawBody & 1) {
 			zero = 0;
 			matrixStack.pushMatrix();
-			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader, textures);
+			bodies[0]->draw(matrixStack, shader);
 			matrixStack.popMatrix();
 		}
 		// Draw doggo
 		if ((indexBody.drawBody >> 1) & 1) {
 			zero = 0;
 			matrixStack.pushMatrix();
-			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader, textures);
+			bodies[1]->draw(matrixStack, shader);
 			matrixStack.popMatrix();
 		}
 		glfwSwapBuffers(window);
