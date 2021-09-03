@@ -8,6 +8,7 @@ class ABody
 protected:
 	unsigned int *_textures;
 	Limb *limb;
+	MatrixStack _stack;
 
 	virtual void generateLimbs(void) = 0;
 
@@ -27,7 +28,7 @@ public:
 	unsigned int *getTextures(void) const;
 	void setTextures(unsigned int *textures_);
 
-	void draw(MatrixStack &stack, Shader &shader);
+	void draw(Shader &shader);
 	void printToTerm(void);
 	void printToFile(std::string const fileName);
 

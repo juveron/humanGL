@@ -1,15 +1,18 @@
 #include "HumanGL.hpp"
 
-ABody::ABody(int bodyIndex_) : _textures(nullptr), selectedLimb(0), bodyIndex(bodyIndex_)
+ABody::ABody(int bodyIndex_) : _textures(nullptr), _stack(), selectedLimb(0), bodyIndex(bodyIndex_)
 {
+	this->_stack.pushMatrix();
 }
 
-ABody::ABody(ABody const &c) : _textures(c.getTextures()), selectedLimb(c.getSelectedLimb()), bodyIndex(c.bodyIndex)
+ABody::ABody(ABody const &c) : _textures(c.getTextures()), _stack(), selectedLimb(c.getSelectedLimb()), bodyIndex(c.bodyIndex)
 {
+	this->_stack.pushMatrix();
 }
 
-ABody::ABody(void) : _textures(nullptr), selectedLimb(0), bodyIndex(0)
+ABody::ABody(void) : _textures(nullptr), _stack(), selectedLimb(0), bodyIndex(0)
 {
+	this->_stack.pushMatrix();
 }
 
 int ABody::getSelectedLimb(void) const
@@ -33,10 +36,10 @@ void ABody::setTextures(unsigned int *textures_)
 	return;
 }
 
-void ABody::draw(MatrixStack &stack, Shader &shader)
+void ABody::draw(Shader &shader)
 {
 	int index = 0;
-	this->limbs[0]->draw(index, this->selectedLimb, stack, shader, this->_textures);
+	this->limbs[0]->draw(index, this->selectedLimb, this->_stack, shader, this->_textures);
 }
 
 void ABody::printToTerm(void)

@@ -108,7 +108,6 @@ int main(void)
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	MatrixStack		matrixStack;
 
 	Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
 		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
@@ -134,8 +133,6 @@ int main(void)
 		"./ressources/Leg.png",
 	};
 
-	unsigned int *textures = generateTextures(texturePaths);
-
 	s_indexBody indexBody;
 
 	ABody *bodies[2]{
@@ -144,7 +141,7 @@ int main(void)
 	};
 	s_animationData animationData;
 
-	bodies[0]->setTextures(textures);
+	bodies[0]->setTextures(generateTextures(texturePaths));
 
 	animationData.isAnimated = false;
 	animationData.animationTime = 0;
@@ -168,19 +165,13 @@ int main(void)
 		}
 
 		// Draw human
-		if (indexBody.drawBody & 1) {
-			zero = 0;
-			matrixStack.pushMatrix();
-			bodies[0]->draw(matrixStack, shader);
-			matrixStack.popMatrix();
-		}
+		if (indexBody.drawBody & 1)
+			bodies[0]->draw(shader);
+
 		// Draw doggo
-		if ((indexBody.drawBody >> 1) & 1) {
-			zero = 0;
-			matrixStack.pushMatrix();
-			bodies[1]->draw(matrixStack, shader);
-			matrixStack.popMatrix();
-		}
+		if ((indexBody.drawBody >> 1) & 1)
+			bodies[1]->draw(shader);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
