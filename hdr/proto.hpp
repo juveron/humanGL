@@ -8,7 +8,7 @@
 void processInput(GLFWwindow *window, s_body &body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody);
 
 // Draw human
-void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader);
+void	drawLimb(Limb *limb, int &limbIndex, int selectedLimb, MatrixStack &matrixStack, Shader &shader, unsigned int *textures);
 
 // Body Maker
 s_body humanMaker(void);
@@ -30,6 +30,6 @@ void printBodyToFile(s_body &body, std::string fileName);
 void animateBody(s_body &body, std::vector<ANIMATION_FRAME> anim, float animationTime, s_animationData &animationData, int bodyIndex);
 
 // Texture
-unsigned int generateTexture(void);
+unsigned int *generateTextures(std::vector<const char *> texturePaths);
 
 #endif

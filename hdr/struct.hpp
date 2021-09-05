@@ -60,4 +60,11 @@ typedef struct				animationData {
 	int						animationIndex;
 }							s_animationData;
 
+typedef struct				textureData {
+	unsigned char *			data;
+	int						width;
+	int						height;
+	int						nbrChannels;
+}							s_textureData;
+
 #endif

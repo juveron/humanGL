@@ -121,13 +121,22 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
-	unsigned int tex = generateTexture();
+	std::vector<const char*> texturePaths = {
+		"./ressources/Torso.png",
+		"./ressources/Head.png",
+		"./ressources/UpperArm.png",
+		"./ressources/LowerArm.png",
+		"./ressources/UpperArm.png",
+		"./ressources/LowerArm.png",
+		"./ressources/Thigh.png",
+		"./ressources/Leg.png",
+		"./ressources/Thigh.png",
+		"./ressources/Leg.png",
+	};
 
-	s_indexBody indexBody;
-	indexBody.bodyIndex = 0;
-	indexBody.modelIndex = 0;
-	indexBody.currentIndex = 0;
+	unsigned int *textures = generateTextures(texturePaths);
 
+	int current = 0;
 	s_body body[2];
 	body[0] = humanMaker();
 	body[1] = doggoMaker();
@@ -147,7 +156,6 @@ int main(void)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
-		glBindTexture(GL_TEXTURE_2D, tex);
 
 
 		if (animationData.isAnimated) {
@@ -156,30 +164,10 @@ int main(void)
 			animateBody(body[indexBody.modelIndex], walkingAnim, walkingTime, animationData, indexBody.modelIndex);
 		}
 
-		if (indexBody.bodyIndex == 0) {
-			zero = 0;
-			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 0) indexBody.modelIndex = 0;
-			matrixStack.pushMatrix();
-			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-		}
-		if (indexBody.bodyIndex == 1) {
-			zero = 0;
-			if (indexBody.currentIndex != 2 && indexBody.bodyIndex == 1) indexBody.modelIndex = 1;
-			matrixStack.pushMatrix();
-			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-		}
-		if (indexBody.currentIndex == 2) {
-			zero = 0;
-			matrixStack.pushMatrix();
-			drawLimb(body[0].limb, zero, body[0].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-			zero = 0;
-			matrixStack.pushMatrix();
-			drawLimb(body[1].limb, zero, body[1].selectedLimb, matrixStack, shader);
-			matrixStack.popMatrix();
-		}
+		zero = 0;
+		matrixStack.pushMatrix();
+		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader, textures);
+		matrixStack.popMatrix();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

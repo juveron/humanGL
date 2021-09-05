@@ -12,5 +12,5 @@ out vec2 TexCoord;
 void main()
 {
 	gl_Position = projMat * viewMat * matrix * vec4(aPos, 1.0);
-	TexCoord = vec2(aTexCoord.x, aTexCoord.y);
+	TexCoord = vec2(aTexCoord.x, 1 - aTexCoord.y);
 }
