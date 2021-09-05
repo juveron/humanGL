@@ -1,4 +1,4 @@
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 Shader::Shader(char const *vShaderPath, char const *fShaderPath)
 {

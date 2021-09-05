@@ -18,13 +18,13 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 #define PI 3.14159265
-#define ANIMATION_FRAME std::vector<std::array<Matrix4, 3>>
+#define ANIMATION_FRAME std::vector<std::array<Vector3f, 3>>
 
 #include "./struct.hpp"
 #include "./classes.hpp"
 #include "./proto.hpp"
 
-extern std::vector<ANIMATION_FRAME> walkingAnim;
+extern Animation walkingAnimation;
 extern std::vector<ANIMATION_FRAME> sittingDogAnim;
 
 extern float walkingTime;

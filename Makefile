@@ -19,20 +19,11 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 
 SRC_DIR= src/
 SRC=	init/main.cpp\
-		init/initBody.cpp\
 		event/processInput.cpp\
-		bodyDraw/humanDraw.cpp\
-		bodyMaker/humanMaker.cpp\
-		bodyMaker/doggoMaker.cpp\
-		bodyMaker/updateBody.cpp\
-		bodyMaker/positionHumanLimbs.cpp\
-		bodyMaker/positionDoggoLimbs.cpp\
-		print/printBodyToTerm.cpp\
-		print/printBodyToFile.cpp\
 		animations/walkingAnim.cpp\
 		animations/sittingDogAnim.cpp\
-		animations/animateBody.cpp\
-		texture/loadTexture.cpp
+		texture/loadTexture.cpp\
+		utils/lerp.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
@@ -41,20 +32,23 @@ CLASS= Shader.cpp\
 	   Matrix4.cpp\
 	   Limb.cpp\
 	   MatrixStack.cpp\
-	   ErrorHandler.cpp
+	   ErrorHandler.cpp\
+	   ABody.cpp\
+	   HumanBody.cpp\
+	   DoggoBody.cpp\
+	   Animation.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class bodyDraw bodyMaker print animations texture
+OBJ_SUBDIRS= init event class animations texture utils
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
 VPATH = $(SRC_DIR):$(CLASS_DIR)
 
-# LIBFT=libft/libft.a
 LIB= -lglfw\
 	 -ldl\
 	 -lm

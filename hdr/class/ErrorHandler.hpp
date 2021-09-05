@@ -5,7 +5,7 @@
 #ifndef HUMANGL_ERRORHANDLER_HPP
 #define HUMANGL_ERRORHANDLER_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class ErrorHandler {
 private:

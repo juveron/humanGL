@@ -1,7 +1,7 @@
 #ifndef MATRIXSTACK_HPP
 #define MATRIXSTACK_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class MatrixStack
 {

@@ -1,4 +1,4 @@
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 Matrix4::Matrix4(void) : matrix{}
 {

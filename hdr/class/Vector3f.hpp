@@ -1,7 +1,7 @@
 #ifndef VECTOR3F_HPP
 #define VECTOR3F_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 // template<typename T>
 class Vector3f {

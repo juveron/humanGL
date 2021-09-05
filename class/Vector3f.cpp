@@ -1,4 +1,4 @@
-#include "../hdr/HumanGL.hpp"
+#include "HumanGL.hpp"
 
 Vector3f::Vector3f(void) : x(0), y(0), z(0)
 {

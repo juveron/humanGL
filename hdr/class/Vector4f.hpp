@@ -1,7 +1,7 @@
 #ifndef VECTOR4F_HPP
 #define VECTOR4F_HPP
 
-#include "../HumanGL.hpp"
+#include "HumanGL.hpp"
 
 class Matrix4;
 

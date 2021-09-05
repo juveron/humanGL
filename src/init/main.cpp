@@ -108,7 +108,6 @@ int main(void)
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	MatrixStack		matrixStack;
 
 	Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
 		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
@@ -121,7 +120,12 @@ int main(void)
 	shader.setMatrix("projMat", proj.matrix);
 	shader.setMatrix("viewMat", view.matrix);
 
-	std::vector<const char*> texturePaths = {
+	std::vector<Animation> animations[2] = {
+		{walkingAnimation},
+		{}
+	};
+
+	std::vector<char const*> texturePaths = {
 		"./ressources/Torso.png",
 		"./ressources/Head.png",
 		"./ressources/UpperArm.png",
@@ -134,16 +138,17 @@ int main(void)
 		"./ressources/Leg.png",
 	};
 
-	unsigned int *textures = generateTextures(texturePaths);
+	s_indexBody indexBody;
 
-	int current = 0;
-	s_body body[2];
-	body[0] = humanMaker();
-	body[1] = doggoMaker();
+	ABody *bodies[2]{
+		new HumanBody(),
+		new DoggoBody()
+	};
 	s_animationData animationData;
 
+	bodies[0]->setTextures(generateTextures(texturePaths));
+
 	animationData.isAnimated = false;
-	animationData.animationTime = 0;
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
@@ -152,22 +157,25 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, body[indexBody.modelIndex], deltaTime, animationData, indexBody);
+		processInput(window, bodies[indexBody.modelIndex], deltaTime, animationData, indexBody);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
 
 
 		if (animationData.isAnimated) {
-			animationData.animationTime += deltaTime;
-			// animateBody(body[current], sittingDogAnim, sittingDogTime, animationData,current);
-			animateBody(body[indexBody.modelIndex], walkingAnim, walkingTime, animationData, indexBody.modelIndex);
+			animations[indexBody.modelIndex][animationData.animationIndex].incrementProgress(deltaTime);
+			bodies[indexBody.modelIndex]->animate(animations[indexBody.modelIndex][animationData.animationIndex], animationData);
 		}
 
-		zero = 0;
-		matrixStack.pushMatrix();
-		drawLimb(body[current].limb, zero, body[current].selectedLimb, matrixStack, shader, textures);
-		matrixStack.popMatrix();
+		// Draw human
+		if (indexBody.drawBody & 1)
+			bodies[0]->draw(shader);
+
+		// Draw doggo
+		if ((indexBody.drawBody >> 1) & 1)
+			bodies[1]->draw(shader);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
