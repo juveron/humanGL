@@ -21,6 +21,7 @@ SRC_DIR= src/
 SRC=	init/main.cpp\
 		event/processInput.cpp\
 		animations/walkingHumanAnim.cpp\
+		animations/jumpingHumanAnim.cpp\
 		animations/sittingDogAnim.cpp\
 		texture/loadTexture.cpp\
 		utils/lerp.cpp
