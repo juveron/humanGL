@@ -22,7 +22,8 @@ int main(void)
 
 	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	Shader shader("./src/shader/vertexShader.glsl", "./src/shader/fragmentShader.glsl");
+	Shader humanShader("./src/shader/humanVertexShader.glsl", "./src/shader/humanFragmentShader.glsl");
+	Shader doggoShader("./src/shader/doggoVertexShader.glsl", "./src/shader/doggoFragmentShader.glsl");
 
 	// -0.5f,  0.0f,  0.5f,  // A 0
 	//  0.5f,  0.0f,  0.5f,  // B 1
@@ -113,12 +114,12 @@ int main(void)
 		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
 		0.1f, 100.0f);
 
-	Matrix4 view = Matrix4::newLookAtMAt(Vector3f(0.0f, -2.0f, 5.0f),
-		Vector3f(0.0f, -2.0f, 5.0f) - Vector3f(0.0f, 0.0f, -1.0f), Vector3f(0.0f, 1.0f, 0.0f));
+	Vector3f camPos(0.0f, -2.0, 5.0f);
+	Vector3f camUp(0.0f, 1.0f, 0.0f);
+	Vector3f camDir(0.0f, 0.0f, -1.0f);
+	Matrix4 view = Matrix4::newLookAtMAt(camPos,
+		camPos - camDir, camUp);
 
-	shader.use();
-	shader.setMatrix("projMat", proj.matrix);
-	shader.setMatrix("viewMat", view.matrix);
 
 	std::vector<Animation> animations[2] = {
 		{walkingAnimation},
@@ -174,12 +175,20 @@ int main(void)
 		}
 
 		// Draw human
-		if (indexBody.drawBody & 1)
-			bodies[0]->draw(shader);
+		if (indexBody.drawBody & 1) {
+			humanShader.use();
+			humanShader.setMatrix("projMat", proj.matrix);
+			humanShader.setMatrix("viewMat", view.matrix);
+			bodies[0]->draw(humanShader);
+		}
 
 		// Draw doggo
-		if ((indexBody.drawBody >> 1) & 1)
-			bodies[1]->draw(shader);
+		if ((indexBody.drawBody >> 1) & 1) {
+			doggoShader.use();
+			doggoShader.setMatrix("projMat", proj.matrix);
+			doggoShader.setMatrix("viewMat", view.matrix);
+			bodies[1]->draw(doggoShader);
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
