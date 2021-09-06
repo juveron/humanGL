@@ -20,7 +20,7 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 SRC_DIR= src/
 SRC=	init/main.cpp\
 		event/processInput.cpp\
-		animations/walkingAnim.cpp\
+		animations/walkingHumanAnim.cpp\
 		animations/sittingDogAnim.cpp\
 		texture/loadTexture.cpp\
 		utils/lerp.cpp
