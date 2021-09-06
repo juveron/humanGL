@@ -22,6 +22,7 @@ SRC=	init/main.cpp\
 		event/processInput.cpp\
 		animations/walkingHumanAnim.cpp\
 		animations/jumpingHumanAnim.cpp\
+		animations/flossingHumanAnim.cpp\
 		animations/sittingDogAnim.cpp\
 		texture/loadTexture.cpp\
 		utils/lerp.cpp

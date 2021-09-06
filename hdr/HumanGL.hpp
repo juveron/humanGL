@@ -26,6 +26,7 @@
 
 extern Animation walkingHumanAnimation;
 extern Animation jumpingHumanAnimation;
+extern Animation flossingHumanAnimation;
 extern std::vector<ANIMATION_FRAME> sittingDogAnim;
 
 extern float walkingTime;
