@@ -124,4 +124,12 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 		stuff.isAnimated = true;
 		stuff.animationIndex = 0;
 	}
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+		stuff.isAnimated = true;
+		stuff.animationIndex = 1;
+	}
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
+		stuff.isAnimated = true;
+		stuff.animationIndex = 2;
+	}
 }
