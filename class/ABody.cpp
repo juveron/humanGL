@@ -144,7 +144,8 @@ void ABody::animate(Animation &animation, s_animationData &animationData)
 		this->update(currentFrameData);
 	}
 	else {
-		animationData.isAnimated = false;
+		if (!animationData.isLoop)
+			animationData.isAnimated = false;
 		animation.resetProgress();
 	}
 }

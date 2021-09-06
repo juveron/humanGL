@@ -6,6 +6,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 	static bool isRightKeyPressed = 0;
 	static bool isZKeyPressed = 0;
 	static bool isNKeyPressed = 0;
+	static bool isEqualKeyPressed = 0;
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, 1);
@@ -112,6 +113,14 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 		isNKeyPressed = 1;
 	}
 	else isNKeyPressed = 0;
+
+	// Loop anim
+	if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS) {
+		if (!isEqualKeyPressed)
+			stuff.isLoop = !stuff.isLoop;
+		isEqualKeyPressed = 1;
+	}
+	else isEqualKeyPressed = 0;
 
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
