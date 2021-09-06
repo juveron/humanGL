@@ -122,7 +122,7 @@ int main(void)
 
 
 	std::vector<Animation> animations[2] = {
-		{walkingAnimation},
+		{walkingHumanAnimation},
 		{}
 	};
 
