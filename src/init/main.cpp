@@ -164,8 +164,13 @@ int main(void)
 
 
 		if (animationData.isAnimated) {
-			animations[indexBody.modelIndex][animationData.animationIndex].incrementProgress(deltaTime);
-			bodies[indexBody.modelIndex]->animate(animations[indexBody.modelIndex][animationData.animationIndex], animationData);
+			if (animationData.animationIndex < animations[indexBody.modelIndex].size()) {
+				animations[indexBody.modelIndex][animationData.animationIndex].incrementProgress(deltaTime);
+				bodies[indexBody.modelIndex]->animate(animations[indexBody.modelIndex][animationData.animationIndex], animationData);
+			}
+			else {
+				animationData.isAnimated = false;
+			}
 		}
 
 		// Draw human

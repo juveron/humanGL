@@ -55,7 +55,7 @@ typedef struct				indexBody {
 
 typedef struct				animationData {
 	bool					isAnimated;
-	int						animationIndex;
+	size_t					animationIndex;
 }							s_animationData;
 
 typedef struct				textureData {
