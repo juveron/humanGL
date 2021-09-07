@@ -123,7 +123,7 @@ int main(void)
 
 	std::vector<Animation> animations[2] = {
 		{walkingHumanAnimation, jumpingHumanAnimation, flossingHumanAnimation},
-		{}
+		{jumpingDoggoAnimation}
 	};
 
 	std::vector<char const*> texturePaths = {
