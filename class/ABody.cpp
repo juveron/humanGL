@@ -134,7 +134,6 @@ void ABody::animate(Animation &animation, s_animationData &animationData)
 
 		while (i < prevFrame.size())
 		{
-
 			rotation = lerp(prevFrame[i][0], nextFrame[i][0], framePercentage);
 			translation = lerp(prevFrame[i][1], nextFrame[i][1], framePercentage);
 			scale = lerp(prevFrame[i][2], nextFrame[i][2], framePercentage);
