@@ -25,6 +25,7 @@ SRC=	init/main.cpp\
 		animations/flossingHumanAnim.cpp\
 		animations/sittingDogAnim.cpp\
 		animations/jumpingDoggoAnim.cpp\
+		animations/tailChasingDoggoAnim.cpp\
 		texture/loadTexture.cpp\
 		utils/lerp.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
