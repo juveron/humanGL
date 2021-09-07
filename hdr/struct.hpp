@@ -56,7 +56,7 @@ typedef struct				indexBody {
 typedef struct				animationData {
 	bool					isAnimated = false;
 	size_t					animationIndex;
-	bool					isLoop = false;
+	bool					isLoop = true;
 }							s_animationData;
 
 typedef struct				textureData {
