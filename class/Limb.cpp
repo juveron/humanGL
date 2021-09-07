@@ -25,17 +25,14 @@ void Limb::rotateLimb(float const angle, e_axis const axis)
 		this->rotation.z += angle;
 
 	this->rotateMat = Matrix4::newIdentityMatrix();
-	// Rotate X_AXIS
 	this->rotateMat.rotate(this->baseRotation.x, X_AXIS);
-	this->rotateMat.rotate(this->rotation.x, X_AXIS);
-
-	// Rotate Y_AXIS
 	this->rotateMat.rotate(this->baseRotation.y, Y_AXIS);
-	this->rotateMat.rotate(this->rotation.y, Y_AXIS);
-
-	// Rotate z_AXIS
 	this->rotateMat.rotate(this->baseRotation.z, Z_AXIS);
+
+	this->rotateMat.rotate(this->rotation.x, X_AXIS);
+	this->rotateMat.rotate(this->rotation.y, Y_AXIS);
 	this->rotateMat.rotate(this->rotation.z, Z_AXIS);
+
 }
 
 void Limb::translateLimb(float const x, float const y, float const z)
