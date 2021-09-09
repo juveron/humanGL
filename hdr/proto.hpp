@@ -5,7 +5,7 @@
 #include "HumanGL.hpp"
 
 // input
-void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody);
+void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody &indexBody);
 
 // Texture
 unsigned int *generateTextures(std::vector<char const *> texturePaths);

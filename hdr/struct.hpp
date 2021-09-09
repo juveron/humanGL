@@ -53,12 +53,6 @@ typedef struct				indexBody {
 	int 					modelIndex = 0;
 }							s_indexBody;
 
-typedef struct				animationData {
-	bool					isAnimated = false;
-	size_t					animationIndex;
-	bool					isLoop = true;
-}							s_animationData;
-
 typedef struct				textureData {
 	unsigned char *			data;
 	int						width;
