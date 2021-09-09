@@ -145,11 +145,9 @@ int main(void)
 		new HumanBody(),
 		new DoggoBody()
 	};
-	s_animationData animationData;
 
 	bodies[0]->setTextures(generateTextures(texturePaths));
 
-	animationData.isAnimated = false;
 	int zero;
 	float deltaTime = 0;
 	float lastFrame = 0;
@@ -158,21 +156,10 @@ int main(void)
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		processInput(window, bodies[indexBody.modelIndex], deltaTime, animationData, indexBody);
+		processInput(window, bodies[indexBody.modelIndex], deltaTime, indexBody);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(VAO);
-
-
-		if (animationData.isAnimated) {
-			if (animationData.animationIndex < animations[indexBody.modelIndex].size()) {
-				animations[indexBody.modelIndex][animationData.animationIndex].incrementProgress(deltaTime);
-				bodies[indexBody.modelIndex]->animate(animations[indexBody.modelIndex][animationData.animationIndex], animationData);
-			}
-			else {
-				animationData.isAnimated = false;
-			}
-		}
 
 		// Draw human
 		if (indexBody.drawBody & 1) {
@@ -180,6 +167,15 @@ int main(void)
 			humanShader.setMatrix("projMat", proj.matrix);
 			humanShader.setMatrix("viewMat", view.matrix);
 			bodies[0]->draw(humanShader);
+			if (bodies[0]->isAnimated) {
+				if (bodies[0]->animationIndex < animations[0].size()) {
+					animations[0][bodies[0]->animationIndex].incrementProgress(deltaTime);
+					bodies[0]->animate(animations[0][bodies[0]->animationIndex]);
+				}
+				else {
+					bodies[0]->isAnimated = false;
+				}
+			}
 		}
 
 		// Draw doggo
@@ -188,6 +184,15 @@ int main(void)
 			doggoShader.setMatrix("projMat", proj.matrix);
 			doggoShader.setMatrix("viewMat", view.matrix);
 			bodies[1]->draw(doggoShader);
+			if (bodies[1]->isAnimated) {
+				if (bodies[1]->animationIndex < animations[1].size()) {
+					animations[1][bodies[1]->animationIndex].incrementProgress(deltaTime);
+					bodies[1]->animate(animations[1][bodies[1]->animationIndex]);
+				}
+				else {
+					bodies[1]->isAnimated = false;
+				}
+			}
 		}
 
 		glfwSwapBuffers(window);

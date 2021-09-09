@@ -1,6 +1,6 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody)
+void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody &indexBody)
 {
 	static bool isLeftKeyPressed = 0;
 	static bool isRightKeyPressed = 0;
@@ -117,7 +117,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 	// Loop anim
 	if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS) {
 		if (!isEqualKeyPressed)
-			stuff.isLoop = !stuff.isLoop;
+			body->isAnimationLooping = !body->isAnimationLooping;
 		isEqualKeyPressed = 1;
 	}
 	else isEqualKeyPressed = 0;
@@ -130,15 +130,15 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 
 	// Animation
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
-		stuff.isAnimated = true;
-		stuff.animationIndex = 0;
+		body->isAnimated = true;
+		body->animationIndex = 0;
 	}
 	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
-		stuff.isAnimated = true;
-		stuff.animationIndex = 1;
+		body->isAnimated = true;
+		body->animationIndex = 1;
 	}
 	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
-		stuff.isAnimated = true;
-		stuff.animationIndex = 2;
+		body->isAnimated = true;
+		body->animationIndex = 2;
 	}
 }
