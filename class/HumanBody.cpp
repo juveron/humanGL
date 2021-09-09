@@ -6,12 +6,6 @@ HumanBody::HumanBody(void) : ABody()
 	this->position();
 }
 
-HumanBody::HumanBody(int bodyIndex_) : ABody(bodyIndex_)
-{
-	this->generateLimbs();
-	this->position();
-}
-
 HumanBody::HumanBody(HumanBody const &c) : ABody(c)
 {
 }

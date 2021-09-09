@@ -10,7 +10,6 @@ private:
 
 public:
 	DoggoBody(void);
-	DoggoBody(int bodyIndex_);
 	DoggoBody(DoggoBody const &c);
 	~DoggoBody(void);
 

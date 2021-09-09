@@ -15,9 +15,10 @@ protected:
 public:
 	std::vector<Limb *> limbs;
 	int selectedLimb;
-	int bodyIndex;
+	bool isAnimated;
+	bool isAnimationLooping;
+	unsigned int animationIndex;
 
-	ABody(int bodyIndex_);
 	ABody(ABody const &c);
 	ABody(void);
 	virtual ~ABody(void) {};
@@ -33,7 +34,7 @@ public:
 	void printToFile(std::string const fileName);
 
 	void update(ANIMATION_FRAME frame);
-	void animate(Animation &animation, s_animationData &animationData);
+	void animate(Animation &animation);
 
 	void resetBody(void);
 	void resetSelectedLimb(void);

@@ -6,12 +6,6 @@ DoggoBody::DoggoBody(void) : ABody()
 	this->position();
 }
 
-DoggoBody::DoggoBody(int bodyIndex_) : ABody(bodyIndex_)
-{
-	this->generateLimbs();
-	this->position();
-}
-
 DoggoBody::DoggoBody(DoggoBody const &c) : ABody(c)
 {
 }
