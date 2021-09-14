@@ -94,4 +94,4 @@ static std::vector<ANIMATION_FRAME> anim{
 	},
 };
 
-Animation tailChasingDoggoAnimation(2.0f, anim);
+Animation tailChasingDoggoAnimation(1.5f, anim);
