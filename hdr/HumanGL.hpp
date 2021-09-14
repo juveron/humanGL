@@ -24,12 +24,15 @@
 #include "./classes.hpp"
 #include "./proto.hpp"
 
+// Human animations
 extern Animation walkingHumanAnimation;
 extern Animation jumpingHumanAnimation;
 extern Animation flossingHumanAnimation;
 
+// Doggo animations
 extern Animation jumpingDoggoAnimation;
 extern Animation tailChasingDoggoAnimation;
+extern Animation walkingOnFrontLegsAnimation;
 extern Animation walkingOnHindLegsAnimation;
 
 extern float walkingTime;

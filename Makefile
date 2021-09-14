@@ -25,6 +25,7 @@ SRC=	init/main.cpp\
 		animations/flossingHumanAnim.cpp\
 		animations/jumpingDoggoAnim.cpp\
 		animations/tailChasingDoggoAnim.cpp\
+		animations/walkingOnFrontLegsAnim.cpp\
 		animations/walkingOnHindLegsAnim.cpp\
 		texture/loadTexture.cpp\
 		utils/lerp.cpp
