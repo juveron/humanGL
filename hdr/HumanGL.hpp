@@ -30,6 +30,7 @@ extern Animation flossingHumanAnimation;
 
 extern Animation jumpingDoggoAnimation;
 extern Animation tailChasingDoggoAnimation;
+extern Animation walkingOnHindLegsAnimation;
 
 extern float walkingTime;
 extern float sittingDogTime;
