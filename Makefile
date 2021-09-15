@@ -56,20 +56,21 @@ VPATH = $(SRC_DIR):$(CLASS_DIR)
 
 LIB= -lglfw\
 	 -ldl\
-	 -lm
+	 -lm\
+	 `pkg-config freetype2 --libs`
 HEADERS=	hdr/HumanGL.hpp\
 			hdr/classes.hpp\
 			hdr/proto.hpp\
 			hdr/struct.hpp
 
-INCLUDES=	-I hdr
+INCLUDES=	-I hdr\
+			`pkg-config freetype2 --cflags`
 
 ###############################################################################
 #								Rules										  #
 ###############################################################################
 
 all: $(SUBDIRS)
-#	@ make all -C libft
 	@ make -j $(NAME)
 
 $(NAME): $(OBJS)
@@ -83,6 +84,9 @@ $(SUBDIRS):
 $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 	@ $(CPP) -o $@ -c $< $(CPPFLAGS) $(INCLUDES)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
+
+installFreetype:
+	@ sudo apt-get install libfreetype6-dev -y
 
 clean:
 	@ echo "$(YELLOW)Deleting objects$(WHITE)"
