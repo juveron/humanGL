@@ -13,6 +13,8 @@ MAGENTA= \033[35m
 ################################################################################
 #								Macros										   #
 ################################################################################
+UNAME_S := $(shell uname -s)
+
 NAME= HumanGL
 CPP= clang++
 CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
@@ -56,15 +58,23 @@ VPATH = $(SRC_DIR):$(CLASS_DIR)
 
 LIB= -lglfw\
 	 -ldl\
-	 -lm\
-	 `pkg-config freetype2 --libs`
+	 -lm
+
 HEADERS=	hdr/HumanGL.hpp\
 			hdr/classes.hpp\
 			hdr/proto.hpp\
 			hdr/struct.hpp
 
-INCLUDES=	-I hdr\
-			`pkg-config freetype2 --cflags`
+INCLUDES=	-I hdr
+
+ifeq ($(UNAME_S),Linux)
+	LIB += `pkg-config freetype2 --libs`
+	INCLUDES += `pkg-config freetype2 --cflags`
+endif
+ifeq ($(UNAME_S), Darwin)
+	LIB += `freetype-config --libs`
+	INCLUDES += `freetype-config --cflags`
+endif
 
 ###############################################################################
 #								Rules										  #
@@ -86,7 +96,12 @@ $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
 installFreetype:
-	@ sudo apt-get install libfreetype6-dev -y
+	ifeq ($(UNAME_S), Linux)
+		@ sudo apt-get install libfreetype6-dev -y
+	endif
+	ifeq ($(UNAME_S), Darwin)
+		@ sudo brew install freetype
+	endif
 
 clean:
 	@ echo "$(YELLOW)Deleting objects$(WHITE)"
