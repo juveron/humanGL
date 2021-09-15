@@ -97,10 +97,10 @@ $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 
 installFreetype:
 ifeq ($(UNAME_S),Linux)
-		@ sudo apt-get install libfreetype6-dev -y
+	@ sudo apt-get install libfreetype6-dev -y
 endif
 ifeq ($(UNAME_S),Darwin)
-		@ sudo brew install freetype
+	@ brew install freetype
 endif
 
 clean:
