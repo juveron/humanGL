@@ -71,7 +71,7 @@ ifeq ($(UNAME_S),Linux)
 	LIB += `pkg-config freetype2 --libs`
 	INCLUDES += `pkg-config freetype2 --cflags`
 endif
-ifeq ($(UNAME_S), Darwin)
+ifeq ($(UNAME_S),Darwin)
 	LIB += `freetype-config --libs`
 	INCLUDES += `freetype-config --cflags`
 endif
@@ -96,12 +96,12 @@ $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
 installFreetype:
-	ifeq ($(UNAME_S), Linux)
+ifeq ($(UNAME_S),Linux)
 		@ sudo apt-get install libfreetype6-dev -y
-	endif
-	ifeq ($(UNAME_S), Darwin)
+endif
+ifeq ($(UNAME_S),Darwin)
 		@ sudo brew install freetype
-	endif
+endif
 
 clean:
 	@ echo "$(YELLOW)Deleting objects$(WHITE)"
