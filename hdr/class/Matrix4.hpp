@@ -52,7 +52,8 @@ public:
 
 	static Matrix4 newRotationMatrix(float const angle, e_axis const axis);
 	static Matrix4 newIdentityMatrix(void);
-	static Matrix4 newProjectionMatrix(float fov, float aspectRatio, float znear, float zfar);
+	static Matrix4 newPerspectiveProjectionMatrix(float const &fov, float const &aspectRatio, float const &znear, float const &zfar);
+	static Matrix4 newOrthographicProjectionMatrix(float const &left, float const &right, float const &bottom, float const &top, float const &znear = 0.1, float const &zfar = 1000.0f);
 	static Matrix4 newLookAtMAt(Vector3f pos, Vector3f target, Vector3f up);
 };
 
