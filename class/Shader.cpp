@@ -52,6 +52,10 @@ Shader::Shader(char const *vShaderPath, char const *fShaderPath)
 	glDeleteShader(fragmentShader);
 }
 
+Shader::Shader(Shader const &c) : _id(c.getId())
+{
+}
+
 Shader::~Shader(void)
 {
 }
@@ -80,9 +84,14 @@ void Shader::checkCompileError(GLuint shader, std::string type)
 	}
 }
 
-void Shader::use(void)
+void Shader::use(void) const
 {
 	glUseProgram(this->_id);
+}
+
+unsigned int Shader::getId(void) const
+{
+	return this->_id;
 }
 
 void Shader::setMatrix(char const *name, float mat4[16])
