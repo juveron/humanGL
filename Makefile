@@ -29,11 +29,14 @@ SRC=	init/main.cpp\
 		animations/tailChasingDoggoAnim.cpp\
 		animations/walkingOnFrontLegsAnim.cpp\
 		animations/walkingOnHindLegsAnim.cpp\
+		utils/lerp.cpp\
 		texture/loadTexture.cpp\
-		utils/lerp.cpp
+		render/renderUI.cpp\
+		render/renderBodies.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
+	   Vector2f.cpp\
 	   Vector3f.cpp\
 	   Vector4f.cpp\
 	   Matrix4.cpp\
@@ -43,14 +46,16 @@ CLASS= Shader.cpp\
 	   ABody.cpp\
 	   HumanBody.cpp\
 	   DoggoBody.cpp\
-	   Animation.cpp
+	   Animation.cpp\
+	   Texture.cpp\
+	   Font.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class animations texture utils
+OBJ_SUBDIRS= init event class animations texture utils ui render
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
