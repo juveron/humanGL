@@ -24,6 +24,11 @@
 #define SCREEN_WIDTH_BODIES 800
 #define SCREEN_HEIGHT 600
 #define PI 3.14159265
+
+#define ALIGN_LEFT 0x0001
+#define ALIGN_CENTER 0x0002
+#define ALIGN_RIGHT 0x0003
+
 #define ANIMATION_FRAME std::vector<std::array<Vector3f, 3>>
 
 #include "./struct.hpp"

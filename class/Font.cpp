@@ -87,16 +87,23 @@ GLuint Font::getVBO(void) const
 	return this->_vbo;
 }
 
-void Font::renderText(std::string text, float x, float y, float scale, Vector3f color)
+void Font::renderText(std::string text, unsigned int alignMode, float y, float scale, Vector3f color)
 {
 	this->_shader.use();
 	this->_shader.setVector3f("textColor", color.x, color.y, color.z);
 	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(this->_vao);
 
+	float textWidth = 0;
+
+	std::string::const_iterator c;
+	for (c = text.begin(); c != text.end(); c++)
+		textWidth += (this->_characters[*c].advance >> 6) * scale;
+
+	float x = Font::getFirstPosition(alignMode, textWidth);
+
 	// iterate through all characters
 	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
-	std::string::const_iterator c;
 	for (c = text.begin(); c != text.end(); c++)
 	{
 		Character ch = this->_characters[*c];
@@ -129,18 +136,24 @@ void Font::renderText(std::string text, float x, float y, float scale, Vector3f 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Font::renderUnderlinedText(std::string text, float x, float y, float scale, Vector3f color)
+void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float y, float scale, Vector3f color)
 {
 	this->_shader.use();
 	this->_shader.setVector3f("textColor", color.x, color.y, color.z);
 	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(this->_vao);
 
+
+	float textWidth = 0;
+	std::string::const_iterator c;
+	for (c = text.begin(); c != text.end(); c++)
+		textWidth += (this->_characters[*c].advance >> 6) * scale;
+
+	float x = Font::getFirstPosition(alignMode, textWidth);
 	float initialX = x;
 
 	// iterate through all characters
 	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
-	std::string::const_iterator c;
 	for (c = text.begin(); c != text.end(); c++)
 	{
 		Character ch = this->_characters[*c];
@@ -188,4 +201,18 @@ void Font::renderUnderlinedText(std::string text, float x, float y, float scale,
 
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+float Font::getFirstPosition(unsigned int alignMode, float textWidth)
+{
+	switch (alignMode) {
+	case ALIGN_LEFT:
+		return 10.0f;
+	case  ALIGN_CENTER:
+		return (SCREEN_WIDTH_UI - textWidth) / 2;
+	case ALIGN_RIGHT:
+		return SCREEN_WIDTH_UI - (10.0f + textWidth);
+	default:
+		return 10.0f;
+	}
 }
