@@ -3,6 +3,8 @@
 
 #include "HumanGL.hpp"
 
+#include "./class/Vector2f.hpp"
+
 class Limb;
 
 typedef enum				axis {
@@ -42,22 +44,23 @@ namespace doggo {
 	}						e_DoggoBody;
 }
 
-typedef struct				body {
-	int						selectedLimb;
-	Limb					*limb;
-	std::vector<Limb *>		limbs;
-}							s_body;
-
 typedef struct				indexBody {
 	unsigned char			drawBody = 1;
 	int 					modelIndex = 0;
 }							s_indexBody;
 
-typedef struct				textureData {
+typedef struct				textureInfo {
 	unsigned char *			data;
 	int						width;
 	int						height;
 	int						nbrChannels;
-}							s_textureData;
+}							s_textureInfo;
+
+typedef struct				Character {
+	unsigned int			textureId;
+	Vector2f				size;
+	Vector2f				bearing;
+	unsigned int			advance;
+}							s_Charater;
 
 #endif
