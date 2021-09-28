@@ -3,7 +3,6 @@
 
 #include "HumanGL.hpp"
 
-// template<typename T>
 class Vector3f {
 public:
 	Vector3f(void);
