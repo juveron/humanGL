@@ -132,5 +132,7 @@ void Limb::draw(int &index, int selectedLimb, MatrixStack &stack, Shader &shader
 		(*iter)->draw(index, selectedLimb, stack, shader, textures);
 		iter++;
 	}
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	stack.popMatrix();
 }
