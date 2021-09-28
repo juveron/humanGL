@@ -95,6 +95,7 @@ void Font::renderText(std::string text, float x, float y, float scale, Vector3f 
 	glBindVertexArray(this->_vao);
 
 	// iterate through all characters
+	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
 	std::string::const_iterator c;
 	for (c = text.begin(); c != text.end(); c++)
 	{
@@ -119,14 +120,72 @@ void Font::renderText(std::string text, float x, float y, float scale, Vector3f 
 		};
 		tex.bind();
 
-		glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
 		x += (ch.advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
 	}
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Font::renderUnderlinedText(std::string text, float x, float y, float scale, Vector3f color)
+{
+	this->_shader.use();
+	this->_shader.setVector3f("textColor", color.x, color.y, color.z);
+	glActiveTexture(GL_TEXTURE0);
+	glBindVertexArray(this->_vao);
+
+	float initialX = x;
+
+	// iterate through all characters
+	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
+	std::string::const_iterator c;
+	for (c = text.begin(); c != text.end(); c++)
+	{
+		Character ch = this->_characters[*c];
+
+		Texture tex(ch.textureId, GL_TEXTURE_2D);
+		float xpos = x + ch.bearing.x * scale;
+		float ypos = y - (ch.size.y - ch.bearing.y) * scale;
+
+		float w = ch.size.x * scale;
+		float h = ch.size.y * scale;
+		// update this->_vbo for each character
+		float vertices[6][4] = {
+			{ xpos,     ypos + h,   0.0f, 0.0f },
+			{ xpos,     ypos,       0.0f, 1.0f },
+			{ xpos + w, ypos,       1.0f, 1.0f },
+
+			{ xpos,     ypos + h,   0.0f, 0.0f },
+			{ xpos + w, ypos,       1.0f, 1.0f },
+			{ xpos + w, ypos + h,   1.0f, 0.0f }
+		};
+		tex.bind();
+
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+		x += (ch.advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+	}
+
+	Texture tex(46, GL_TEXTURE_2D);
+
+	float vertices[6][4] = {
+		{ initialX, y - 3, 0.0f, 0.0f },
+		{ initialX, y - 5, 0.0f, 1.0f },
+		{ x,        y - 5, 1.0f, 1.0f },
+
+		{ initialX, y - 3, 0.0f, 0.0f },
+		{ x,        y - 5, 1.0f, 1.0f },
+		{ x,        y - 3, 1.0f, 0.0f }
+	};
+	tex.bind();
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

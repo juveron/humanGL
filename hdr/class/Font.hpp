@@ -23,6 +23,7 @@ public:
 	GLuint getVBO(void) const;
 
 	void renderText(std::string text, float x, float y, float scale, Vector3f color);
+	void renderUnderlinedText(std::string text, float x, float y, float scale, Vector3f color);
 	Font &operator=(Font const &rhs);
 };
 
