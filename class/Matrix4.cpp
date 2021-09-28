@@ -253,16 +253,18 @@ Matrix4 Matrix4::newPerspectiveProjectionMatrix(float const &fov, float const &a
 	return (mat);
 }
 
+
+// Correspond a glm:orthoLH_ZO
 Matrix4 Matrix4::newOrthographicProjectionMatrix(float const &left, float const &right, float const &bottom, float const &top, float const &znear, float const &zfar)
 {
 	Matrix4 mat;
 
 	mat.matrix[0] = 2 / (right - left);
 	mat.matrix[5] = 2 / (top - bottom);
-	mat.matrix[10] = -2 / (zfar - znear);
+	mat.matrix[10] = 2 / (zfar - znear);
 	mat.matrix[12] = -(left + right) / (right - left);
 	mat.matrix[13] = -(top + bottom) / (top - bottom);
-	mat.matrix[14] = -(zfar + znear) / (zfar - znear);
+	mat.matrix[14] = -znear / (zfar - znear);
 	mat.matrix[15] = 1;
 	return mat;
 }
