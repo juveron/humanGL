@@ -20,7 +20,6 @@ int main(void)
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) ErrorHandler::setError("GLAD_LOAD");
 
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	Shader humanShader("./src/shader/humanVertexShader.glsl", "./src/shader/humanFragmentShader.glsl");
 	Shader doggoShader("./src/shader/doggoVertexShader.glsl", "./src/shader/doggoFragmentShader.glsl");
@@ -90,6 +89,7 @@ int main(void)
 		 0.5f,  0.0f, -0.5f, 1.0f, 1.0f,
 		-0.5f,  0.0f, -0.5f, 1.0f, 0.0f,
 	};
+
 	unsigned int VBO, VAO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -107,11 +107,14 @@ int main(void)
 	glEnableVertexAttribArray(1);
 
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_SCISSOR_TEST);
 
-	Matrix4 proj = Matrix4::newProjectionMatrix(60.0f,
-		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH),
+	Matrix4 proj = Matrix4::newPerspectiveProjectionMatrix(60.0f,
+		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH_BODIES),
 		0.1f, 100.0f);
 
 	Vector3f camPos(0.0f, -2.0, 5.0f);
@@ -139,6 +142,12 @@ int main(void)
 		"./ressources/Leg.png",
 	};
 
+	Shader shaderText("./src/shader/textVertexShader.glsl", "./src/shader/textFragmentShader.glsl");
+	Matrix4 projection = Matrix4::newOrthographicProjectionMatrix(0.0f, SCREEN_WIDTH_UI, 0.0f, SCREEN_HEIGHT);
+	shaderText.use();
+	shaderText.setMatrix("projection", projection.matrix);
+
+	Font font("./Arimo-Regular.ttf", shaderText);
 	s_indexBody indexBody;
 
 	ABody *bodies[2]{
@@ -157,43 +166,8 @@ int main(void)
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 		processInput(window, bodies[indexBody.modelIndex], deltaTime, indexBody);
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBindVertexArray(VAO);
-
-		// Draw human
-		if (indexBody.drawBody & 1) {
-			humanShader.use();
-			humanShader.setMatrix("projMat", proj.matrix);
-			humanShader.setMatrix("viewMat", view.matrix);
-			bodies[0]->draw(humanShader);
-			if (bodies[0]->isAnimated) {
-				if (bodies[0]->animationIndex < animations[0].size()) {
-					animations[0][bodies[0]->animationIndex].incrementProgress(deltaTime);
-					bodies[0]->animate(animations[0][bodies[0]->animationIndex]);
-				}
-				else {
-					bodies[0]->isAnimated = false;
-				}
-			}
-		}
-
-		// Draw doggo
-		if ((indexBody.drawBody >> 1) & 1) {
-			doggoShader.use();
-			doggoShader.setMatrix("projMat", proj.matrix);
-			doggoShader.setMatrix("viewMat", view.matrix);
-			bodies[1]->draw(doggoShader);
-			if (bodies[1]->isAnimated) {
-				if (bodies[1]->animationIndex < animations[1].size()) {
-					animations[1][bodies[1]->animationIndex].incrementProgress(deltaTime);
-					bodies[1]->animate(animations[1][bodies[1]->animationIndex]);
-				}
-				else {
-					bodies[1]->isAnimated = false;
-				}
-			}
-		}
+		renderBodies(humanShader, doggoShader, proj, view, indexBody, bodies, animations, deltaTime, VAO);
+		renderUI(font, indexBody);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
