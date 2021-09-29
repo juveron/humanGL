@@ -104,8 +104,7 @@ void Font::renderText(std::string text, unsigned int alignMode, float y, float s
 
 	// iterate through all characters
 	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
-	for (c = text.begin(); c != text.end(); c++)
-	{
+	for (c = text.begin(); c != text.end(); c++) {
 		Character ch = this->_characters[*c];
 
 		Texture tex(ch.textureId, GL_TEXTURE_2D);
