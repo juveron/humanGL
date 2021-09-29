@@ -101,7 +101,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody 
 		if (!isZKeyPressed) {
 			indexBody.drawBody = (indexBody.drawBody + 1) % 4;
 			if (indexBody.drawBody == 0) indexBody.drawBody = 1;
-			if (indexBody.drawBody <= 2) indexBody.modelIndex = (indexBody.modelIndex + 1) % 2;
+			indexBody.modelIndex = indexBody.drawBody & 1 ? 0 : 1;
 		}
 		isZKeyPressed = 1;
 	}
