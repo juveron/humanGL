@@ -29,6 +29,10 @@
 #define ALIGN_CENTER 0x0002
 #define ALIGN_RIGHT 0x0003
 
+#define NO_RENDER_TEXT 0x0010
+#define REGULAR_TEXT 0x0011
+#define UNDERLINE_TEXT 0x0012
+
 #define ANIMATION_FRAME std::vector<std::array<Vector3f, 3>>
 
 #include "./struct.hpp"
