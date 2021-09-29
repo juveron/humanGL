@@ -167,7 +167,7 @@ int main(void)
 		lastFrame = currentFrame;
 		processInput(window, bodies[indexBody.modelIndex], deltaTime, indexBody);
 		renderBodies(humanShader, doggoShader, proj, view, indexBody, bodies, animations, deltaTime, VAO);
-		renderUI(font, indexBody);
+		renderUI(font, indexBody, bodies[indexBody.modelIndex]);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

@@ -1,15 +1,60 @@
 #include "HumanGL.hpp"
 
-void renderUI(Font &font, s_indexBody indexBody)
+// std::vector<std::tuple<std::string, unsigned int, float, Vector3f>> tuple;
+
+static void placeText(Font &font, std::vector <s_textInformation> texts)
 {
+	std::vector<s_textInformation>::const_iterator iter;
+
+	float yOffset = SCREEN_HEIGHT - 5;
+	for (iter = texts.begin(); iter != texts.end(); iter++) {
+		s_textInformation info = *iter;
+
+		yOffset -= 48 * info.scale + 2;
+		switch (info.textMode)
+		{
+		case REGULAR_TEXT:
+			yOffset -= 5;
+			font.renderText(info.data, info.alignMode, yOffset, info.scale, info.color);
+			break;
+		case UNDERLINE_TEXT:
+			font.renderUnderlinedText(info.data, info.alignMode, yOffset, info.scale, info.color);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void renderUI(Font &font, s_indexBody indexBody, ABody const *body)
+{
+	(void)indexBody;
 	glViewport(SCREEN_WIDTH_BODIES, 0, SCREEN_WIDTH_UI, SCREEN_HEIGHT);
 	glScissor(SCREEN_WIDTH_BODIES, 0, SCREEN_WIDTH_UI, SCREEN_HEIGHT);
 	glClearColor(0.1294f, 0.1294f, 0.1294f, 0.1f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	font.renderUnderlinedText("CONTROLS:", SCREEN_WIDTH_UI / 2 - (8 * 5), SCREEN_HEIGHT - 35, 0.75f, Vector3f(1, 1, 1));
-	font.renderText("Translate: WSADQE", 10.0f, SCREEN_HEIGHT - (35 * 2), 0.5f, Vector3f(1, 1, 1));
-	font.renderText("Rotate: IKJLUO", 10.0f, (SCREEN_HEIGHT)-(35 * 3), 0.5f, Vector3f(1, 1, 1));
-	font.renderText("Scale: TGFHRY", 10.0f, (SCREEN_HEIGHT)-(35 * 4), 0.5f, Vector3f(1, 1, 1));
-	font.renderUnderlinedText("INFORMATIONS:", SCREEN_WIDTH_UI / 2 - (12 * 5), SCREEN_HEIGHT - (35 * 5), 0.75f, Vector3f(1, 1, 1));
-	font.renderText(std::string("Current selected body: ").append(indexBody.modelIndex == 1 ? "DOGGO" : "HUMAN"), 10.0f, (SCREEN_HEIGHT)-(35 * 6), 0.5f, Vector3f(1, 1, 1));
+	std::vector<s_textInformation> texts = {
+		{ "CONTROLS:", ALIGN_CENTER, UNDERLINE_TEXT, 0.6f, Vector3f(1, 1, 1) },
+		{ "Translate: WSADQE", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Rotate: IKJLUO", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Scale: TGFHRY", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Next limb: RIGHT ARROW", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Previous limb: LEFT ARROW", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Reset limb: C", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Reset body: X", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Toggle animation loop: EQUAL", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Toggle shown bodies: Z", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Toggle selected body: N", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Animations: 1 -> 3", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Pause animation: 0", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Print to term: SPACE", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ "Print to file: P", ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+
+		{ "Informations", ALIGN_CENTER, UNDERLINE_TEXT, 0.6f, Vector3f(1, 1, 1) },
+		{ std::string("Current selected body: ").append(indexBody.modelIndex == 1 ? "DOGGO" : "HUMAN"), ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ std::string("Is animated: ").append(body->isAnimated == true ? "TRUE" : "FALSE"), ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ std::string("Current animation: ").append(std::to_string(body->animationIndex)), ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+		{ std::string("Is animation looping: ").append(body->isAnimationLooping == true ? "TRUE" : "FALSE"), ALIGN_LEFT, REGULAR_TEXT, 0.45f, Vector3f(1, 1, 1) },
+	};
+	placeText(font, texts);
 }
