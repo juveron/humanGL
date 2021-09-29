@@ -4,6 +4,7 @@
 #include "HumanGL.hpp"
 
 #include "./class/Vector2f.hpp"
+#include "./class/Vector3f.hpp"
 
 class Limb;
 
@@ -62,5 +63,13 @@ typedef struct				Character {
 	Vector2f				bearing;
 	unsigned int			advance;
 }							s_Charater;
+
+typedef struct				textInformation {
+	std::string				data;
+	unsigned int			alignMode;
+	unsigned int			textMode;
+	float					scale;
+	Vector3f				color;
+}							s_textInformation;
 
 #endif
