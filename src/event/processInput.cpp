@@ -88,6 +88,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody 
 	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
 		body->resetBody();
+		body->isAnimated = false;
 	}
 
 	// Reset limb
@@ -131,7 +132,6 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody 
 	// Animation
 	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS) {
 		body->isAnimated = false;
-		body->resetBody();
 	}
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
 		body->isAnimated = true;
