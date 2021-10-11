@@ -17,7 +17,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT * ratio.y, "HumanGL", NULL, NULL);
+	window = glfwCreateWindow(SCREEN_WIDTH * ratio.x, SCREEN_HEIGHT * ratio.y, "HumanGL", NULL, NULL);
 
 	if (!window) ErrorHandler::setError("WINDOW");
 
