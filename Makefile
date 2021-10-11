@@ -13,6 +13,8 @@ MAGENTA= \033[35m
 ################################################################################
 #								Macros										   #
 ################################################################################
+UNAME_S := $(shell uname -s)
+
 NAME= HumanGL
 CPP= clang++
 CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
@@ -20,13 +22,21 @@ CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variab
 SRC_DIR= src/
 SRC=	init/main.cpp\
 		event/processInput.cpp\
-		animations/walkingAnim.cpp\
-		animations/sittingDogAnim.cpp\
+		animations/walkingHumanAnim.cpp\
+		animations/jumpingHumanAnim.cpp\
+		animations/flossingHumanAnim.cpp\
+		animations/jumpingDoggoAnim.cpp\
+		animations/tailChasingDoggoAnim.cpp\
+		animations/walkingOnFrontLegsAnim.cpp\
+		animations/walkingOnHindLegsAnim.cpp\
+		utils/lerp.cpp\
 		texture/loadTexture.cpp\
-		utils/lerp.cpp
+		render/renderUI.cpp\
+		render/renderBodies.cpp
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 
 CLASS= Shader.cpp\
+	   Vector2f.cpp\
 	   Vector3f.cpp\
 	   Vector4f.cpp\
 	   Matrix4.cpp\
@@ -36,14 +46,16 @@ CLASS= Shader.cpp\
 	   ABody.cpp\
 	   HumanBody.cpp\
 	   DoggoBody.cpp\
-	   Animation.cpp
+	   Animation.cpp\
+	   Texture.cpp\
+	   Font.cpp
 CLASS_DIR= class/
 CLASSES= $(addprefix $(CLASS_DIR),$(CLASS))
 
 OBJ_DIR= obj/
 OBJ= $(SRC:.cpp=.o)
 OBJ += $(CLASSES:.cpp=.o)
-OBJ_SUBDIRS= init event class animations texture utils
+OBJ_SUBDIRS= init event class animations texture utils ui render
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 
@@ -52,6 +64,7 @@ VPATH = $(SRC_DIR):$(CLASS_DIR)
 LIB= -lglfw\
 	 -ldl\
 	 -lm
+
 HEADERS=	hdr/HumanGL.hpp\
 			hdr/classes.hpp\
 			hdr/proto.hpp\
@@ -59,12 +72,20 @@ HEADERS=	hdr/HumanGL.hpp\
 
 INCLUDES=	-I hdr
 
+ifeq ($(UNAME_S),Linux)
+	LIB += `pkg-config freetype2 --libs`
+	INCLUDES += `pkg-config freetype2 --cflags`
+endif
+ifeq ($(UNAME_S),Darwin)
+	LIB += `freetype-config --libs`
+	INCLUDES += `freetype-config --cflags`
+endif
+
 ###############################################################################
 #								Rules										  #
 ###############################################################################
 
 all: $(SUBDIRS)
-#	@ make all -C libft
 	@ make -j $(NAME)
 
 $(NAME): $(OBJS)
@@ -78,6 +99,14 @@ $(SUBDIRS):
 $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 	@ $(CPP) -o $@ -c $< $(CPPFLAGS) $(INCLUDES)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
+
+installFreetype:
+ifeq ($(UNAME_S),Linux)
+	@ sudo apt-get install libfreetype6-dev -y
+endif
+ifeq ($(UNAME_S),Darwin)
+	@ brew install freetype
+endif
 
 clean:
 	@ echo "$(YELLOW)Deleting objects$(WHITE)"

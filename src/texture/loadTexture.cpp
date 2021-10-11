@@ -1,11 +1,11 @@
 #include "HumanGL.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "./stb_image.h"
+#include "stb_image.h"
 
-static s_textureData loadTexture(char const *fileName)
+static s_textureInfo loadTexture(char const *fileName)
 {
-	s_textureData textureData;
+	s_textureInfo textureData;
 
 	textureData.data = stbi_load(fileName, &textureData.width,
 		&textureData.height, &textureData.nbrChannels, 0);
@@ -21,19 +21,17 @@ unsigned int *generateTextures(std::vector<char const *> texturePaths)
 	size_t texNum = texturePaths.size();
 
 	glGenTextures(texturePaths.size(), textures);
-	std::vector<s_textureData> texturesData;
+	std::vector<s_textureInfo> texturesData;
 
 	while (i < texNum)
 	{
-		s_textureData textureData = loadTexture(texturePaths[i]);
-		glBindTexture(GL_TEXTURE_2D, textures[i]);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureData.width, textureData.height,
-			0, GL_RGB, GL_UNSIGNED_BYTE, textureData.data);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		s_textureInfo textureData = loadTexture(texturePaths[i]);
+		Texture tex(GL_TEXTURE_2D, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+		tex.bind();
+		tex.setTextureParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		tex.setTextureParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		stbi_image_free(textureData.data);
+		textures[i] = tex.getId();
 		i++;
 	}
 

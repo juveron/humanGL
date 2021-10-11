@@ -237,11 +237,9 @@ Matrix4 Matrix4::newIdentityMatrix(void)
 	return mat;
 }
 
-Matrix4 Matrix4::newProjectionMatrix(float fov, float aspectRatio, float znear, float zfar)
+Matrix4 Matrix4::newPerspectiveProjectionMatrix(float const &fov, float const &aspectRatio, float const &znear, float const &zfar)
 {
 	Matrix4			mat;
-	float			x_scale;
-	float			y_scale;
 	float			fovRad = 1 / std::tan(0.5 * fov * PI / 180.0);
 
 	mat.matrix[0] = aspectRatio * fovRad;
@@ -249,8 +247,23 @@ Matrix4 Matrix4::newProjectionMatrix(float fov, float aspectRatio, float znear, 
 	mat.matrix[10] = zfar / (zfar - znear);
 	mat.matrix[11] = 1;
 	mat.matrix[14] = -(zfar * znear) / (zfar - znear);
-	mat.matrix[15] = 1;
 	return (mat);
+}
+
+
+// Correspond a glm:orthoLH_ZO
+Matrix4 Matrix4::newOrthographicProjectionMatrix(float const &left, float const &right, float const &bottom, float const &top, float const &znear, float const &zfar)
+{
+	Matrix4 mat;
+
+	mat.matrix[0] = 2 / (right - left);
+	mat.matrix[5] = 2 / (top - bottom);
+	mat.matrix[10] = 2 / (zfar - znear);
+	mat.matrix[12] = -(left + right) / (right - left);
+	mat.matrix[13] = -(top + bottom) / (top - bottom);
+	mat.matrix[14] = -znear / (zfar - znear);
+	mat.matrix[15] = 1;
+	return mat;
 }
 
 Matrix4 Matrix4::newLookAtMAt(Vector3f pos, Vector3f target, Vector3f up)

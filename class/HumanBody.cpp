@@ -6,12 +6,6 @@ HumanBody::HumanBody(void) : ABody()
 	this->position();
 }
 
-HumanBody::HumanBody(int bodyIndex_) : ABody(bodyIndex_)
-{
-	this->generateLimbs();
-	this->position();
-}
-
 HumanBody::HumanBody(HumanBody const &c) : ABody(c)
 {
 }
@@ -88,7 +82,6 @@ void HumanBody::position(void)
 		case human::TORSO:
 			break;
 		case human::HEAD:
-			tmpRotate.rotate(180, X_AXIS);
 			break;
 		case human::RIGHT_ARM:
 			tmpTranslate.translate(0.5f * this->limbs[human::RIGHT_ARM]->baseScale.x + 0.5f * this->limbs[human::RIGHT_ARM]->parent->baseScale.x * this->limbs[human::RIGHT_ARM]->parent->scale.x, 0.0f, 0.0f);
@@ -117,6 +110,9 @@ void HumanBody::position(void)
 		default:
 			break;
 		}
+		tmpRotate.rotate(this->limbs[i]->baseRotation.x, X_AXIS);
+		tmpRotate.rotate(this->limbs[i]->baseRotation.y, Y_AXIS);
+		tmpRotate.rotate(this->limbs[i]->baseRotation.z, Z_AXIS);
 		tmpRotate.rotate(this->limbs[i]->rotation.x, X_AXIS);
 		tmpRotate.rotate(this->limbs[i]->rotation.y, Y_AXIS);
 		tmpRotate.rotate(this->limbs[i]->rotation.z, Z_AXIS);

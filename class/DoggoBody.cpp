@@ -6,12 +6,6 @@ DoggoBody::DoggoBody(void) : ABody()
 	this->position();
 }
 
-DoggoBody::DoggoBody(int bodyIndex_) : ABody(bodyIndex_)
-{
-	this->generateLimbs();
-	this->position();
-}
-
 DoggoBody::DoggoBody(DoggoBody const &c) : ABody(c)
 {
 }
@@ -83,11 +77,13 @@ void DoggoBody::generateLimbs(void)
 	Limb *rightEar = new Limb(head);
 	this->limbs.push_back(rightEar);
 	rightEar->baseScale = Vector3f(0.125f, 0.25f, 0.25f);
+	rightEar->baseRotation = Vector3f(0.0f, 0.0f, 90.0f);
 
 	// left ear
 	Limb *leftEar = new Limb(head);
 	this->limbs.push_back(leftEar);
 	leftEar->baseScale = Vector3f(0.125f, 0.25f, 0.25f);
+	leftEar->baseRotation = Vector3f(0.0f, 0.0f, 90.0f);
 }
 
 void DoggoBody::position(void)
@@ -113,7 +109,6 @@ void DoggoBody::position(void)
 		switch (i)
 		{
 		case doggo::TORSO:
-			tmpRotate.rotate(90.0f, Z_AXIS);
 			break;
 		case doggo::LOW_TORSO:
 			tmpTranslate.translate(-0.5f * (this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x - this->limbs[i]->baseScale.x * this->limbs[i]->scale.x),
@@ -124,44 +119,37 @@ void DoggoBody::position(void)
 				-this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y, 0.0f);
 			break;
 		case doggo::RIGHT_LOW_PAW:
-			tmpRotate.rotate(-90.0f, Z_AXIS);
 			tmpTranslate.translate(
 				-0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.9f * this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y + 0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				-(0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z - 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z));
 			break;
 		case doggo::LEFT_LOW_PAW:
-			tmpRotate.rotate(-90.0f, Z_AXIS);
 			tmpTranslate.translate(-0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.9f * this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y + 0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z - 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z);
 			break;
 		case doggo::RIGHT_UPPER_PAW:
-			tmpRotate.rotate(-90.0f, Z_AXIS);
 			tmpTranslate.translate(-0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.3f * this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y - 0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				-(0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z - 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z));
 			break;
 		case doggo::LEFT_UPPER_PAW:
-			tmpRotate.rotate(-90.0f, Z_AXIS);
 			tmpTranslate.translate(-0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.3f * this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y - 0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z - 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z);
 			break;
 		case doggo::HEAD:
-			tmpRotate.rotate(180.0f, X_AXIS);
 			break;
 		case doggo::MUZZLE:
 			tmpTranslate.translate(-0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x, -this->limbs[i]->parent->baseScale.y * this->limbs[i]->parent->scale.y, 0.0f);
 			break;
 		case doggo::RIGHT_EAR:
-			tmpRotate.rotate(90.0f, Z_AXIS);
 			tmpTranslate.translate(0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z - 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z);
 			break;
 		case doggo::LEFT_EAR:
-			tmpRotate.rotate(90.0f, Z_AXIS);
 			tmpTranslate.translate(0.5f * this->limbs[i]->parent->baseScale.x * this->limbs[i]->parent->scale.x,
 				-0.5f * this->limbs[i]->baseScale.x * this->limbs[i]->scale.x,
 				-0.5f * this->limbs[i]->parent->baseScale.z * this->limbs[i]->parent->scale.z + 0.5f * this->limbs[i]->baseScale.z * this->limbs[i]->scale.z);
@@ -169,6 +157,10 @@ void DoggoBody::position(void)
 		default:
 			break;
 		}
+
+		tmpRotate.rotate(this->limbs[i]->baseRotation.x, X_AXIS);
+		tmpRotate.rotate(this->limbs[i]->baseRotation.y, Y_AXIS);
+		tmpRotate.rotate(this->limbs[i]->baseRotation.z, Z_AXIS);
 
 		tmpRotate.rotate(this->limbs[i]->rotation.x, X_AXIS);
 		tmpRotate.rotate(this->limbs[i]->rotation.y, Y_AXIS);

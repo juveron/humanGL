@@ -1,11 +1,12 @@
 #include "HumanGL.hpp"
 
-void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationData &stuff, s_indexBody &indexBody)
+void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_indexBody &indexBody)
 {
 	static bool isLeftKeyPressed = 0;
 	static bool isRightKeyPressed = 0;
 	static bool isZKeyPressed = 0;
 	static bool isNKeyPressed = 0;
+	static bool isEqualKeyPressed = 0;
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, 1);
@@ -87,6 +88,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 	// Reset body
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
 		body->resetBody();
+		body->isAnimated = false;
 	}
 
 	// Reset limb
@@ -99,7 +101,7 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 		if (!isZKeyPressed) {
 			indexBody.drawBody = (indexBody.drawBody + 1) % 4;
 			if (indexBody.drawBody == 0) indexBody.drawBody = 1;
-			if (indexBody.drawBody <= 2) indexBody.modelIndex = (indexBody.modelIndex + 1) % 2;
+			indexBody.modelIndex = indexBody.drawBody & 1 ? 0 : 1;
 		}
 		isZKeyPressed = 1;
 	}
@@ -113,6 +115,14 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 	}
 	else isNKeyPressed = 0;
 
+	// Loop anim
+	if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS) {
+		if (!isEqualKeyPressed)
+			body->isAnimationLooping = !body->isAnimationLooping;
+		isEqualKeyPressed = 1;
+	}
+	else isEqualKeyPressed = 0;
+
 	// Print
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		body->printToFile("./printedBody.txt");
@@ -120,8 +130,19 @@ void processInput(GLFWwindow *window, ABody *body, float deltaTime, s_animationD
 		body->printToTerm();
 
 	// Animation
+	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS) {
+		body->isAnimated = false;
+	}
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
-		stuff.isAnimated = true;
-		stuff.animationIndex = 0;
+		body->isAnimated = true;
+		body->animationIndex = 0;
+	}
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+		body->isAnimated = true;
+		body->animationIndex = 1;
+	}
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
+		body->isAnimated = true;
+		body->animationIndex = 2;
 	}
 }

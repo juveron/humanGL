@@ -1,16 +1,13 @@
 #include "HumanGL.hpp"
 
-ABody::ABody(int bodyIndex_) : _textures(nullptr), _stack(), selectedLimb(0), bodyIndex(bodyIndex_)
+ABody::ABody(ABody const &c) : _textures(c.getTextures()), _stack(), selectedLimb(c.getSelectedLimb()),
+isAnimated(c.isAnimated), isAnimationLooping(c.isAnimationLooping), animationIndex(c.animationIndex)
 {
 	this->_stack.pushMatrix();
 }
 
-ABody::ABody(ABody const &c) : _textures(c.getTextures()), _stack(), selectedLimb(c.getSelectedLimb()), bodyIndex(c.bodyIndex)
-{
-	this->_stack.pushMatrix();
-}
-
-ABody::ABody(void) : _textures(nullptr), _stack(), selectedLimb(0), bodyIndex(0)
+ABody::ABody(void) : _textures(nullptr), _stack(), selectedLimb(0), isAnimated(false),
+isAnimationLooping(true), animationIndex(0)
 {
 	this->_stack.pushMatrix();
 }
@@ -110,7 +107,7 @@ void ABody::update(ANIMATION_FRAME frame)
 	this->position();
 }
 
-void ABody::animate(Animation &animation, s_animationData &animationData)
+void ABody::animate(Animation &animation)
 {
 	std::vector<ANIMATION_FRAME> anim = animation.getAnimation();
 	float duration = animation.getDuration();
@@ -134,7 +131,6 @@ void ABody::animate(Animation &animation, s_animationData &animationData)
 
 		while (i < prevFrame.size())
 		{
-
 			rotation = lerp(prevFrame[i][0], nextFrame[i][0], framePercentage);
 			translation = lerp(prevFrame[i][1], nextFrame[i][1], framePercentage);
 			scale = lerp(prevFrame[i][2], nextFrame[i][2], framePercentage);
@@ -144,7 +140,8 @@ void ABody::animate(Animation &animation, s_animationData &animationData)
 		this->update(currentFrameData);
 	}
 	else {
-		animationData.isAnimated = false;
+		if (!this->isAnimationLooping)
+			this->isAnimated = false;
 		animation.resetProgress();
 	}
 }
@@ -174,7 +171,6 @@ void ABody::resetSelectedLimb(void)
 
 ABody &ABody::operator=(ABody const &rhs)
 {
-	this->bodyIndex = rhs.bodyIndex;
 	this->limbs = rhs.getLimbs();
 	this->selectedLimb = rhs.getSelectedLimb();
 	this->_textures = rhs.getTextures();

@@ -12,10 +12,11 @@ private:
 public:
 	Shader(void) = delete;
 	Shader(char const *vertexShaderPath, char const *fragmentShaderPath);
-	Shader(Shader const &c) = delete;
+	Shader(Shader const &c);
 	~Shader(void);
 
-	void use(void);
+	void use(void) const;
+	unsigned int getId(void) const;
 
 	void setMatrix(char const *name, float mat4[16]);
 	void setVector3f(char const *name, float red, float green, float blue);

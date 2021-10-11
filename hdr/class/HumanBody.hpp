@@ -10,7 +10,6 @@ private:
 
 public:
 	HumanBody(void);
-	HumanBody(int bodyIndex_);
 	HumanBody(HumanBody const &c);
 	~HumanBody(void);
 
