@@ -1,5 +1,7 @@
 #include "HumanGL.hpp"
 
+Vector2f ratio(1.0f, 1.0f);
+
 int main(void)
 {
 	GLFWwindow *window;
@@ -10,12 +12,23 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "HumanGL", NULL, NULL);
+#ifdef __APPLE__
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
+	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT * ratio.y, "HumanGL", NULL, NULL);
 
 	if (!window) ErrorHandler::setError("WINDOW");
 
+
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+
+#ifdef __APPLE__
+	ratio.x = width / SCREEN_WIDTH;
+	ratio.y = height / SCREEN_HEIGHT;
+#endif
 	glfwMakeContextCurrent(window);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) ErrorHandler::setError("GLAD_LOAD");
@@ -114,7 +127,7 @@ int main(void)
 	glEnable(GL_SCISSOR_TEST);
 
 	Matrix4 proj = Matrix4::newPerspectiveProjectionMatrix(60.0f,
-		static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(SCREEN_WIDTH_BODIES),
+		static_cast<float>(SCREEN_HEIGHT * ratio.y) / static_cast<float>(SCREEN_WIDTH_BODIES  * ratio.x),
 		0.1f, 100.0f);
 
 	Vector3f camPos(0.0f, -2.0, 5.0f);
@@ -143,7 +156,7 @@ int main(void)
 	};
 
 	Shader shaderText("./src/shader/textVertexShader.glsl", "./src/shader/textFragmentShader.glsl");
-	Matrix4 projection = Matrix4::newOrthographicProjectionMatrix(0.0f, SCREEN_WIDTH_UI, 0.0f, SCREEN_HEIGHT);
+	Matrix4 projection = Matrix4::newOrthographicProjectionMatrix(0.0f, SCREEN_WIDTH_UI * ratio.x, 0.0f, SCREEN_HEIGHT * ratio.y);
 	shaderText.use();
 	shaderText.setMatrix("projection", projection.matrix);
 

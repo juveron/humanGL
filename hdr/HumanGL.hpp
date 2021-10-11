@@ -39,6 +39,8 @@
 #include "./classes.hpp"
 #include "./proto.hpp"
 
+extern Vector2f ratio;
+
 // Human animations
 extern Animation walkingHumanAnimation;
 extern Animation jumpingHumanAnimation;

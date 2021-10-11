@@ -185,13 +185,13 @@ void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float 
 	Texture tex(46, GL_TEXTURE_2D);
 
 	float vertices[6][4] = {
-		{ initialX, y - 3, 0.0f, 0.0f },
-		{ initialX, y - 5, 0.0f, 1.0f },
-		{ x,        y - 5, 1.0f, 1.0f },
+		{ initialX, y - 3 * ratio.y, 0.0f, 0.0f },
+		{ initialX, y - 5 * ratio.y, 0.0f, 1.0f },
+		{ x,        y - 5 * ratio.y, 1.0f, 1.0f },
 
-		{ initialX, y - 3, 0.0f, 0.0f },
-		{ x,        y - 5, 1.0f, 1.0f },
-		{ x,        y - 3, 1.0f, 0.0f }
+		{ initialX, y - 3 * ratio.y, 0.0f, 0.0f },
+		{ x,        y - 5 * ratio.y, 1.0f, 1.0f },
+		{ x,        y - 3 * ratio.y, 1.0f, 0.0f }
 	};
 	tex.bind();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
@@ -206,12 +206,12 @@ float Font::getFirstPosition(unsigned int alignMode, float textWidth)
 {
 	switch (alignMode) {
 	case ALIGN_LEFT:
-		return 10.0f;
+		return 10.0f * ratio.y;
 	case  ALIGN_CENTER:
-		return (SCREEN_WIDTH_UI - textWidth) / 2;
+		return ((SCREEN_WIDTH_UI * ratio.x) - textWidth) / 2;
 	case ALIGN_RIGHT:
-		return SCREEN_WIDTH_UI - (10.0f + textWidth);
+		return (SCREEN_WIDTH_UI * ratio.x)- (10.0f * ratio.y + textWidth);
 	default:
-		return 10.0f;
+		return 10.0f * ratio.y;
 	}
 }

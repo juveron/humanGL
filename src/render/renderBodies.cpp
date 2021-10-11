@@ -2,8 +2,8 @@
 
 void renderBodies(Shader &humanShader, Shader &doggoShader, Matrix4 &proj, Matrix4 &view, s_indexBody &indexBody, ABody *bodies[], std::vector<Animation> animations[], float deltaTime, GLuint VAO)
 {
-	glViewport(0, 0, SCREEN_WIDTH_BODIES, SCREEN_HEIGHT);
-	glScissor(0, 0, SCREEN_WIDTH_BODIES, SCREEN_HEIGHT);
+	glViewport(0, 0, SCREEN_WIDTH_BODIES * ratio.x, SCREEN_HEIGHT * ratio.y);
+	glScissor(0, 0, SCREEN_WIDTH_BODIES * ratio.x, SCREEN_HEIGHT * ratio.y);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBindVertexArray(VAO);
