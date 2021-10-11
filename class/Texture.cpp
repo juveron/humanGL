@@ -35,14 +35,3 @@ GLenum Texture::getTarget(void) const
 {
 	return this->_target;
 }
-
-// s_textureInfo Texture::loadTexture(char const *filename)
-// {
-// 	s_textureInfo textureData;
-
-// 	textureData.data = stbi_load(filename, &textureData.width,
-// 		&textureData.height, &textureData.nbrChannels, 0);
-// 	if (!textureData.data)
-// 		ErrorHandler::setError("TEXTURE_LOAD");
-// 	return textureData;
-// }

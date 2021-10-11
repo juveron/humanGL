@@ -28,7 +28,6 @@ static void placeText(Font &font, std::vector <s_textInformation> texts)
 
 void renderUI(Font &font, s_indexBody indexBody, ABody const *body)
 {
-	(void)indexBody;
 	glViewport(SCREEN_WIDTH_BODIES, 0, SCREEN_WIDTH_UI, SCREEN_HEIGHT);
 	glScissor(SCREEN_WIDTH_BODIES, 0, SCREEN_WIDTH_UI, SCREEN_HEIGHT);
 	glClearColor(0.1294f, 0.1294f, 0.1294f, 0.1f);
