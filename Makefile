@@ -17,7 +17,7 @@ UNAME_S := $(shell uname -s)
 
 NAME= HumanGL
 CPP= clang++
-CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
+CPPFLAGS= -std=c++20 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
 
 SRC_DIR= src/
 SRC=	init/main.cpp\
@@ -100,6 +100,22 @@ $(OBJ_DIR)%.o:%.cpp $(HEADERS) Makefile
 	@ $(CPP) -o $@ -c $< $(CPPFLAGS) $(INCLUDES)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
+installGLFW:
+ifeq ($(UNAME_S),Linux)
+	@ sudo apt-get install libglfw3-dev
+endif
+ifeq ($(UNAME_S),Darwin)
+	@ brew install glfw
+endif
+
+installBrew:
+	@ rm -rf $HOME/.brew
+ 	@ git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew
+	@ export PATH=$HOME/.brew/bin:$PATH
+	@ brew update
+	@ echo "export PATH=$HOME/.brew/bin:$PATH" >> ~/.zshrc
+
+
 installFreetype:
 ifeq ($(UNAME_S),Linux)
 	@ sudo apt-get install libfreetype6-dev -y
@@ -128,4 +144,4 @@ re: fclean all
 
 FORCE:
 
-.PHONY: all re fclean clean
+.PHONY: all re fclean clean .installFreetype .installBrew .installGLFW
