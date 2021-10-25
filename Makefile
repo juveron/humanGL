@@ -17,7 +17,7 @@ UNAME_S := $(shell uname -s)
 
 NAME= HumanGL
 CPP= clang++
-CPPFLAGS= -std=c++20 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
+CPPFLAGS= -std=c++11 -Wall -Wextra -Werror -g -Wno-deprecated -Wno-unused-variable
 
 SRC_DIR= src/
 SRC=	init/main.cpp\
@@ -110,7 +110,7 @@ endif
 
 installBrew:
 	@ rm -rf $HOME/.brew
- 	@ git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew
+	@ git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew
 	@ export PATH=$HOME/.brew/bin:$PATH
 	@ brew update
 	@ echo "export PATH=$HOME/.brew/bin:$PATH" >> ~/.zshrc
@@ -144,4 +144,4 @@ re: fclean all
 
 FORCE:
 
-.PHONY: all re fclean clean .installFreetype .installBrew .installGLFW
+.PHONY: all re fclean clean installGLFW installBrew installFreetype
