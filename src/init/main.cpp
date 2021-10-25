@@ -37,22 +37,6 @@ int main(void)
 	Shader humanShader("./src/shader/humanVertexShader.glsl", "./src/shader/humanFragmentShader.glsl");
 	Shader doggoShader("./src/shader/doggoVertexShader.glsl", "./src/shader/doggoFragmentShader.glsl");
 
-	// -0.5f,  0.0f,  0.5f,  // A 0
-	//  0.5f,  0.0f,  0.5f,  // B 1
-	//  0.5f, -1.0f,  0.5f,  // C 2
-	// -0.5f, -1.0f,  0.5f,  // D 3
-	// -0.5f, -1.0f,  0.5f,  // D 3
-	// -0.5f,  0.0f, -0.5f,  // E 4
-	//  0.5f,  0.0f, -0.5f,  // F 5
-	//  0.5f, -1.0f, -0.5f,  // G 6
-	// -0.5f, -1.0f, -0.5f,  // H 7
-
-	// 	0, 2, 1, 0, 3, 2, // Front face
-	// 	4, 5, 6, 4, 6, 7, // Back face
-	// 	1, 2, 6, 1, 6, 5, // Right face
-	// 	0, 7, 3, 0, 4, 7, // Left face
-	// 	2, 3, 7, 2, 7, 6, // Bottom face
-	// 	0, 1, 5, 0, 5, 4  // Top face
 	float vertices[] = {
 		// FRONT FACE
 		-0.5f,  0.0f,  0.5f, 0.0f, 1.0f,

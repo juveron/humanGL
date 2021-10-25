@@ -24,7 +24,6 @@ public:
 
 	Texture &operator=(Texture const &rhs) = delete;
 
-	// static s_textureInfo loadTexture(char const *filename);
 };
 
 

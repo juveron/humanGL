@@ -1,6 +1,7 @@
 #include "HumanGL.hpp"
 
-void renderBodies(Shader &humanShader, Shader &doggoShader, Matrix4 &proj, Matrix4 &view, s_indexBody &indexBody, ABody *bodies[], std::vector<Animation> animations[], float deltaTime, GLuint VAO)
+void renderBodies(Shader &humanShader, Shader &doggoShader, Matrix4 &proj, Matrix4 &view,
+				  s_indexBody &indexBody, ABody *bodies[], std::vector<Animation> animations[], float deltaTime, GLuint VAO)
 {
 	glViewport(0, 0, SCREEN_WIDTH_BODIES * ratio.x, SCREEN_HEIGHT * ratio.y);
 	glScissor(0, 0, SCREEN_WIDTH_BODIES * ratio.x, SCREEN_HEIGHT * ratio.y);

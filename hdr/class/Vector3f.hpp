@@ -34,4 +34,4 @@ public:
 	friend Vector3f operator/(Vector3f const &lhs, float const &rhs);
 };
 
-#endif //HUMANGL_VECTOR_HPP
+#endif

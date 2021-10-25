@@ -1,9 +1,5 @@
-//
-// Created by juv on 20/07/2021.
-//
-
-#ifndef HUMANGL_ERRORHANDLER_HPP
-#define HUMANGL_ERRORHANDLER_HPP
+#ifndef ERRORHANDLER_HPP
+#define ERRORHANDLER_HPP
 
 #include "HumanGL.hpp"
 
@@ -22,4 +18,4 @@ public:
 };
 
 
-#endif //HUMANGL_ERRORHANDLER_HPP
+#endif

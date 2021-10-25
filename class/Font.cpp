@@ -102,7 +102,6 @@ void Font::renderText(std::string text, unsigned int alignMode, float y, float s
 
 	float x = Font::getFirstPosition(alignMode, textWidth);
 
-	// iterate through all characters
 	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
 	for (c = text.begin(); c != text.end(); c++) {
 		Character ch = this->_characters[*c];
@@ -114,7 +113,6 @@ void Font::renderText(std::string text, unsigned int alignMode, float y, float s
 
 		float w = ch.size.x * scale;
 		float h = ch.size.y * scale;
-		// update this->_vbo for each character
 		float vertices[6][4] = {
 			{ xpos,     ypos + h,   0.0f, 0.0f },
 			{ xpos,     ypos,       0.0f, 1.0f },
@@ -126,7 +124,7 @@ void Font::renderText(std::string text, unsigned int alignMode, float y, float s
 		};
 		tex.bind();
 
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
 		x += (ch.advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
@@ -151,7 +149,6 @@ void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float 
 	float x = Font::getFirstPosition(alignMode, textWidth);
 	float initialX = x;
 
-	// iterate through all characters
 	glBindBuffer(GL_ARRAY_BUFFER, this->_vbo);
 	for (c = text.begin(); c != text.end(); c++)
 	{
@@ -163,7 +160,6 @@ void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float 
 
 		float w = ch.size.x * scale;
 		float h = ch.size.y * scale;
-		// update this->_vbo for each character
 		float vertices[6][4] = {
 			{ xpos,     ypos + h,   0.0f, 0.0f },
 			{ xpos,     ypos,       0.0f, 1.0f },
@@ -175,7 +171,7 @@ void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float 
 		};
 		tex.bind();
 
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
@@ -194,7 +190,7 @@ void Font::renderUnderlinedText(std::string text, unsigned int alignMode, float 
 		{ x,        y - 3 * ratio.y, 1.0f, 0.0f }
 	};
 	tex.bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 

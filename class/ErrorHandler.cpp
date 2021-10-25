@@ -1,7 +1,3 @@
-//
-// Created by juv on 20/07/2021.
-//
-
 #include "HumanGL.hpp"
 
 std::map<std::string, std::string> ErrorHandler::_errorDictionary{

@@ -2,8 +2,8 @@
 // Created by juv on 12/07/2021.
 //
 
-#ifndef HUMANGL_MATRIX4_HPP
-#define HUMANGL_MATRIX4_HPP
+#ifndef MATRIX4_HPP
+#define MATRIX4_HPP
 
 #include "HumanGL.hpp"
 
@@ -58,4 +58,4 @@ public:
 };
 
 
-#endif //HUMANGL_MATRIX_HPP
+#endif

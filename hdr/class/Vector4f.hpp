@@ -5,7 +5,6 @@
 
 class Matrix4;
 
-// template <typename T>
 class Vector4f {
 public:
 	Vector4f(void);
@@ -37,4 +36,4 @@ public:
 	friend Vector4f operator/(Vector4f const &lhs, float const &rhs);
 };
 
-#endif //HUMANGL_VECTOR_HPP
+#endif

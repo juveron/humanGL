@@ -1,7 +1,5 @@
 #include "HumanGL.hpp"
 
-// std::vector<std::tuple<std::string, unsigned int, float, Vector3f>> tuple;
-
 static void placeText(Font &font, std::vector <s_textInformation> texts)
 {
 	std::vector<s_textInformation>::const_iterator iter;
