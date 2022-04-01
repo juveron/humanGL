@@ -30,3 +30,19 @@
 *.exe
 *.out
 *.app
+HumanGL
+
+# vscode
+.vscode
+
+# Mac_OS
+.DS_Store
+
+# jetBrain
+.idea
+HumanGL.dSYM
+
+#geoGebra
+*.ggb
+
+printedBody.txt
